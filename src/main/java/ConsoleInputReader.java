@@ -42,6 +42,18 @@ public class ConsoleInputReader {
         allowedTextElements.add("$");
     }
 
+    public String stringInputReader() {
+        String userTextInput = inputReader.nextLine();
+
+        for (String allowedTextElement : allowedTextElements) {
+            if (!userTextInput.contains(allowedTextElement)) {
+                System.err.println("Your text doesn't just contain letters, numbers, spaces or punctuation marks such as .,:;-!?’()\"%@+*[]{}/&#$");
+                return stringInputReader();
+            }
+        }
+        return userTextInput;
+    }
+
 
     //Methode für Int input mit den zu ignorierenden Zahlen.
 
