@@ -43,9 +43,6 @@ public class ConsoleInputReader {
     }
 
 
-
-
-
     //Methode für Int input mit den zu ignorierenden Zahlen.
 
 
