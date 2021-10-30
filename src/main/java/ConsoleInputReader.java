@@ -15,13 +15,21 @@ public class ConsoleInputReader {
         if (userTextInput.matches(notAllowedTextElements)) {
             System.err.println("Your text doesn't just contain letters, numbers, spaces or punctuation marks such as .,:;-!?’()\"%@+*[]{}/&#$");
             return stringInputReader();
+        }else{
+            return userTextInput.trim();
         }
-
-        return userTextInput.trim();
     }
 
+    public int numberInputReader(){
+        int userNumberInput = inputReader.nextInt();
 
-    //Methode für Int input mit den zu ignorierenden Zahlen.
+        if(userNumberInput < 1){
+            System.err.println("Type in a number greater than one");
+            return numberInputReader();
+        }else {
+            return userNumberInput;
+        }
+    }
 
 
     //Im Whileloop methode aufrufen.
