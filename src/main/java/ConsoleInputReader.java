@@ -1,20 +1,18 @@
 import java.util.Scanner;
-import java.util.regex.*;
 
 public class ConsoleInputReader {
 
     private final Scanner inputReader;
-    private static final String notAllowedTextElements = "[^a-zA-Z0-9.,:;!?’()\"%@+*\\-\\[\\]{}/&#$]";
-    private static final Pattern regExSymbols = Pattern.compile(notAllowedTextElements);
+    private static final String notAllowedTextElements = "[^a-zA-Z0-9. ,:;!?’()\"%@+*\\-\\[\\]{}/&#$]";//"[^a-zA-Z0-9. ,:;!?’()\"%@+*\\-\\[\\]{}/&#$]"
 
     public ConsoleInputReader() {
         inputReader = new Scanner(System.in);
     }
 
+    //Momentan wird nur kontrolliert, wenn ein Zeichen eingegeben wird und nicht eine Zeichenfolge.
     public String stringInputReader() {
         String userTextInput = inputReader.nextLine();
-        Matcher regExMatcher = regExSymbols.matcher(userTextInput);
-        if (regExMatcher.matches()) {
+        if (userTextInput.matches(notAllowedTextElements)) {
             System.err.println("Your text doesn't just contain letters, numbers, spaces or punctuation marks such as .,:;-!?’()\"%@+*[]{}/&#$");
             return stringInputReader();
         } else {
@@ -37,7 +35,6 @@ public class ConsoleInputReader {
             return numberInputReader();
         }
     }
-
 
     //Im Whileloop methode aufrufen.
     public void closeScanner() {
