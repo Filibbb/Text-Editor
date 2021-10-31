@@ -5,6 +5,7 @@ public class ConsoleInputReader {
 
     private final Scanner inputReader;
     private static final String notAllowedTextElements = "[^a-zA-Z0-9.,:;!?’()\"%@+*\\-\\[\\]{}/&#$]";
+    private static final Pattern regExSymbols = Pattern.compile(notAllowedTextElements);
 
     public ConsoleInputReader() {
         inputReader = new Scanner(System.in);
@@ -12,7 +13,8 @@ public class ConsoleInputReader {
 
     public String stringInputReader() {
         String userTextInput = inputReader.nextLine();
-        if (userTextInput.matches(notAllowedTextElements)) {
+        Matcher regExMatcher = regExSymbols.matcher(userTextInput);
+        if (regExMatcher.matches()) {
             System.err.println("Your text doesn't just contain letters, numbers, spaces or punctuation marks such as .,:;-!?’()\"%@+*[]{}/&#$");
             return stringInputReader();
         } else {
