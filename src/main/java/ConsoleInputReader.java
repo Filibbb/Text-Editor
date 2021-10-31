@@ -3,13 +3,13 @@ import java.util.Scanner;
 public class ConsoleInputReader {
 
     private final Scanner inputReader;
-    private static final String notAllowedTextElements = "[^a-zA-Z0-9. ,:;!?’()\"%@+*\\-\\[\\]{}/&#$]";//"[^a-zA-Z0-9. ,:;!?’()\"%@+*\\-\\[\\]{}/&#$]"
+    private static final String notAllowedTextElements = "[^a-zA-Z0-9. ,:;!?’()\"%@+*\\-\\[\\]{}/&#$]*";//"[^a-zA-Z0-9. ,:;!?’()\"%@+*\\-\\[\\]{}/&#$]"
 
     public ConsoleInputReader() {
         inputReader = new Scanner(System.in);
     }
 
-    //Momentan wird nur kontrolliert, wenn ein Zeichen eingegeben wird und nicht eine Zeichenfolge.
+    //Nicht erlaubte Zeichen zusammen mit erlaubten Zeichen werden noch nicht als Fehler erkannt.
     public String stringInputReader() {
         String userTextInput = inputReader.nextLine();
         if (userTextInput.matches(notAllowedTextElements)) {
