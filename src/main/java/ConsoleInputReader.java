@@ -1,53 +1,40 @@
-import java.util.HashSet;
 import java.util.Scanner;
-import java.util.Set;
 
 public class ConsoleInputReader {
 
     private final Scanner inputReader;
-    private Set<String> allowedTextElements = new HashSet<>();
-
-    //Ein HashSet machen, dass nur erlaubte zeichen enthält.
+    private static final String notAllowedTextElements = "[^a-zA-Z0-9. ,:;!?’()\"%@+*\\-\\[\\]{}/&#$]*";//"[^a-zA-Z0-9. ,:;!?’()\"%@+*\\-\\[\\]{}/&#$]"
 
     public ConsoleInputReader() {
         inputReader = new Scanner(System.in);
-        addAllowedTextelements();
     }
 
-    private void addAllowedTextelements() {
-        allowedTextElements.add("[a-zA-Z]");//Letters
-        allowedTextElements.add("[0-9]");//digits
-        allowedTextElements.add(".");
-        allowedTextElements.add(",");
-        allowedTextElements.add(":");
-        allowedTextElements.add(";");
-        allowedTextElements.add("-");
-        allowedTextElements.add("!");
-        allowedTextElements.add("?");
-        allowedTextElements.add("’");
-        allowedTextElements.add("(");
-        allowedTextElements.add(")");
-        allowedTextElements.add("\"");
-        allowedTextElements.add("%");
-        allowedTextElements.add("@");
-        allowedTextElements.add("+");
-        allowedTextElements.add("*");
-        allowedTextElements.add("[");
-        allowedTextElements.add("]");
-        allowedTextElements.add("{");
-        allowedTextElements.add("}");
-        allowedTextElements.add("/");
-        allowedTextElements.add("&");
-        allowedTextElements.add("#");
-        allowedTextElements.add("$");
+    //Nicht erlaubte Zeichen zusammen mit erlaubten Zeichen werden noch nicht als Fehler erkannt.
+    public String stringInputReader() {
+        String userTextInput = inputReader.nextLine();
+        if (userTextInput.matches(notAllowedTextElements)) {
+            System.err.println("Your text doesn't just contain letters, numbers, spaces or punctuation marks such as .,:;-!?’()\"%@+*[]{}/&#$");
+            return stringInputReader();
+        } else {
+            return userTextInput.trim();
+        }
     }
 
-
-
-
-
-    //Methode für Int input mit den zu ignorierenden Zahlen.
-
+    public int numberInputReader() {
+        if (inputReader.hasNextInt()) {
+            int userNumberInput = inputReader.nextInt();
+            if (userNumberInput < 1) {
+                System.err.println("Type in a number greater than one");
+                return numberInputReader();
+            } else {
+                return userNumberInput;
+            }
+        } else {
+            System.err.println("Type in a number");
+            inputReader.next();
+            return numberInputReader();
+        }
+    }
 
     //Im Whileloop methode aufrufen.
     public void closeScanner() {
