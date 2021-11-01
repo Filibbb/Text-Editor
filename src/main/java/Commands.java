@@ -15,4 +15,17 @@ public class Commands {
         availableCommands.add("PRINT");
         availableCommands.add("REPLACE");
     }
+
+    public void showCommands() {
+        System.out.println("Available Commands:");
+        System.out.println("ADD : Add Text");
+        System.out.println("DEL (n) : Delete Paragraph n");
+        System.out.println("PRINT : ");
+        System.out.println("DUMMY : ");
+        System.out.println("FORMAT RAW : ");
+        System.out.println("FORMAT FIX : ");
+        System.out.println("INDEX : ");
+        System.out.println("REPLACE : ");
+        System.out.println("EXIT : Exit TextEditor!");
+    }
 }
