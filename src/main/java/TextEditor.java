@@ -6,7 +6,6 @@
  */
 
 public class TextEditor {
-
     private boolean isRunning = true;
     ConsoleInputReader inputReader = new ConsoleInputReader();
     Commands commands = new Commands();
@@ -14,6 +13,9 @@ public class TextEditor {
     public TextEditor() {
     }
 
+    /**
+     *  Starts the Text Editor and keeps it running until Exit Command
+     */
     public void start() {
         System.out.println("***********************************");
         System.out.println("* Welcome to the best TextEditor! *");

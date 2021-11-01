@@ -14,6 +14,7 @@ public class Commands {
         availableCommands.add("INDEX");
         availableCommands.add("PRINT");
         availableCommands.add("REPLACE");
+        availableCommands.add("SHOWCOMMANDS");
     }
 
     public void showCommands() {
