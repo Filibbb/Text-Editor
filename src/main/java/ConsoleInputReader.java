@@ -41,8 +41,8 @@ public class ConsoleInputReader {
     public int intInputReader() {
         if (inputReader.hasNextInt()) {
             int userNumberInput = inputReader.nextInt();
-            if (userNumberInput < 1) {
-                System.err.println("Type in a number greater than one");
+            if (userNumberInput < 0) {
+                System.err.println("Type in a number greater than zero");
                 return intInputReader();
             } else {
                 return userNumberInput;

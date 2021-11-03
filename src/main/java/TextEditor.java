@@ -8,6 +8,7 @@
 public class TextEditor {
     ConsoleInputReader inputReader = new ConsoleInputReader();
     Commands commands = new Commands();
+    TextData textData = new TextData();
 
     public TextEditor() {
     }
@@ -29,7 +30,26 @@ public class TextEditor {
 
     private void editText() {
         System.out.println("Please enter a command:");
-        inputReader.stringInputReader();
+        String command = inputReader.stringInputReader();
+        executeCommand(command);
+    }
+
+    private void executeCommand(String command){
+        if(commands.isAvailableCommand(command)){
+            if(command.equals("DUMMY")){
+                //Execute DUMMY
+            }else if (command.equals("ADD")){
+                //Execute ADD
+            }else if (command.equals("PRINT")){
+                textData.print();
+            }else if (command.equals("REPLACE")){
+                commands.executeReplaceCommand(textData, inputReader);
+            }
+        }else{
+            System.err.println("This command is not available. Please choose one below.");
+            commands.showCommands();
+        }
+
     }
 }
 

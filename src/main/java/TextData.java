@@ -7,12 +7,14 @@ import java.util.List;
  */
 public class TextData {
     private final List<String> paragraphs;
+    private Commands commands;
 
     /**
      * Creates a new TextData Object with an empty paragraph list.
      */
     public TextData() {
         this.paragraphs = new ArrayList<>();
+        this.commands = new Commands();
     }
 
     /**
@@ -43,14 +45,16 @@ public class TextData {
 
     /**
      *Replaces a word in the last paragraph
-     * @param textToReplaced the text that has to be replaced
+     * @param textToReplace the text that has to be replaced
      * @param newText the text that replaces the old text
      * @author fupat002
      */
-    public void replaceAtLastParagraph(String textToReplaced, String newText){
+    public void replaceInLastParagraph(String textToReplace, String newText){
         int numberOfLastParagraph = convertParagraphToIndex(paragraphs.size());
-        if(containsWordAtParagraph(textToReplaced, numberOfLastParagraph)){
-            paragraphs.set(numberOfLastParagraph, newText);
+        String oldParagraphText = paragraphs.get(numberOfLastParagraph);
+        if(containsWordAtParagraph(textToReplace, numberOfLastParagraph)){
+            String newParagraphText = oldParagraphText.replace(textToReplace, newText);
+            paragraphs.set(numberOfLastParagraph, newParagraphText);
         }else{
             System.err.println("Your replacement word is not in this line. Check it out and try again.");
         }
@@ -59,20 +63,40 @@ public class TextData {
     /**
      *Replaces a word in the chosen paragraph
      * @param textToReplace the text that has to be replaced
-     * @param paragraph the paragraph that contains the word that has to be replaced
+     * @param paragraphNumber the paragraph that contains the word that has to be replaced
      * @param newText the text that replaces the old text
      * @author fupat002
      */
-    public void replaceAtVariableParagraph(String textToReplace, int paragraph ,String newText){
+    public void replaceInVariableParagraph(String textToReplace, int paragraphNumber ,String newText){
+        int paragraph = convertParagraphToIndex(paragraphNumber);
+        String oldParagraphText = paragraphs.get(paragraph);
         if(containsWordAtParagraph(textToReplace, paragraph)){
-            paragraphs.set(paragraph, newText);
+            String newParagraphText = oldParagraphText.replace(textToReplace, newText);
+            paragraphs.set(paragraph, newParagraphText);
         }else{
-            System.err.println("Your replacement word is not in this line. Check it out and try again.");
+            System.err.println("Your replacement word \"" + textToReplace + "\" is not in this line. Check it out and try again.");
         }
     }
 
     private boolean containsWordAtParagraph(String word, int paragraph){
         String paragraphText = paragraphs.get(paragraph);
         return paragraphText.contains(word);
+    }
+
+    /**
+     * Prints the whole text.
+     * @author fupat002
+     */
+    public void print(){
+        if(!paragraphs.isEmpty()){
+            for(String paragraph : paragraphs){
+                System.out.println(paragraph);
+            }
+            System.out.println("--------- This line marks the end. It doesn't belog to the Text! ---------");
+        }else{
+            System.err.println("There is no text. Add some with the commands below.");
+            commands.showCommands();
+        }
+
     }
 }
