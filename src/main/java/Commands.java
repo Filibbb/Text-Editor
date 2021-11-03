@@ -42,4 +42,9 @@ public class Commands {
     public boolean executeDummyCommand(TextData text, int offset) {
         return text.insertTextAt(offset, " " + dummyText);
     }
+
+    public void executeExitCommand() {
+        System.out.println("Closing the TextEditor! Bye!");
+        System.exit(0);
+    }
 }
