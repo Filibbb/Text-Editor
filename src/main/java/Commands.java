@@ -1,5 +1,4 @@
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class Commands {
     private static final String dummyText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sed quam sit amet ex dapibus egestas vel congue metus. Donec id eleifend nisi, vitae eleifend tortor. Quisque euismod vitae nisi fringilla dignissim. In aliquam finibus nisl vel euismod. Ut ac sodales elit. Proin rhoncus libero turpis, eget tempor nisl consequat sed. Proin tempus erat magna, vitae sodales arcu fringilla sit amet. Nunc elementum, velit placerat iaculis feugiat, lectus dolor dapibus velit, in maximus sapien felis at arcu. Nulla mollis suscipit egestas. Phasellus a volutpat libero, nec tincidunt tortor. Aenean mattis ligula eu efficitur ultricies. Vestibulum ac nibh sodales, venenatis sapien vel, maximus nisi. Curabitur feugiat dictum tortor, a hendrerit urna tincidunt vitae.";
@@ -41,5 +40,71 @@ public class Commands {
 
     public boolean executeDummyCommand(TextData text, int offset) {
         return text.insertTextAt(offset, " " + dummyText);
+    }
+
+    public String printIndex(TextData text) {
+        ArrayList<String> allTerms = saveTerms(new ArrayList<String>(text.getParagraphs()));
+        ArrayList<String> termsWithOccurenceLessThanFour = removeIfLessThanFour(allTerms);
+        HashMap<String, ArrayList<Integer>> map = allocateIndices(allTerms, termsWithOccurenceLessThanFour);
+        String result = mapToString(map);
+        return result;
+    }
+
+    private ArrayList<String> saveTerms(ArrayList<String> list) {
+        ArrayList<String> allTerms = new ArrayList<String>();
+        for (String str : list) {
+            str = str.replaceAll("\\p{Punct}", "");
+            str = str.replaceAll("[0-9]", "");
+            String[] allWords = str.split(" ");
+            for (int i=0; i<allWords.length; i++) {
+                if(allWords[i].length()>0 && Character.isUpperCase(allWords[i].charAt(0))) {
+                    allTerms.add(allWords[i]);
+                }
+            }
+        }
+        Collections.sort(allTerms);
+        return allTerms;
+    }
+
+    private ArrayList<String> removeIfLessThanFour(ArrayList<String> allTerms) {
+        ArrayList<String> result = new ArrayList<String>();
+        int counter = 1;
+        for (int i = 0; i< allTerms.size()-1; i++) {
+            if (allTerms.get(i).equals(allTerms.get(i+1))) {
+                counter ++;
+            } else{
+                counter = 1;
+            }
+            if(counter == 4) {
+                result.add(allTerms.get(i));
+            }
+        }
+        return result;
+    }
+
+    private HashMap<String, ArrayList<Integer>> allocateIndices(ArrayList<String> list, ArrayList<String> result) {
+        HashMap<String, ArrayList<Integer>> map = new HashMap<String, ArrayList<Integer>>();
+        for (String str: result) {
+            ArrayList<Integer> indices = new ArrayList<Integer>();
+            for (int i = 0; i< list.size(); i++) {
+                boolean exists = list.get(i).contains(str);
+                if(exists) {
+                    indices.add(i+1);
+                }
+            }
+            map.put(str, indices);
+        }
+        return map;
+    }
+
+    public String mapToString(HashMap<String, ArrayList<Integer>> map){
+        String result = "";
+        for (Map.Entry<String, ArrayList<Integer>> entry : map.entrySet()) {
+            String key = entry.getKey();
+            ArrayList<Integer> value = entry.getValue();
+            result += key+"     \t\t";
+            result += value.toString() +"\n";
+        }
+        return result;
     }
 }

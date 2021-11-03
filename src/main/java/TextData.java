@@ -15,6 +15,10 @@ public class TextData {
         this.paragraphs = new ArrayList<>();
     }
 
+    public List<String> getParagraphs() {
+        return paragraphs;
+    }
+
     /**
      * @param paragraphNumber null or a specified index of the paragraph
      * @param text the text that should be inputted at the specified paragraphNumber OR the end of the file
