@@ -78,6 +78,5 @@ public class Commands {
             System.err.println("There is no text. Add some with the commands below.");
             showCommands();
         }
-
     }
 }

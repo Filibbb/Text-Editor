@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class ConsoleInputReader {
 
     private final Scanner inputReader;
-    private static final String notAllowedTextElements = "[^a-zA-Z0-9. ,:;!?’()\"%@+*\\-\\[\\]{}/&#$]*";//"[^a-zA-Z0-9. ,:;!?’()\"%@+*\\-\\[\\]{}/&#$]"
+    private static final String AllowedTextElements = "[a-zA-Z0-9. ,:;!?’()\"%@+*\\-\\[\\]{}/&#$]*";
 
     /**
      * Creates a new Scanner.
@@ -23,9 +23,9 @@ public class ConsoleInputReader {
      * @return the user input if it contains only symbols that are allowed.
      * @author fupat002
      */
-    public String readNextString() {  //Nicht erlaubte Zeichen zusammen mit erlaubten Zeichen werden noch nicht als Fehler erkannt.
+    public String readNextString() {
         String userTextInput = inputReader.nextLine();
-        if (userTextInput.matches(notAllowedTextElements)) {
+        if (!userTextInput.matches(AllowedTextElements)) {
             System.err.println("Your text doesn't just contain letters, numbers, spaces or punctuation marks such as .,:;-!?’()\"%@+*[]{}/&#$");
             return readNextString();
         } else {
