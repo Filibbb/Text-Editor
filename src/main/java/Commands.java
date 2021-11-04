@@ -45,36 +45,32 @@ public class Commands {
 
     /**
      * Executes the replace commands
-     * @param text the class that contains the text
-     * @param inputReader the class for reading console input
-     * @author fupat002
+     *
+     * @param text text the class that contains the text
+     * @param textToReplace the text / word that needs to be replaced
+     * @param paragraphNumber the paragraph number (optional)
+     * @param newText the text / word to replace it with.
      */
-    public void executeReplaceCommand(TextData text, ConsoleInputReader inputReader){
-        System.out.println("Write the word / text you want to replace.");
-        String textToReplace = inputReader.readNextString();
-        System.out.println("Enter the paragraph number in which your word / text appears. If it's on the last paragraph, type in 0");
-        int paragraphNumber = inputReader.readNextInt();
-        System.out.println("Write the word / text you want to replace it with.");
-        String newText = inputReader.readNextString();
-
-        if (paragraphNumber == 0){
+    public void executeReplaceCommand(TextData text, String textToReplace, int paragraphNumber, String newText) {
+        if (paragraphNumber == 0) {
             text.replaceInLastParagraph(textToReplace, newText);
-        }else{
-            text.replaceInVariableParagraph(textToReplace,paragraphNumber, newText);
+        } else {
+            text.replaceInVariableParagraph(textToReplace, paragraphNumber, newText);
         }
     }
 
     /**
      * Prints the whole text.
+     *
      * @author fupat002
      */
-    public void print(TextData textData){
-        if(!textData.getParagraphs().isEmpty()){
-            for(String paragraph : textData.getParagraphs()){
+    public void print(TextData textData) {
+        if (!textData.getParagraphs().isEmpty()) {
+            for (String paragraph : textData.getParagraphs()) {
                 System.out.println(paragraph);
             }
             System.out.println("--------- This line marks the end. It doesn't belog to the Text! ---------");
-        }else{
+        } else {
             System.err.println("There is no text. Add some with the commands below.");
             showCommands();
         }
