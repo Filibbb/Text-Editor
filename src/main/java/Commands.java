@@ -51,16 +51,32 @@ public class Commands {
      */
     public void executeReplaceCommand(TextData text, ConsoleInputReader inputReader){
         System.out.println("Write the word / text you want to replace.");
-        String textToReplace = inputReader.stringInputReader();
+        String textToReplace = inputReader.readNextString();
         System.out.println("Enter the paragraph number in which your word / text appears. If it's on the last paragraph, type in 0");
-        int paragraphNumber = inputReader.intInputReader();
+        int paragraphNumber = inputReader.readNextInt();
         System.out.println("Write the word / text you want to replace it with.");
-        String newText = inputReader.stringInputReader();
+        String newText = inputReader.readNextString();
 
         if (paragraphNumber == 0){
             text.replaceInLastParagraph(textToReplace, newText);
         }else{
             text.replaceInVariableParagraph(textToReplace,paragraphNumber, newText);
+        }
+    }
+
+    /**
+     * Prints the whole text.
+     * @author fupat002
+     */
+    public void print(TextData textData){
+        if(!textData.getParagraphs().isEmpty()){
+            for(String paragraph : textData.getParagraphs()){
+                System.out.println(paragraph);
+            }
+            System.out.println("--------- This line marks the end. It doesn't belog to the Text! ---------");
+        }else{
+            System.err.println("There is no text. Add some with the commands below.");
+            showCommands();
         }
 
     }

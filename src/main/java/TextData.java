@@ -7,14 +7,12 @@ import java.util.List;
  */
 public class TextData {
     private final List<String> paragraphs;
-    private Commands commands;
 
     /**
      * Creates a new TextData Object with an empty paragraph list.
      */
     public TextData() {
         this.paragraphs = new ArrayList<>();
-        this.commands = new Commands();
     }
 
     /**
@@ -83,20 +81,7 @@ public class TextData {
         return paragraphText.contains(word);
     }
 
-    /**
-     * Prints the whole text.
-     * @author fupat002
-     */
-    public void print(){
-        if(!paragraphs.isEmpty()){
-            for(String paragraph : paragraphs){
-                System.out.println(paragraph);
-            }
-            System.out.println("--------- This line marks the end. It doesn't belog to the Text! ---------");
-        }else{
-            System.err.println("There is no text. Add some with the commands below.");
-            commands.showCommands();
-        }
-
+    public List<String> getParagraphs() {
+        return paragraphs;
     }
 }

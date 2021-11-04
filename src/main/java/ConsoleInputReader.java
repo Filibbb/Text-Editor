@@ -23,11 +23,11 @@ public class ConsoleInputReader {
      * @return the user input if it contains only symbols that are allowed.
      * @author fupat002
      */
-    public String stringInputReader() {  //Nicht erlaubte Zeichen zusammen mit erlaubten Zeichen werden noch nicht als Fehler erkannt.
+    public String readNextString() {  //Nicht erlaubte Zeichen zusammen mit erlaubten Zeichen werden noch nicht als Fehler erkannt.
         String userTextInput = inputReader.nextLine();
         if (userTextInput.matches(notAllowedTextElements)) {
             System.err.println("Your text doesn't just contain letters, numbers, spaces or punctuation marks such as .,:;-!?’()\"%@+*[]{}/&#$");
-            return stringInputReader();
+            return readNextString();
         } else {
             return userTextInput.trim();
         }
@@ -38,19 +38,19 @@ public class ConsoleInputReader {
      * @return the inputted int that is grater than one.
      * @author fupat002
      */
-    public int intInputReader() {
+    public int readNextInt() {
         if (inputReader.hasNextInt()) {
             int userNumberInput = inputReader.nextInt();
             if (userNumberInput < 0) {
                 System.err.println("Type in a number greater than zero");
-                return intInputReader();
+                return readNextInt();
             } else {
                 return userNumberInput;
             }
         } else {
             System.err.println("Type in a number");
             inputReader.next();
-            return intInputReader();
+            return readNextInt();
         }
     }
 

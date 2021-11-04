@@ -30,7 +30,7 @@ public class TextEditor {
 
     private void editText() {
         System.out.println("Please enter a command:");
-        String command = inputReader.stringInputReader();
+        String command = inputReader.readNextString();
         executeCommand(command);
     }
 
@@ -41,7 +41,7 @@ public class TextEditor {
             }else if (command.equals("ADD")){
                 //Execute ADD
             }else if (command.equals("PRINT")){
-                textData.print();
+                commands.print(textData);
             }else if (command.equals("REPLACE")){
                 commands.executeReplaceCommand(textData, inputReader);
             }
