@@ -24,11 +24,21 @@ public class ConsoleInputReader {
      * @return the user input if it contains only symbols that are allowed.
      * @author fupat002
      */
-    public String readNextString() {
-        String userTextInput = inputReader.nextLine();
+    public String readNextTextString() {
+        String userTextInput = inputReader.next();
         if (!userTextInput.matches(ALLOWED_TEXT_ELEMENTS)) {
             System.err.println("Your text doesn't just contain letters, numbers, spaces or punctuation marks such as .,:;-!?’()\"%@+*[]{}/&#$");
-            return readNextString();
+            return readNextTextString();
+        } else {
+            return userTextInput.trim();
+        }
+    }
+
+    public String readNextCommand() {
+        String userTextInput = inputReader.next();
+        if (!userTextInput.matches(ALLOWED_TEXT_ELEMENTS)) {
+            System.err.println("Your text doesn't just contain letters, numbers, spaces or punctuation marks such as .,:;-!?’()\"%@+*[]{}/&#$");
+            return readNextTextString();
         } else {
             return userTextInput.trim();
         }
