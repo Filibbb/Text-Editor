@@ -14,6 +14,7 @@ public class TextEditor {
 
     /**
      *  Starts the Text Editor and keeps it running
+     *  It runs until you set isRunning to false via the exit command
      */
     public void start() {
         System.out.println("***********************************");
@@ -21,9 +22,7 @@ public class TextEditor {
         System.out.println("***********************************");
         commands.showCommands();
         boolean isRunning = true;
-        while (isRunning) {
-            editText();
-        }
+        while (isRunning) editText();
     }
 
     private void editText() {
