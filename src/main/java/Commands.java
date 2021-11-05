@@ -42,4 +42,38 @@ public class Commands {
     public boolean executeDummyCommand(TextData text, int offset) {
         return text.insertTextAt(offset, " " + dummyText);
     }
+
+    /**
+     * Executes the replace commands
+     *
+     * @param text the class that contains the text
+     * @param textToReplace the text / word that needs to be replaced
+     * @param paragraphNumber the paragraph number (optional)
+     * @param newText the text / word to replace it with.
+     */
+    public void executeReplaceCommand(TextData text, String textToReplace, int paragraphNumber, String newText) {
+        if (paragraphNumber == 0) {
+            text.replaceInLastParagraph(textToReplace, newText);
+        } else {
+            text.replaceInVariableParagraph(textToReplace, paragraphNumber, newText);
+        }
+    }
+
+    /**
+     * Prints the whole text.
+     * 
+     * @param textData the class that contains the text for the replacement
+     * @author fupat002
+     */
+    public void print(TextData textData) {
+        if (!textData.getParagraphs().isEmpty()) {
+            for (String paragraph : textData.getParagraphs()) {
+                System.out.println(paragraph);
+            }
+            System.out.println("--------- This line marks the end. It doesn't belog to the Text! ---------");
+        } else {
+            System.err.println("There is no text. Add some with the commands below.");
+            showCommands();
+        }
+    }
 }
