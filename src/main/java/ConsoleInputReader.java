@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class ConsoleInputReader {
 
     private final Scanner inputReader;
-    private static final String AllowedTextElements = "[a-zA-Z0-9. ,:;!?’()\"%@+*\\-\\[\\]{}/&#$]*";
+    private static final String ALLOWED_TEXT_ELEMENTS = "[a-zA-Z0-9. ,:;!?’()\"%@+*\\-\\[\\]{}/&#$]*";
 
     /**
      * Creates a new Scanner.
@@ -25,7 +25,7 @@ public class ConsoleInputReader {
      */
     public String readNextString() {
         String userTextInput = inputReader.nextLine();
-        if (!userTextInput.matches(AllowedTextElements)) {
+        if (!userTextInput.matches(ALLOWED_TEXT_ELEMENTS)) {
             System.err.println("Your text doesn't just contain letters, numbers, spaces or punctuation marks such as .,:;-!?’()\"%@+*[]{}/&#$");
             return readNextString();
         } else {

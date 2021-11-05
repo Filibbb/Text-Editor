@@ -46,7 +46,7 @@ public class Commands {
     /**
      * Executes the replace commands
      *
-     * @param text text the class that contains the text
+     * @param text the class that contains the text
      * @param textToReplace the text / word that needs to be replaced
      * @param paragraphNumber the paragraph number (optional)
      * @param newText the text / word to replace it with.
@@ -61,7 +61,8 @@ public class Commands {
 
     /**
      * Prints the whole text.
-     *
+     * 
+     * @param textData the class that contains the text for the replacement
      * @author fupat002
      */
     public void print(TextData textData) {
