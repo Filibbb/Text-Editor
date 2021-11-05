@@ -21,6 +21,7 @@ public class Commands {
 
     /**
      * Shows a list and description of all available commands.
+     *
      * @author weberph5
      */
     public void showCommands() {
@@ -53,10 +54,10 @@ public class Commands {
     /**
      * Executes the replace commands
      *
-     * @param text the class that contains the text
-     * @param textToReplace the text / word that needs to be replaced
+     * @param text            the class that contains the text
+     * @param textToReplace   the text / word that needs to be replaced
      * @param paragraphNumber the paragraph number (optional)
-     * @param newText the text / word to replace it with.
+     * @param newText         the text / word to replace it with.
      */
     public void executeReplaceCommand(TextData text, String textToReplace, int paragraphNumber, String newText) {
         if (paragraphNumber == 0) {
@@ -68,7 +69,7 @@ public class Commands {
 
     /**
      * Prints the whole text.
-     * 
+     *
      * @param textData the class that contains the text for the replacement
      * @author fupat002
      */
@@ -85,11 +86,12 @@ public class Commands {
     }
 
     /**
-     * Closes the TextEditor by setting isRunning to false.
+     * Closes the TextEditor by setting isRunning in TextEditor to false.
+     *
      * @return false
      * @author weberph5
      */
-    public boolean exitEditor(){
+    public boolean exitEditor() {
         System.out.println("Closing the TextEditor. Bye.");
         inputReader.closeScanner();
         return false;
