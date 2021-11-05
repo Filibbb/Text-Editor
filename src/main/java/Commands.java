@@ -32,15 +32,22 @@ public class Commands {
      *
      * @param text            the class that contains the text
      * @param textToReplace   the text / word that needs to be replaced
-     * @param paragraphNumber the paragraph number (optional)
-     * @param newText         the text / word to replace it with.
+     * @param command         the entered command
+     * @param newText         the text / word to replace it with
      */
-    public void executeReplaceCommand(TextData text, String textToReplace, int paragraphNumber, String newText) {
+    public void executeReplaceCommand(TextData text, String textToReplace, String newText, String command) {
+        int paragraph = 0;
         if(!text.getParagraphs().isEmpty()){
-            if (paragraphNumber == 0) {
+            if(command.matches("[0-9]*")){
+                String[] numberSplit = command.split(" +");
+                for (String splitElement : numberSplit) {
+                    if (splitElement.matches("[0-9]*")) {
+                        paragraph = Integer.parseInt(splitElement);
+                    }
+                }
+                text.replaceInVariableParagraph(textToReplace, paragraph, newText);
+            }else{
                 text.replaceInLastParagraph(textToReplace, newText);
-            } else {
-                text.replaceInVariableParagraph(textToReplace, paragraphNumber, newText);
             }
         }else{
             System.err.println("There is no text. Add some with the commands below.");

@@ -59,11 +59,9 @@ public class TextEditor {
                 case REPLACE:
                     System.out.println("Write the word / text you want to replace.");
                     String textToReplace = inputReader.readNextTextString();
-                    System.out.println("Enter the paragraph number in which your word / text appears. If it's on the last paragraph, type in 0");
-                    int paragraphNumber = inputReader.readNextInt();
                     System.out.println("Write the word / text you want to replace it with.");
                     String newText = inputReader.readNextTextString();
-                    commands.executeReplaceCommand(textData, textToReplace, paragraphNumber, newText);
+                    commands.executeReplaceCommand(textData, textToReplace, enteredCommand, newText);
                     break;
                 case FORMAT_FIX:
                     break;
