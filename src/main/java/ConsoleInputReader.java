@@ -8,8 +8,8 @@ import java.util.Scanner;
  */
 public class ConsoleInputReader {
 
-    private final Scanner inputReader;
     private static final String ALLOWED_TEXT_ELEMENTS = "[a-zA-Z0-9. ,:;!?’()\"%@+*\\-\\[\\]{}/&#$]*";
+    private final Scanner inputReader;
 
     /**
      * Creates a new Scanner.
@@ -20,6 +20,7 @@ public class ConsoleInputReader {
 
     /**
      * Reads the user input and checks if there are no other symbols in it than defined in the RegEx code.
+     *
      * @return the user input if it contains only symbols that are allowed.
      * @author fupat002
      */
@@ -35,6 +36,7 @@ public class ConsoleInputReader {
 
     /**
      * Reads the next integer input.
+     *
      * @return the inputted int that is grater than one.
      * @author fupat002
      */
@@ -56,6 +58,7 @@ public class ConsoleInputReader {
 
     /**
      * closes the scanner.
+     *
      * @author fupat002
      */
     public void closeScanner() {
