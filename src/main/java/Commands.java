@@ -19,16 +19,15 @@ public class Commands {
     }
 
     public void showCommands() {
-        System.out.println("Available Commands (Case sensitive!):");
-        System.out.println("ADD (n) : Add Text to paragraph n. n is optional. Text will be added to the end if n is not set.");
+        System.out.println("Available Commands:");
+        System.out.println("ADD : Add Text");
         System.out.println("DEL (n) : Delete Paragraph n");
-        System.out.println("FORMAT RAW : Set format to raw with no fix column length with paragraph numbers.");
-        System.out.println("FORMAT FIX (b) : Set format to a fix column length b");
-        System.out.println("PRINT : Print all text in the currently set format.");
-        System.out.println("DUMMY (n) : Add a pre-programmed dummy text to paragraph n. n is optional. Text will be added to the end if n is not set.");
-        System.out.println("INDEX : Prints an index of all words starting with an uppercase letter and exist more often than 3 times in all paragraphs.");
-        System.out.println("REPLACE (n): Search and replace a string in paragraph n. n is optional. If n is not set search and replace will be done in the last paragraph.");
-        System.out.println("SHOWCOMMANDS : Show list of available commands.");
+        System.out.println("PRINT : ");
+        System.out.println("DUMMY : ");
+        System.out.println("FORMAT RAW : ");
+        System.out.println("FORMAT FIX : ");
+        System.out.println("INDEX : ");
+        System.out.println("REPLACE : ");
         System.out.println("EXIT : Exit TextEditor!");
     }
 
@@ -44,8 +43,37 @@ public class Commands {
         return text.insertTextAt(offset, " " + dummyText);
     }
 
-    public void executeExitCommand() {
-        System.out.println("Closing the TextEditor! Bye!");
-        System.exit(0);
+    /**
+     * Executes the replace commands
+     *
+     * @param text the class that contains the text
+     * @param textToReplace the text / word that needs to be replaced
+     * @param paragraphNumber the paragraph number (optional)
+     * @param newText the text / word to replace it with.
+     */
+    public void executeReplaceCommand(TextData text, String textToReplace, int paragraphNumber, String newText) {
+        if (paragraphNumber == 0) {
+            text.replaceInLastParagraph(textToReplace, newText);
+        } else {
+            text.replaceInVariableParagraph(textToReplace, paragraphNumber, newText);
+        }
+    }
+
+    /**
+     * Prints the whole text.
+     * 
+     * @param textData the class that contains the text for the replacement
+     * @author fupat002
+     */
+    public void print(TextData textData) {
+        if (!textData.getParagraphs().isEmpty()) {
+            for (String paragraph : textData.getParagraphs()) {
+                System.out.println(paragraph);
+            }
+            System.out.println("--------- This line marks the end. It doesn't belog to the Text! ---------");
+        } else {
+            System.err.println("There is no text. Add some with the commands below.");
+            showCommands();
+        }
     }
 }
