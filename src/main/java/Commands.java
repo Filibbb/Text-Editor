@@ -3,37 +3,20 @@ import java.util.Set;
 
 public class Commands {
     private static final String dummyText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sed quam sit amet ex dapibus egestas vel congue metus. Donec id eleifend nisi, vitae eleifend tortor. Quisque euismod vitae nisi fringilla dignissim. In aliquam finibus nisl vel euismod. Ut ac sodales elit. Proin rhoncus libero turpis, eget tempor nisl consequat sed. Proin tempus erat magna, vitae sodales arcu fringilla sit amet. Nunc elementum, velit placerat iaculis feugiat, lectus dolor dapibus velit, in maximus sapien felis at arcu. Nulla mollis suscipit egestas. Phasellus a volutpat libero, nec tincidunt tortor. Aenean mattis ligula eu efficitur ultricies. Vestibulum ac nibh sodales, venenatis sapien vel, maximus nisi. Curabitur feugiat dictum tortor, a hendrerit urna tincidunt vitae.";
-    private final Set<String> availableCommands = new HashSet<>();
+    ConsoleInputReader inputReader = new ConsoleInputReader();
 
-    public Commands() {
-        availableCommands.add("DUMMY");//
-        availableCommands.add("DEL");//
-        availableCommands.add("ADD");//
-        availableCommands.add("EXIT");//
-        availableCommands.add("FORMAT RAW");
-        availableCommands.add("FORMAT FIX");//
-        availableCommands.add("INDEX");//
-        availableCommands.add("PRINT");////
-        availableCommands.add("REPLACE");//
-        availableCommands.add("SHOWCOMMANDS");//
-    }
-
+    /**
+     * Shows a list and description of all available commands.
+     *
+     * @author weberph5
+     */
     public void showCommands() {
-        System.out.println("Available Commands:");
-        System.out.println("ADD : Add Text");
-        System.out.println("DEL (n) : Delete Paragraph n");
-        System.out.println("PRINT : ");
-        System.out.println("DUMMY : ");
-        System.out.println("FORMAT RAW : ");
-        System.out.println("FORMAT FIX : ");
-        System.out.println("INDEX : ");
-        System.out.println("REPLACE : ");
-        System.out.println("EXIT : Exit TextEditor!");
-        System.out.println("SHOWCOMMANDS : Shows all commands.");
-    }
-
-    public boolean isAvailableCommand(String commandToCheck) {
-        return availableCommands.contains(commandToCheck);
+        System.out.println("Available Commands (Case sensitive!):");
+        System.out.println("");
+        for (Command command : Command.values()) {
+            System.out.println(command.getCommandInfo());
+        }
+        System.out.println("");
     }
 
     public boolean executeDummyCommand(TextData text) {
@@ -47,10 +30,10 @@ public class Commands {
     /**
      * Executes the replace commands
      *
-     * @param text the class that contains the text
-     * @param textToReplace the text / word that needs to be replaced
+     * @param text            the class that contains the text
+     * @param textToReplace   the text / word that needs to be replaced
      * @param paragraphNumber the paragraph number (optional)
-     * @param newText the text / word to replace it with.
+     * @param newText         the text / word to replace it with.
      */
     public void executeReplaceCommand(TextData text, String textToReplace, int paragraphNumber, String newText) {
         if(!text.getParagraphs().isEmpty()){
@@ -67,7 +50,7 @@ public class Commands {
 
     /**
      * Prints the whole text.
-     * 
+     *
      * @param textData the class that contains the text for the replacement
      * @author fupat002
      */
@@ -76,10 +59,22 @@ public class Commands {
             for (String paragraph : textData.getParagraphs()) {
                 System.out.println(paragraph);
             }
-            System.out.println("--------- This line marks the end. It doesn't belog to the Text! ---------");
+            System.out.println("--------- This line marks the end. It doesn't belong to the Text! ---------");
         } else {
             System.err.println("There is no text. Add some with the commands below.");
             showCommands();
         }
+    }
+
+    /**
+     * Closes the TextEditor by setting isRunning in TextEditor to false.
+     *
+     * @return false
+     * @author weberph5
+     */
+    public boolean exitEditor() {
+        System.out.println("Closing the TextEditor. Bye.");
+        inputReader.closeScanner();
+        return false;
     }
 }

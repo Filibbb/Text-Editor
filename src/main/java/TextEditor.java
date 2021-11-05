@@ -9,78 +9,76 @@ public class TextEditor {
     ConsoleInputReader inputReader = new ConsoleInputReader();
     Commands commands = new Commands();
     TextData textData = new TextData();
+    boolean isRunning;
 
     public TextEditor() {
     }
 
     /**
-     *  Starts the Text Editor and keeps it running
+     * Starts the Text Editor and keeps it running
      */
     public void start() {
         System.out.println("***********************************");
         System.out.println("* Welcome to the best TextEditor! *");
         System.out.println("***********************************");
         commands.showCommands();
-        boolean isRunning = true;
+        isRunning = true;
         while (isRunning) {
             editText();
         }
-        inputReader.closeScanner();
     }
 
     private void editText() {
         System.out.println("Please enter a command:");
-        String command = inputReader.readNextString();
+        String command = inputReader.readNextTextString();
         executeCommand(command);
     }
 
-    private void executeCommand(String command){
-        if(commands.isAvailableCommand(command)){
-            switch(command){
-                case "ADD":
-                    //Execute ADD
-                    textData.insertTextAt(null, "Hallo Welt!");
+    private void executeCommand(String enteredCommand) {
+        final String[] commandWithParams = enteredCommand.split(" +");
+
+        //Check if length either one or three
+
+        final Command command = Command.getCommandByRepresentation(commandWithParams[0]);
+        if (command != null) {
+            switch (command) {
+                case ADD:
                     break;
-                case "DEL":
-                    //Execute DEL
+                case DEL:
                     break;
-                case "PRINT":
+                case DUMMY:
+                    break;
+                case EXIT:
+                    isRunning = commands.exitEditor();
+                    break;
+                case INDEX:
+                    break;
+                case PRINT:
                     commands.print(textData);
                     break;
-                case "DUMMY":
-                    //Execute DUMMY
-                    break;
-                case "FORMAT RAW":
-                    //Execute FORMAT RAW
-                    break;
-                case "FORMAT FIX":
-                    //Execute FORMAT FIX
-                    break;
-                case "INDEX":
-                    //Execute INDEX
-                    break;
-                case "REPLACE":
+                case REPLACE:
                     System.out.println("Write the word / text you want to replace.");
-                    String textToReplace = inputReader.readNextString();
+                    String textToReplace = inputReader.readNextTextString();
                     System.out.println("Enter the paragraph number in which your word / text appears. If it's on the last paragraph, type in 0");
                     int paragraphNumber = inputReader.readNextInt();
                     System.out.println("Write the word / text you want to replace it with.");
-                    String newText = inputReader.readNextString();
-                    commands.executeReplaceCommand(textData,textToReplace, paragraphNumber, newText);
+                    String newText = inputReader.readNextTextString();
+                    commands.executeReplaceCommand(textData, textToReplace, paragraphNumber, newText);
                     break;
-                case "EXIT":
-                    //Execute EXIT
+                case FORMAT_FIX:
                     break;
-                case "SHOWCOMMANDS":
+                case FORMAT_RAW:
+                    break;
+                case SHOW_COMMANDS:
+                    break;
+                default:
+                    System.err.println("This command is not available. Please choose one below.");
                     commands.showCommands();
                     break;
             }
-        }else{
+        } else {
             System.err.println("This command is not available. Please choose one below.");
             commands.showCommands();
         }
-
     }
 }
-
-
