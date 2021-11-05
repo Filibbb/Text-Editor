@@ -6,16 +6,16 @@ public class Commands {
     private final Set<String> availableCommands = new HashSet<>();
 
     public Commands() {
-        availableCommands.add("DUMMY");
-        availableCommands.add("DEL");
-        availableCommands.add("ADD");
-        availableCommands.add("EXIT");
+        availableCommands.add("DUMMY");//
+        availableCommands.add("DEL");//
+        availableCommands.add("ADD");//
+        availableCommands.add("EXIT");//
         availableCommands.add("FORMAT RAW");
-        availableCommands.add("FORMAT FIX");
-        availableCommands.add("INDEX");
-        availableCommands.add("PRINT");
-        availableCommands.add("REPLACE");
-        availableCommands.add("SHOWCOMMANDS");
+        availableCommands.add("FORMAT FIX");//
+        availableCommands.add("INDEX");//
+        availableCommands.add("PRINT");////
+        availableCommands.add("REPLACE");//
+        availableCommands.add("SHOWCOMMANDS");//
     }
 
     public void showCommands() {
@@ -29,6 +29,7 @@ public class Commands {
         System.out.println("INDEX : ");
         System.out.println("REPLACE : ");
         System.out.println("EXIT : Exit TextEditor!");
+        System.out.println("SHOWCOMMANDS : Shows all commands.");
     }
 
     public boolean isAvailableCommand(String commandToCheck) {
@@ -52,10 +53,15 @@ public class Commands {
      * @param newText the text / word to replace it with.
      */
     public void executeReplaceCommand(TextData text, String textToReplace, int paragraphNumber, String newText) {
-        if (paragraphNumber == 0) {
-            text.replaceInLastParagraph(textToReplace, newText);
-        } else {
-            text.replaceInVariableParagraph(textToReplace, paragraphNumber, newText);
+        if(!text.getParagraphs().isEmpty()){
+            if (paragraphNumber == 0) {
+                text.replaceInLastParagraph(textToReplace, newText);
+            } else {
+                text.replaceInVariableParagraph(textToReplace, paragraphNumber, newText);
+            }
+        }else{
+            System.err.println("There is no text. Add some with the commands below.");
+            showCommands();
         }
     }
 
