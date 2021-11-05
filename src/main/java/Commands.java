@@ -18,16 +18,21 @@ public class Commands {
         availableCommands.add("SHOWCOMMANDS");
     }
 
+    /**
+     * Shows a list and description of all available commands.
+     * @author weberph5
+     */
     public void showCommands() {
-        System.out.println("Available Commands:");
-        System.out.println("ADD : Add Text");
+        System.out.println("Available Commands (Case sensitive!):");
+        System.out.println("ADD (n) : Add Text to paragraph n. n is optional. Text will be added to the end if n is not set.");
         System.out.println("DEL (n) : Delete Paragraph n");
-        System.out.println("PRINT : ");
-        System.out.println("DUMMY : ");
-        System.out.println("FORMAT RAW : ");
-        System.out.println("FORMAT FIX : ");
-        System.out.println("INDEX : ");
-        System.out.println("REPLACE : ");
+        System.out.println("FORMAT RAW : Set format to raw with no fix column length with paragraph numbers.");
+        System.out.println("FORMAT FIX (b) : Set format to a fix column length b");
+        System.out.println("PRINT : Print all text in the currently set format.");
+        System.out.println("DUMMY (n) : Add a pre-programmed dummy text to paragraph n. n is optional. Text will be added to the end if n is not set.");
+        System.out.println("INDEX : Prints an index of all words starting with an uppercase letter and exist more often than 3 times in all paragraphs.");
+        System.out.println("REPLACE (n): Search and replace a string in paragraph n. n is optional. If n is not set search and replace will be done in the last paragraph.");
+        System.out.println("SHOWCOMMANDS : Show list of available commands.");
         System.out.println("EXIT : Exit TextEditor!");
     }
 
@@ -75,5 +80,14 @@ public class Commands {
             System.err.println("There is no text. Add some with the commands below.");
             showCommands();
         }
+    }
+
+    /**
+     * Closes the TextEditor by setting isRunning to false.
+     * @return false
+     */
+    public boolean exitEditor(){
+        System.out.println("Closing the TextEditor. Bye.");
+        return false;
     }
 }
