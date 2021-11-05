@@ -9,6 +9,7 @@ public class TextEditor {
     ConsoleInputReader inputReader = new ConsoleInputReader();
     Commands commands = new Commands();
     TextData textData = new TextData();
+    boolean isRunning;
 
     public TextEditor() {
     }
@@ -21,7 +22,7 @@ public class TextEditor {
         System.out.println("* Welcome to the best TextEditor! *");
         System.out.println("***********************************");
         commands.showCommands();
-        boolean isRunning = true;
+        isRunning = true;
         while (isRunning) {
             editText();
         }
@@ -50,6 +51,8 @@ public class TextEditor {
                 System.out.println("Write the word / text you want to replace it with.");
                 String newText = inputReader.readNextString();
                 commands.executeReplaceCommand(textData,textToReplace, paragraphNumber, newText);
+            }else if (command.equals("EXIT")){
+                isRunning = commands.exitEditor();
             }
         }else{
             System.err.println("This command is not available. Please choose one below.");

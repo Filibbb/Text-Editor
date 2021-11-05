@@ -34,6 +34,7 @@ public class Commands {
         System.out.println("REPLACE (n): Search and replace a string in paragraph n. n is optional. If n is not set search and replace will be done in the last paragraph.");
         System.out.println("SHOWCOMMANDS : Show list of available commands.");
         System.out.println("EXIT : Exit TextEditor!");
+        System.out.println("");
     }
 
     public boolean isAvailableCommand(String commandToCheck) {
@@ -85,6 +86,7 @@ public class Commands {
     /**
      * Closes the TextEditor by setting isRunning to false.
      * @return false
+     * @author weberph5
      */
     public boolean exitEditor(){
         System.out.println("Closing the TextEditor. Bye.");
