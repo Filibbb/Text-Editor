@@ -78,7 +78,7 @@ public class Commands {
             for (String paragraph : textData.getParagraphs()) {
                 System.out.println(paragraph);
             }
-            System.out.println("--------- This line marks the end. It doesn't belog to the Text! ---------");
+            System.out.println("--------- This line marks the end. It doesn't belong to the Text! ---------");
         } else {
             System.err.println("There is no text. Add some with the commands below.");
             showCommands();
