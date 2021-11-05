@@ -26,7 +26,6 @@ public class TextEditor {
         while (isRunning) {
             editText();
         }
-        inputReader.closeScanner();
     }
 
     private void editText() {
