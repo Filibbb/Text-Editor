@@ -1,5 +1,6 @@
 import java.util.*;
 
+
 public class Commands {
     private static final String dummyText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sed quam sit amet ex dapibus egestas vel congue metus. Donec id eleifend nisi, vitae eleifend tortor. Quisque euismod vitae nisi fringilla dignissim. In aliquam finibus nisl vel euismod. Ut ac sodales elit. Proin rhoncus libero turpis, eget tempor nisl consequat sed. Proin tempus erat magna, vitae sodales arcu fringilla sit amet. Nunc elementum, velit placerat iaculis feugiat, lectus dolor dapibus velit, in maximus sapien felis at arcu. Nulla mollis suscipit egestas. Phasellus a volutpat libero, nec tincidunt tortor. Aenean mattis ligula eu efficitur ultricies. Vestibulum ac nibh sodales, venenatis sapien vel, maximus nisi. Curabitur feugiat dictum tortor, a hendrerit urna tincidunt vitae.";
     private final Set<String> availableCommands = new HashSet<>();
@@ -44,29 +45,28 @@ public class Commands {
 
     public String printIndex(TextData text) {
         ArrayList<String> allTerms = saveTerms(new ArrayList<String>(text.getParagraphs()));
-        ArrayList<String> termsWithOccurenceLessThanFour = removeIfLessThanFour(allTerms);
+        ArrayList<String> termsWithOccurenceLessThanFour = getTermsWithMoreThanThreeOccurances(allTerms);
         HashMap<String, ArrayList<Integer>> map = allocateIndices(allTerms, termsWithOccurenceLessThanFour);
         String result = mapToString(map);
         return result;
     }
 
     private ArrayList<String> saveTerms(ArrayList<String> list) {
-        ArrayList<String> allTerms = new ArrayList<String>();
+        ArrayList<String> allTerms = new ArrayList<>();
         for (String str : list) {
-            str = str.replaceAll("\\p{Punct}", "");
-            str = str.replaceAll("[0-9]", "");
-            String[] allWords = str.split(" ");
+            String textWithoutPunctuationAndNumbers = str.replaceAll("\\p{Punct}[0-9]", "");
+            String[] allWords = textWithoutPunctuationAndNumbers.split(" ");
             for (int i=0; i<allWords.length; i++) {
                 if(allWords[i].length()>0 && Character.isUpperCase(allWords[i].charAt(0))) {
                     allTerms.add(allWords[i]);
                 }
             }
         }
-        Collections.sort(allTerms);
         return allTerms;
     }
 
-    private ArrayList<String> removeIfLessThanFour(ArrayList<String> allTerms) {
+    private ArrayList<String> getTermsWithMoreThanThreeOccurances(ArrayList<String> allTerms) {
+        Collections.sort(allTerms);
         ArrayList<String> result = new ArrayList<String>();
         int counter = 1;
         for (int i = 0; i< allTerms.size()-1; i++) {
@@ -87,8 +87,7 @@ public class Commands {
         for (String str: result) {
             ArrayList<Integer> indices = new ArrayList<Integer>();
             for (int i = 0; i< list.size(); i++) {
-                boolean exists = list.get(i).contains(str);
-                if(exists) {
+                if(list.get(i).equals(str)) {
                     indices.add(i+1);
                 }
             }
