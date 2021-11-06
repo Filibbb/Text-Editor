@@ -11,33 +11,27 @@ public class TextEditor {
     TextData textData = new TextData();
     boolean isRunning;
 
-    public TextEditor() {
-    }
-
     /**
      * Starts the Text Editor and keeps it running
      */
-    public void start() {
+    public void startEdit() {
         System.out.println("***********************************");
         System.out.println("* Welcome to the best TextEditor! *");
         System.out.println("***********************************");
         commands.showCommands();
         isRunning = true;
         while (isRunning) {
-            editText();
+            System.out.println("Please enter a command:");
+            String command = inputReader.readNextCommand();
+            executeCommand(command);
         }
     }
 
-    private void editText() {
-        System.out.println("Please enter a command:");
-        String command = inputReader.readNextTextString();
-        executeCommand(command);
-    }
-
     private void executeCommand(String enteredCommand) {
-        final String[] commandWithParams = enteredCommand.split(" +");
+        final String[] commandWithParams = enteredCommand.split(" *");
 
-        //Check if length either one or three
+        //Check if length either one or three and check if second split is only numbers or not
+        //Careful there are commands with 2 verbes
 
         final Command command = Command.getCommandByRepresentation(commandWithParams[0]);
         if (command != null) {
@@ -47,6 +41,7 @@ public class TextEditor {
                 case DEL:
                     break;
                 case DUMMY:
+                    commands.executeDummyCommand(textData);
                     break;
                 case EXIT:
                     isRunning = commands.exitEditor();

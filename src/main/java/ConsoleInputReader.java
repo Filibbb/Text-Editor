@@ -8,6 +8,7 @@ import java.util.Scanner;
  */
 public class ConsoleInputReader {
 
+    public static final String ANYTHING_MATCHER = "(?s).*";
     private static final String ALLOWED_TEXT_ELEMENTS = "[a-zA-Z0-9. ,:;!?’()\"%@+*\\-\\[\\]{}/&#$]*";
     private final Scanner inputReader;
 
@@ -33,15 +34,15 @@ public class ConsoleInputReader {
             return userTextInput.trim();
         }
     }
+    //TODO !!
+    //Als "Absatz" definieren wir eine über die unten beschriebene Scanner.nextline()-
+    //Methode eingelesenen String. Validieren Sie den erhaltenen Input und filtern Sie alle
+    //Sonderzeichen (d.h. der in die Anwendung übernommene Text darf nur Buchstaben, Zahlen,
+    //Leerzeichen und Satzzeichen enthalten).
 
     public String readNextCommand() {
-        String userTextInput = inputReader.next();
-        if (!userTextInput.matches(ALLOWED_TEXT_ELEMENTS)) {
-            System.err.println("Your text doesn't just contain letters, numbers, spaces or punctuation marks such as .,:;-!?’()\"%@+*[]{}/&#$");
-            return readNextTextString();
-        } else {
-            return userTextInput.trim();
-        }
+        String userTextInput = inputReader.next(ANYTHING_MATCHER);
+        return userTextInput.trim();
     }
 
     /**
