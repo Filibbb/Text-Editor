@@ -38,7 +38,7 @@ public class Commands {
     public void executeReplaceCommand(TextData text, String textToReplace, String newText, String command) {
         int paragraph = 0;
         if(!text.getParagraphs().isEmpty()){
-            if(command.matches("[0-9]+")){
+            if(command.matches("[A-Z ]+[0-9]+")){
                 String[] numberSplit = command.split(" +");
                 for (String splitElement : numberSplit) {
                     if (splitElement.matches("[0-9]+")) {
