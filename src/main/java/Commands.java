@@ -38,10 +38,10 @@ public class Commands {
     public void executeReplaceCommand(TextData text, String textToReplace, String newText, String command) {
         int paragraph = 0;
         if(!text.getParagraphs().isEmpty()){
-            if(command.matches("[0-9]*")){
+            if(command.matches("[0-9]+")){
                 String[] numberSplit = command.split(" +");
                 for (String splitElement : numberSplit) {
-                    if (splitElement.matches("[0-9]*")) {
+                    if (splitElement.matches("[0-9]+")) {
                         paragraph = Integer.parseInt(splitElement);
                     }
                 }
@@ -63,8 +63,8 @@ public class Commands {
      */
     public void print(TextData textData) {
         if (!textData.getParagraphs().isEmpty()) {
-            for (String paragraph : textData.getParagraphs()) {
-                System.out.println(paragraph);
+            for (int i = 0; i < textData.getParagraphs().size(); i++) {
+                System.out.println((i+1) + ": " + textData.getParagraphs().get(i));
             }
             System.out.println("--------- This line marks the end. It doesn't belong to the Text! ---------");
         } else {
