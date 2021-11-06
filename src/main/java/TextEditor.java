@@ -22,13 +22,13 @@ public class TextEditor {
         isRunning = true;
         while (isRunning) {
             System.out.println("Please enter a command:");
-            String command = inputReader.readNextCommand();
+            String command = inputReader.readNextCommandInput();
             executeCommand(command);
         }
     }
 
     private void executeCommand(String enteredCommand) {
-        final String[] commandWithParams = enteredCommand.split(" *");
+        final String[] commandWithParams = enteredCommand.split("\\s+");
 
         //Check if length either one or three and check if second split is only numbers or not
         //Careful there are commands with 2 verbes

@@ -7,8 +7,6 @@ import java.util.Scanner;
  * @author fupat002
  */
 public class ConsoleInputReader {
-
-    public static final String ANYTHING_MATCHER = "(?s).*";
     private static final String ALLOWED_TEXT_ELEMENTS = "[a-zA-Z0-9. ,:;!?’()\"%@+*\\-\\[\\]{}/&#$]*";
     private final Scanner inputReader;
 
@@ -40,8 +38,9 @@ public class ConsoleInputReader {
     //Sonderzeichen (d.h. der in die Anwendung übernommene Text darf nur Buchstaben, Zahlen,
     //Leerzeichen und Satzzeichen enthalten).
 
-    public String readNextCommand() {
-        String userTextInput = inputReader.next(ANYTHING_MATCHER);
+
+    public String readNextCommandInput() {
+        String userTextInput = inputReader.nextLine();
         return userTextInput.trim();
     }
 
