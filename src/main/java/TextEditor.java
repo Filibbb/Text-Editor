@@ -22,18 +22,26 @@ public class TextEditor {
         isRunning = true;
         while (isRunning) {
             System.out.println("Please enter a command:");
-            String command = inputReader.readNextCommandInput();
+            String command = inputReader.readNextLine();
             executeCommand(command);
         }
     }
 
     private void executeCommand(String enteredCommand) {
-        final String[] commandWithParams = enteredCommand.split("\\s+");
+
 
         //Check if length either one or three and check if second split is only numbers or not
         //Careful there are commands with 2 verbes
-
-        final Command command = Command.getCommandByRepresentation(commandWithParams[0]);
+        Command command;
+        final String trim = enteredCommand.trim();
+        if (trim.matches("^[a-zA-Z]+( [a-zA-Z]+)?$")) {
+            command = Command.getCommandByRepresentation(trim);
+        } else {
+            final String[] commandWithParams = trim.split("\\s+");
+            String params = commandWithParams[commandWithParams.length - 1];
+            String commandName = trim.replace(params, "").trim();
+            command = Command.getCommandByRepresentation(commandName);
+        }
         if (command != null) {
             switch (command) {
                 case ADD:
@@ -42,6 +50,7 @@ public class TextEditor {
                     break;
                 case DUMMY:
                     commands.executeDummyCommand(textData);
+                    //execute dummy command with param?
                     break;
                 case EXIT:
                     isRunning = commands.exitEditor();
@@ -65,6 +74,7 @@ public class TextEditor {
                 case FORMAT_RAW:
                     break;
                 case SHOW_COMMANDS:
+                    commands.showCommands();
                     break;
                 default:
                     System.err.println("This command is not available. Please choose one below.");

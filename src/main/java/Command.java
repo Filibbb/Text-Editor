@@ -39,8 +39,7 @@ public enum Command {
      * @return the command enum
      * @author abuechi
      */
-    public static Command getCommandByRepresentation(String commandRepresentation) {
-
+    public static Command getCommandByRepresentation(final String commandRepresentation) {
         for (Command value : Command.values()) {
             if (value.representation.equals(commandRepresentation)) {
                 return value;

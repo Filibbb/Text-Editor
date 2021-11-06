@@ -39,9 +39,14 @@ public class ConsoleInputReader {
     //Leerzeichen und Satzzeichen enthalten).
 
 
-    public String readNextCommandInput() {
-        String userTextInput = inputReader.nextLine();
-        return userTextInput.trim();
+    public String readNextLine() {
+        if (inputReader.hasNext()) {
+            String userTextInput = inputReader.nextLine();
+            return userTextInput.trim();
+        } else {
+            return readNextLine();
+        }
+
     }
 
     /**
