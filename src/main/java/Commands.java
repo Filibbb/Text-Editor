@@ -12,11 +12,11 @@ public class Commands {
      */
     public void showCommands() {
         System.out.println("Available Commands (Case sensitive!):");
-        System.out.println("");
+        System.out.println();
         for (Command command : Command.values()) {
             System.out.println(command.getCommandInfo());
         }
-        System.out.println("");
+        System.out.println();
     }
 
     public boolean executeDummyCommand(TextData text) {
@@ -25,24 +25,6 @@ public class Commands {
 
     public boolean executeDummyCommand(TextData text, int offset) {
         return text.insertTextAt(offset, " " + dummyText);
-    }
-
-    /**
-     * Prints the whole text.
-     *
-     * @param textData the class that contains the text for the replacement
-     * @author fupat002
-     */
-    public void print(TextData textData) {
-        if (!textData.getParagraphs().isEmpty()) {
-            for (int i = 0; i < textData.getParagraphs().size(); i++) {
-                System.out.println((i+1) + ": " + textData.getParagraphs().get(i));
-            }
-            System.out.println("--------- This line marks the end. It doesn't belong to the Text! ---------");
-        } else {
-            System.err.println("There is no text. Add some with the commands below.");
-            showCommands();
-        }
     }
 
     /**

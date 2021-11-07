@@ -1,7 +1,6 @@
 
 /**
  * replaces a word depending on the user's request, in the last line or in the desired line.
- *
  * @author fupat002
  */
 public class ReplaceCommand {

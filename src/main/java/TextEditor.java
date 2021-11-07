@@ -1,15 +1,16 @@
+
 /**
  * Contains the Text Editor life cycle
  *
  * @author weberph5
  * @version 1.0.0
  */
-
 public class TextEditor {
     private final ConsoleInputReader inputReader = new ConsoleInputReader();
     private final Commands commands = new Commands();
     private final TextData textData = new TextData();
     private final ReplaceCommand replaceCommand = new ReplaceCommand();
+    private final PrintCommand print = new PrintCommand();
     private boolean isRunning;
 
     public TextEditor() {
@@ -55,7 +56,7 @@ public class TextEditor {
                 case INDEX:
                     break;
                 case PRINT:
-                    commands.print(textData);
+                    print.print(textData);
                     break;
                 case REPLACE:
                     System.out.println("Write the word / text you want to replace.");
