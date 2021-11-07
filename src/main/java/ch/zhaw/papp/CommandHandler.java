@@ -84,7 +84,7 @@ public class CommandHandler {
                 String textToReplace = inputReader.readNextTextString();
                 System.out.println("Write the word / text you want to replace it with.");
                 String newText = inputReader.readNextTextString();
-                ReplaceCommand.executeReplaceCommand(textData, textToReplace,  newText, command);
+                ReplaceCommand.replaceCommand(textData, textToReplace,  newText, command);
                 System.out.println();
                 break;
             case FORMAT_FIX:

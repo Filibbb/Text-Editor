@@ -10,6 +10,9 @@ import ch.zhaw.papp.TextData;
 public class PrintCommand {
     private static final CommandHandler commandHandler = new CommandHandler();
 
+    private PrintCommand(){
+    }
+
     /**
      * Prints the whole text.
      *

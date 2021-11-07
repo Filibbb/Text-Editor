@@ -19,50 +19,24 @@ public class ReplaceCommand {
      * @param command         the entered command
      * @param newText         the text / word to replace it with
      */
-    public static void executeReplaceCommand(TextData text, String textToReplace, String newText, Command command) {
+    public static void replaceCommand(TextData text, String textToReplace, String newText, Command command) {
         int paragraph = 0;
         if(!text.getParagraphs().isEmpty()){
             if(command.hasParams()){
                 paragraph = command.getNumericParams();
                 if(text.isValidParagraph(paragraph)){
-                    replaceInVariableParagraph(text, textToReplace, paragraph, newText);
+                    text.replaceText(textToReplace, paragraph, newText);
                 }else{
                     System.out.println("Your text doesn't contain that much paragraphs.");
                     System.out.println("Select a paragraph in your text range.");
                     System.out.println("Number of lines: " + text.getParagraphs().size());
                 }
             }else{
-                replaceInLastParagraph(text, textToReplace, newText);
+                text.replaceText(textToReplace, null, newText);
             }
         }else{
             System.err.println("There is no text. Add some with the commands below.");
             commandHandler.showCommands();
         }
-    }
-
-    private static void replaceInLastParagraph(TextData textData, String textToReplace, String newText){
-        int numberOfLastParagraph = convertParagraphToIndex(textData.getParagraphs().size());
-        String oldParagraphText = textData.getParagraphs().get(numberOfLastParagraph);
-        if(textData.containsWordAtParagraph(textToReplace, numberOfLastParagraph)){
-            String newParagraphText = oldParagraphText.replace(textToReplace, newText);
-            textData.getParagraphs().set(numberOfLastParagraph, newParagraphText);
-        }else{
-            System.err.println("Your replacement word is not in this line. Check it out and try again.");
-        }
-    }
-
-    private static void replaceInVariableParagraph(TextData textData, String textToReplace, int paragraphNumber ,String newText){
-        int paragraph = convertParagraphToIndex(paragraphNumber);
-        String oldParagraphText = textData.getParagraphs().get(paragraph);
-        if(textData.containsWordAtParagraph(textToReplace, paragraph)){
-            String newParagraphText = oldParagraphText.replace(textToReplace, newText);
-            textData.getParagraphs().set(paragraph, newParagraphText);
-        }else{
-            System.err.println("Your replacement word \"" + textToReplace + "\" is not in this line. Check it out and try again.");
-        }
-    }
-
-    private static int convertParagraphToIndex(int paragraph) {
-        return paragraph - 1;
     }
 }

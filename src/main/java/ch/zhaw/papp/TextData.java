@@ -36,6 +36,29 @@ public class TextData {
     }
 
     /**
+     * replaces text with another in a specific paragraph
+     * if paragraphNumber is null then it replaces the word in the last paragraph
+     * @param textToReplace     the text / word that needs to be replaced
+     * @param paragraphNumber   the paragraph that contains the text / word that needs to be replaced
+     * @param newText           the text / word to replace it with
+     */
+    public void replaceText(String textToReplace, Integer paragraphNumber , String newText){
+        int paragraph;
+        if(paragraphNumber != null){
+            paragraph = convertParagraphToIndex(paragraphNumber);
+        }else{
+            paragraph = convertParagraphToIndex(paragraphs.size());
+        }
+        String oldParagraphText = paragraphs.get(paragraph);
+        if(containsWordAtParagraph(textToReplace, paragraph)){
+            String newParagraphText = oldParagraphText.replace(textToReplace, newText);
+            paragraphs.set(paragraph, newParagraphText);
+        }else{
+            System.err.println("Your replacement word \"" + textToReplace + "\" is not in this line. Check it out and try again.");
+        }
+    }
+
+    /**
      * checks whether the paragraph contains a word
      * @param word      the word you are looking for
      * @param paragraph the number of the paragraph
