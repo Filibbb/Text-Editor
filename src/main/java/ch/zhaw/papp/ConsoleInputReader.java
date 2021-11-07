@@ -1,3 +1,5 @@
+package ch.zhaw.papp;
+
 import java.util.Scanner;
 
 /**

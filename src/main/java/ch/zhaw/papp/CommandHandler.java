@@ -1,3 +1,10 @@
+package ch.zhaw.papp;
+
+import ch.zhaw.papp.commands.Command;
+import ch.zhaw.papp.commands.CommandConverterUtil;
+import ch.zhaw.papp.commands.Commands;
+import ch.zhaw.papp.commands.DummyCommand;
+
 /**
  * A class that handles all commands and makes sure the correct commands are executed.
  *
@@ -14,7 +21,7 @@ public class CommandHandler {
      * @author weberph5
      */
     public void showCommands() {
-        System.out.println("Available Commands (Case sensitive!):");
+        System.out.println("Available ch.zhaw.papp.commands.Commands (Case sensitive!):");
         System.out.println("");
         for (Commands commands : Commands.values()) {
             System.out.println(commands.getCommandInfo());
@@ -62,7 +69,7 @@ public class CommandHandler {
      * @author weberph5
      */
     public void exitEditor() {
-        System.out.println("Closing the TextEditor. Bye.");
+        System.out.println("Closing the ch.zhaw.papp.TextEditor. Bye.");
         inputReader.closeScanner();
         System.exit(1);
     }

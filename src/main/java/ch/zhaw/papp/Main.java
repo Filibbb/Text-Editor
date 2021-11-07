@@ -1,3 +1,5 @@
+package ch.zhaw.papp;
+
 /**
  * This is the main class. It starts the Text Editor.
  * It does not expect any arguments.

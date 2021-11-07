@@ -1,3 +1,7 @@
+package ch.zhaw.papp.commands;
+
+import ch.zhaw.papp.TextData;
+
 /**
  * A utility class that contains the dummy command as static methods. (Limitation as we are not allowed to use interfaces its easer to make the methods static)
  *

@@ -1,3 +1,5 @@
+package ch.zhaw.papp.commands;
+
 /**
  * A wrapper object for handling commands and their related commands.
  *
