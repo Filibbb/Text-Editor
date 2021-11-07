@@ -1,3 +1,5 @@
+package ch.zhaw.papp;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +11,7 @@ public class TextData {
     private final List<String> paragraphs;
 
     /**
-     * Creates a new TextData Object with an empty paragraph list.
+     * Creates a new ch.zhaw.papp.TextData Object with an empty paragraph list.
      */
     public TextData() {
         this.paragraphs = new ArrayList<>();
@@ -34,7 +36,7 @@ public class TextData {
     }
 
     /**
-     *
+     * checks whether the paragraph contains a word
      * @param word      the word you are looking for
      * @param paragraph the number of the paragraph
      * @return          true if the paragraph contains the word
@@ -45,15 +47,19 @@ public class TextData {
         return paragraphText.contains(word);
     }
 
+    /**
+     * checks if the parameter is a valid paragraph.
+     * @param paragraphNumber   the paragraph number to check
+     * @return                  true or false if it's a valid paragraph
+     */
+    public boolean isValidParagraph(Integer paragraphNumber) {
+        return paragraphNumber != null && paragraphNumber > 0 && paragraphNumber <= paragraphs.size();
+    }
     public List<String> getParagraphs() {
         return paragraphs;
     }
 
     private int convertParagraphToIndex(int paragraph) {
         return paragraph - 1;
-    }
-
-    private boolean isValidParagraph(Integer paragraphNumber) {
-        return paragraphNumber != null && (paragraphNumber > 0 || paragraphNumber < paragraphs.size());
     }
 }

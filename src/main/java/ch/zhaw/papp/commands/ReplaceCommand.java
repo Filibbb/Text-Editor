@@ -1,10 +1,14 @@
+package ch.zhaw.papp.commands;
+
+import ch.zhaw.papp.TextData;
+import ch.zhaw.papp.CommandHandler;
 
 /**
  * replaces a word depending on the user's request, in the last line or in the desired line.
  * @author fupat002
  */
 public class ReplaceCommand {
-    private final Commands commands = new Commands();
+    private static final CommandHandler commandHandler = new CommandHandler();
 
     /**
      * Executes the replacement commands.
@@ -15,27 +19,28 @@ public class ReplaceCommand {
      * @param command         the entered command
      * @param newText         the text / word to replace it with
      */
-    public void executeReplaceCommand(TextData text, String textToReplace, String newText, String command) {
+    public static void executeReplaceCommand(TextData text, String textToReplace, String newText, Command command) {
         int paragraph = 0;
         if(!text.getParagraphs().isEmpty()){
-            if(command.matches("[A-Z ]+[0-9]+")){
-                String[] numberSplit = command.split(" +");
-                for (String splitElement : numberSplit) {
-                    if (splitElement.matches("[0-9]+")) {
-                        paragraph = Integer.parseInt(splitElement);
-                    }
+            if(command.hasParams()){
+                paragraph = command.getNumericParams();
+                if(text.isValidParagraph(paragraph)){
+                    replaceInVariableParagraph(text, textToReplace, paragraph, newText);
+                }else{
+                    System.out.println("Your text doesn't contain that much paragraphs.");
+                    System.out.println("Select a paragraph in your text range.");
+                    System.out.println("Number of lines: " + text.getParagraphs().size());
                 }
-                replaceInVariableParagraph(text, textToReplace, paragraph, newText);
             }else{
                 replaceInLastParagraph(text, textToReplace, newText);
             }
         }else{
             System.err.println("There is no text. Add some with the commands below.");
-            commands.showCommands();
+            commandHandler.showCommands();
         }
     }
 
-    private void replaceInLastParagraph(TextData textData, String textToReplace, String newText){
+    private static void replaceInLastParagraph(TextData textData, String textToReplace, String newText){
         int numberOfLastParagraph = convertParagraphToIndex(textData.getParagraphs().size());
         String oldParagraphText = textData.getParagraphs().get(numberOfLastParagraph);
         if(textData.containsWordAtParagraph(textToReplace, numberOfLastParagraph)){
@@ -46,7 +51,7 @@ public class ReplaceCommand {
         }
     }
 
-    private void replaceInVariableParagraph(TextData textData, String textToReplace, int paragraphNumber ,String newText){
+    private static void replaceInVariableParagraph(TextData textData, String textToReplace, int paragraphNumber ,String newText){
         int paragraph = convertParagraphToIndex(paragraphNumber);
         String oldParagraphText = textData.getParagraphs().get(paragraph);
         if(textData.containsWordAtParagraph(textToReplace, paragraph)){
@@ -57,7 +62,7 @@ public class ReplaceCommand {
         }
     }
 
-    private int convertParagraphToIndex(int paragraph) {
+    private static int convertParagraphToIndex(int paragraph) {
         return paragraph - 1;
     }
 }

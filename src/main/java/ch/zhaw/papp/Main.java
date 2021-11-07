@@ -1,3 +1,5 @@
+package ch.zhaw.papp;
+
 /**
  * This is the main class. It starts the Text Editor.
  * It does not expect any arguments.
@@ -8,6 +10,6 @@
 public class Main {
     public static void main(String[] args) {
         TextEditor textEditor = new TextEditor();
-        textEditor.start();
+        textEditor.startEdit();
     }
 }
