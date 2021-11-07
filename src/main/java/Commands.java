@@ -1,75 +1,50 @@
-import java.util.HashSet;
-import java.util.Set;
+public enum Commands {
+    DUMMY("DUMMY", "DUMMY (n) : Add a pre-programmed dummy text to paragraph n. n is optional. Text will be added to the end if n is not set."),
+    DEL("DEL", "DEL (n) : Delete Paragraph n"),
+    ADD("ADD", "ADD (n) : Add Text to paragraph n. n is optional. Text will be added to the end if n is not set."),
+    EXIT("EXIT", "EXIT : Exit TextEditor!"),
+    FORMAT_RAW("FORMAT RAW", "FORMAT RAW : Set format to raw with no fix column length with paragraph numbers."),
+    FORMAT_FIX("FORMAT FIX", "FORMAT FIX (b) : Set format to a fix column length b"),
+    INDEX("INDEX", "INDEX : Prints an index of all words starting with an uppercase letter and exist more often than 3 times in all paragraphs."),
+    PRINT("PRINT", "PRINT : Print all text in the currently set format."),
+    REPLACE("REPLACE", "REPLACE (n): Search and replace a string in paragraph n. n is optional. If n is not set search and replace will be done in the last paragraph."),
+    SHOW_COMMANDS("SHOW COMMANDS", "SHOW COMMANDS : Show list of available commands.");
 
-public class Commands {
-    private static final String dummyText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sed quam sit amet ex dapibus egestas vel congue metus. Donec id eleifend nisi, vitae eleifend tortor. Quisque euismod vitae nisi fringilla dignissim. In aliquam finibus nisl vel euismod. Ut ac sodales elit. Proin rhoncus libero turpis, eget tempor nisl consequat sed. Proin tempus erat magna, vitae sodales arcu fringilla sit amet. Nunc elementum, velit placerat iaculis feugiat, lectus dolor dapibus velit, in maximus sapien felis at arcu. Nulla mollis suscipit egestas. Phasellus a volutpat libero, nec tincidunt tortor. Aenean mattis ligula eu efficitur ultricies. Vestibulum ac nibh sodales, venenatis sapien vel, maximus nisi. Curabitur feugiat dictum tortor, a hendrerit urna tincidunt vitae.";
-    ConsoleInputReader inputReader = new ConsoleInputReader();
+    private final String representation;
+    private final String commandInfo;
 
-    /**
-     * Shows a list and description of all available commands.
-     *
-     * @author weberph5
-     */
-    public void showCommands() {
-        System.out.println("Available Commands (Case sensitive!):");
-        System.out.println("");
-        for (Command command : Command.values()) {
-            System.out.println(command.getCommandInfo());
-        }
-        System.out.println("");
-    }
-
-    public boolean executeDummyCommand(TextData text) {
-        return text.insertTextAt(null, " " + dummyText);
-    }
-
-    public boolean executeDummyCommand(TextData text, int offset) {
-        return text.insertTextAt(offset, " " + dummyText);
+    Commands(String representation, String commandInfo) {
+        this.representation = representation;
+        this.commandInfo = commandInfo;
     }
 
     /**
-     * Executes the replace commands
-     *
-     * @param text            the class that contains the text
-     * @param textToReplace   the text / word that needs to be replaced
-     * @param paragraphNumber the paragraph number (optional)
-     * @param newText         the text / word to replace it with.
+     * @return command representation of enum
+     * @author abuechi
      */
-    public void executeReplaceCommand(TextData text, String textToReplace, int paragraphNumber, String newText) {
-        if (paragraphNumber == 0) {
-            text.replaceInLastParagraph(textToReplace, newText);
-        } else {
-            text.replaceInVariableParagraph(textToReplace, paragraphNumber, newText);
-        }
+    public String getRepresentation() {
+        return representation;
     }
 
     /**
-     * Prints the whole text.
-     *
-     * @param textData the class that contains the text for the replacement
-     * @author fupat002
+     * @return command information / description
+     * @author abuechi
      */
-    public void print(TextData textData) {
-        if (!textData.getParagraphs().isEmpty()) {
-            for (String paragraph : textData.getParagraphs()) {
-                System.out.println(paragraph);
+    public String getCommandInfo() {
+        return commandInfo;
+    }
+
+    /**
+     * @param commandRepresentation the string representing the command
+     * @return the command enum
+     * @author abuechi
+     */
+    public static Commands getCommandByRepresentation(final String commandRepresentation) {
+        for (Commands value : Commands.values()) {
+            if (value.representation.equals(commandRepresentation)) {
+                return value;
             }
-            System.out.println("--------- This line marks the end. It doesn't belong to the Text! ---------");
-        } else {
-            System.err.println("There is no text. Add some with the commands below.");
-            showCommands();
         }
-    }
-
-    /**
-     * Closes the TextEditor by setting isRunning in TextEditor to false.
-     *
-     * @return false
-     * @author weberph5
-     */
-    public boolean exitEditor() {
-        System.out.println("Closing the TextEditor. Bye.");
-        inputReader.closeScanner();
-        return false;
+        return null;
     }
 }

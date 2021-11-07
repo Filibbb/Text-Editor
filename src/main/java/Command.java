@@ -1,50 +1,61 @@
-public enum Command {
-    DUMMY("DUMMY", "DUMMY (n) : Add a pre-programmed dummy text to paragraph n. n is optional. Text will be added to the end if n is not set."),
-    DEL("DEL", "DEL (n) : Delete Paragraph n"),
-    ADD("ADD", "ADD (n) : Add Text to paragraph n. n is optional. Text will be added to the end if n is not set."),
-    EXIT("EXIT", "EXIT : Exit TextEditor!"),
-    FORMAT_RAW("FORMAT RAW", "FORMAT RAW : Set format to raw with no fix column length with paragraph numbers."),
-    FORMAT_FIX("FORMAT FIX", "FORMAT FIX (b) : Set format to a fix column length b"),
-    INDEX("INDEX", "INDEX : Prints an index of all words starting with an uppercase letter and exist more often than 3 times in all paragraphs."),
-    PRINT("PRINT", "PRINT : Print all text in the currently set format."),
-    REPLACE("REPLACE", "REPLACE (n): Search and replace a string in paragraph n. n is optional. If n is not set search and replace will be done in the last paragraph."),
-    SHOW_COMMANDS("SHOW COMMANDS", "SHOW COMMANDS : Show list of available commands.");
+/**
+ * A wrapper object for handling commands and their related commands.
+ *
+ * @author abuechi
+ * @version 1.0.0
+ */
+public class Command {
+    private Commands command;
+    private Integer numericParams;
 
-    private final String representation;
-    private final String commandInfo;
-
-    Command(String representation, String commandInfo) {
-        this.representation = representation;
-        this.commandInfo = commandInfo;
+    /**
+     * Retrieves the command
+     *
+     * @return command of command enums
+     * @author abuechi
+     */
+    public Commands getCommand() {
+        return command;
     }
 
     /**
-     * @return command representation of enum
+     * Sets the command out of the available commands
+     *
      * @author abuechi
      */
-    public String getRepresentation() {
-        return representation;
+    public void setCommand(Commands command) {
+        this.command = command;
     }
 
     /**
-     * @return command information / description
+     * Retrieves the optional params of the command
+     *
+     * @return params return the additional params
      * @author abuechi
      */
-    public String getCommandInfo() {
-        return commandInfo;
+    public Integer getNumericParams() {
+        return numericParams;
     }
 
     /**
-     * @param commandRepresentation the string representing the command
-     * @return the command enum
+     * Sets the optional params of the command
+     *
      * @author abuechi
      */
-    public static Command getCommandByRepresentation(final String commandRepresentation) {
-        for (Command value : Command.values()) {
-            if (value.representation.equals(commandRepresentation)) {
-                return value;
-            }
-        }
-        return null;
+    public void setNumericParams(Integer numericParams) {
+        this.numericParams = numericParams;
+    }
+
+    public boolean isValidCommand() {
+        return command != null;
+    }
+
+    /**
+     * Checks if command has params
+     *
+     * @return true if the command has params, false otherwise.
+     */
+    public boolean hasParams() {
+        return numericParams != null;
     }
 }
