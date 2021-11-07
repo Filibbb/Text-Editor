@@ -60,13 +60,6 @@ public class CommandHandler {
     private void execute(Command command, TextData textData) {
         switch (command.getCommand()) {
             case ADD:
-
-                // nur für test
-                for(int i = 0; i < 10; i++){
-                    textData.insertTextAt(null,"Hallo Welt!");
-                    textData.insertTextAt(1,"Hallo Welt!");
-                }
-
                 break;
             case DEL:
                 break;
