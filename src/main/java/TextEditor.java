@@ -6,10 +6,11 @@
  */
 
 public class TextEditor {
-    ConsoleInputReader inputReader = new ConsoleInputReader();
-    Commands commands = new Commands();
-    TextData textData = new TextData();
-    boolean isRunning;
+    private final ConsoleInputReader inputReader = new ConsoleInputReader();
+    private final Commands commands = new Commands();
+    private final TextData textData = new TextData();
+    private final ReplaceCommand replaceCommand = new ReplaceCommand();
+    private boolean isRunning;
 
     public TextEditor() {
     }
@@ -43,6 +44,10 @@ public class TextEditor {
         if (command != null) {
             switch (command) {
                 case ADD:
+                    for(int i = 0; i < 10; i++){
+                        textData.insertTextAt(null,"Hallo Welt!");
+                        textData.insertTextAt(1,"Hallo Welt!");
+                    }
                     break;
                 case DEL:
                     break;
@@ -61,7 +66,7 @@ public class TextEditor {
                     String textToReplace = inputReader.readNextTextString();
                     System.out.println("Write the word / text you want to replace it with.");
                     String newText = inputReader.readNextTextString();
-                    commands.executeReplaceCommand(textData, textToReplace, enteredCommand, newText);
+                    replaceCommand.executeReplaceCommand(textData, textToReplace, newText, enteredCommand);
                     break;
                 case FORMAT_FIX:
                     break;
