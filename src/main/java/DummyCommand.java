@@ -11,22 +11,26 @@ public class DummyCommand {
     }
 
     /**
-     * @param text the text to which the dummy text will be added. Text will be added at last position if no param will be given.
-     * @return boolean value representing the success of the operation.
+     * @param text the text to which the dummy text will be added. Text will be added at last position.
+     * @author abuechi
      */
-    public static boolean executeDummyCommand(TextData text) {
-        return dummyCommand(text, null);
+    public static void executeDummyCommand(TextData text) {
+        dummyCommand(text, null);
     }
 
     /**
-     * @param text the text where the dummy text should be added
-     * @return boolean value representing the success of the operation.
+     * @param text   the text to which the dummy text will be added.
+     * @param offset defines on which line the text should be added.
+     * @author abuechi
      */
-    public static boolean executeDummyCommand(TextData text, int offset) {
-        return dummyCommand(text, offset);
+    public static void executeDummyCommand(TextData text, int offset) {
+        dummyCommand(text, offset);
     }
 
-    private static boolean dummyCommand(TextData text, Integer offset) {
-        return text.insertTextAt(offset, " " + dummyText);
+    private static void dummyCommand(TextData text, Integer offset) {
+        final boolean successFull = text.insertTextAt(offset, " " + dummyText);
+        if (!successFull) {
+            System.err.println("Dummy command was not successful");
+        }
     }
 }

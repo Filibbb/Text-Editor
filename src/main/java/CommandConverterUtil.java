@@ -1,5 +1,3 @@
-import static java.lang.Integer.getInteger;
-
 /**
  * Utility Class to convert a user input into a command class.
  *
@@ -48,12 +46,13 @@ public class CommandConverterUtil {
     }
 
     private static Integer getNumericArgument(String userInput) {
-        final String[] userInputWords = userInput.split("\\s+");
-        final String argument = userInputWords[userInputWords.length - 1];
-        final Integer numericParam = getInteger(argument);
-        if (numericParam == null) {
+        try {
+            final String[] userInputWords = userInput.split("\\s+");
+            final String argument = userInputWords[userInputWords.length - 1];
+            return Integer.parseInt(argument);
+        } catch (NumberFormatException e) {
             System.err.println("Argument could not be converted to number.");
+            return null;
         }
-        return numericParam;
     }
 }

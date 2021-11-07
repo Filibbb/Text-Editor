@@ -83,7 +83,6 @@ public class CommandHandler {
     }
 
     private void execute(Command command, TextData textData) {
-        boolean successful = false;
         switch (command.getCommand()) {
             case ADD:
                 break;
@@ -91,10 +90,11 @@ public class CommandHandler {
                 break;
             case DUMMY:
                 if (command.hasParams()) {
-                    successful = DummyCommand.executeDummyCommand(textData, command.getNumericParams());
+                    DummyCommand.executeDummyCommand(textData, command.getNumericParams());
                 } else {
-                    successful = DummyCommand.executeDummyCommand(textData);
+                    DummyCommand.executeDummyCommand(textData);
                 }
+                print(textData);
                 break;
             case EXIT:
                 exitEditor();
@@ -112,6 +112,7 @@ public class CommandHandler {
                 System.out.println("Write the word / text you want to replace it with.");
                 String newText = inputReader.readNextTextString();
                 executeReplaceCommand(textData, textToReplace, paragraphNumber, newText);
+                print(textData);
                 break;
             case FORMAT_FIX:
                 break;
@@ -124,12 +125,6 @@ public class CommandHandler {
                 System.err.println("This command is not available. Please choose one below.");
                 showCommands();
                 break;
-        }
-
-        if (successful) {
-            print(textData);
-        } else {
-            System.err.println("Command execution failed for an unknown reason. Please try again");
         }
     }
 }
