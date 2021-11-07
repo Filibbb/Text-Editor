@@ -1,3 +1,5 @@
+package ch.zhaw.papp;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +11,7 @@ public class TextData {
     private final List<String> paragraphs;
 
     /**
-     * Creates a new TextData Object with an empty paragraph list.
+     * Creates a new ch.zhaw.papp.TextData Object with an empty paragraph list.
      */
     public TextData() {
         this.paragraphs = new ArrayList<>();

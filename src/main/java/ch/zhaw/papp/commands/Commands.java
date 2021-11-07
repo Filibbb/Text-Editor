@@ -1,8 +1,10 @@
-public enum Command {
+package ch.zhaw.papp.commands;
+
+public enum Commands {
     DUMMY("DUMMY", "DUMMY (n) : Add a pre-programmed dummy text to paragraph n. n is optional. Text will be added to the end if n is not set."),
     DEL("DEL", "DEL (n) : Delete Paragraph n"),
     ADD("ADD", "ADD (n) : Add Text to paragraph n. n is optional. Text will be added to the end if n is not set."),
-    EXIT("EXIT", "EXIT : Exit TextEditor!"),
+    EXIT("EXIT", "EXIT : Exit ch.zhaw.papp.TextEditor!"),
     FORMAT_RAW("FORMAT RAW", "FORMAT RAW : Set format to raw with no fix column length with paragraph numbers."),
     FORMAT_FIX("FORMAT FIX", "FORMAT FIX (b) : Set format to a fix column length b"),
     INDEX("INDEX", "INDEX : Prints an index of all words starting with an uppercase letter and exist more often than 3 times in all paragraphs."),
@@ -13,7 +15,7 @@ public enum Command {
     private final String representation;
     private final String commandInfo;
 
-    Command(String representation, String commandInfo) {
+    Commands(String representation, String commandInfo) {
         this.representation = representation;
         this.commandInfo = commandInfo;
     }
@@ -39,9 +41,8 @@ public enum Command {
      * @return the command enum
      * @author abuechi
      */
-    public static Command getCommandByRepresentation(String commandRepresentation) {
-
-        for (Command value : Command.values()) {
+    public static Commands getCommandByRepresentation(final String commandRepresentation) {
+        for (Commands value : Commands.values()) {
             if (value.representation.equals(commandRepresentation)) {
                 return value;
             }

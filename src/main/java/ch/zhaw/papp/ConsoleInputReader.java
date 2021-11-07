@@ -1,3 +1,5 @@
+package ch.zhaw.papp;
+
 import java.util.Scanner;
 
 /**
@@ -7,7 +9,6 @@ import java.util.Scanner;
  * @author fupat002
  */
 public class ConsoleInputReader {
-
     private static final String ALLOWED_TEXT_ELEMENTS = "[a-zA-Z0-9. ,:;!?’()\"%@+*\\-\\[\\]{}/&#$]*";
     private final Scanner inputReader;
 
@@ -33,14 +34,25 @@ public class ConsoleInputReader {
             return userTextInput.trim();
         }
     }
+    //TODO @fupat
+    //Als "Absatz" definieren wir eine über die unten beschriebene Scanner.nextline()-
+    //Methode eingelesenen String. Validieren Sie den erhaltenen Input und filtern Sie alle
+    //Sonderzeichen (d.h. der in die Anwendung übernommene Text darf nur Buchstaben, Zahlen,
+    //Leerzeichen und Satzzeichen enthalten).
 
-    public String readNextCommand() {
-        String userTextInput = inputReader.next();
-        if (!userTextInput.matches(ALLOWED_TEXT_ELEMENTS)) {
-            System.err.println("Your text doesn't just contain letters, numbers, spaces or punctuation marks such as .,:;-!?’()\"%@+*[]{}/&#$");
-            return readNextTextString();
-        } else {
+
+    /**
+     * Read the next line if one exists otherwise "waits" till one is entered.
+     *
+     * @return the next inputted line if possible
+     * @author abuechi
+     */
+    public String readNextLine() {
+        if (inputReader.hasNext()) {
+            String userTextInput = inputReader.nextLine();
             return userTextInput.trim();
+        } else {
+            return readNextLine();
         }
     }
 
