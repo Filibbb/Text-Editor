@@ -1,11 +1,15 @@
-import java.util.List;
 
+/**
+ * replaces a word depending on the user's request, in the last line or in the desired line.
+ *
+ * @author fupat002
+ */
 public class ReplaceCommand {
-
-    private Commands commands = new Commands();
+    private final Commands commands = new Commands();
 
     /**
-     * Executes the replace commands
+     * Executes the replacement commands.
+     * Depending on the user's preference, in the last line or in the desired line.
      *
      * @param text            the class that contains the text
      * @param textToReplace   the text / word that needs to be replaced

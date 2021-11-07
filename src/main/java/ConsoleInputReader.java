@@ -2,7 +2,6 @@ import java.util.Scanner;
 
 /**
  * Reads the user input and checks whether it is a valid entry.
- * This class contains the methods stringInputReader and intInputReader.
  *
  * @author fupat002
  */

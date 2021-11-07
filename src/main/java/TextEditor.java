@@ -44,10 +44,6 @@ public class TextEditor {
         if (command != null) {
             switch (command) {
                 case ADD:
-                    for(int i = 0; i < 10; i++){
-                        textData.insertTextAt(null,"Hallo Welt!");
-                        textData.insertTextAt(1,"Hallo Welt!");
-                    }
                     break;
                 case DEL:
                     break;
