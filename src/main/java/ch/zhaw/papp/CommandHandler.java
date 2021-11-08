@@ -1,9 +1,6 @@
 package ch.zhaw.papp;
 
-import ch.zhaw.papp.commands.Command;
-import ch.zhaw.papp.commands.CommandConverterUtil;
-import ch.zhaw.papp.commands.Commands;
-import ch.zhaw.papp.commands.DummyCommand;
+import ch.zhaw.papp.commands.*;
 
 /**
  * A class that handles all commands and makes sure the correct commands are executed.
@@ -107,6 +104,7 @@ public class CommandHandler {
                 exitEditor();
                 break;
             case INDEX:
+                IndexCommand.executeDummyCommand(textData);
                 break;
             case PRINT:
                 print(textData);
