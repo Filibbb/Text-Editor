@@ -4,6 +4,8 @@ import ch.zhaw.papp.commands.Command;
 import ch.zhaw.papp.commands.CommandConverterUtil;
 import ch.zhaw.papp.commands.Commands;
 import ch.zhaw.papp.commands.DummyCommand;
+import ch.zhaw.papp.commands.PrintCommand;
+import ch.zhaw.papp.commands.ReplaceCommand;
 
 /**
  * A class that handles all commands and makes sure the correct commands are executed.
@@ -27,40 +29,6 @@ public class CommandHandler {
             System.out.println(commands.getCommandInfo());
         }
         System.out.println("");
-    }
-
-    /**
-     * Executes the replace commands
-     *
-     * @param text            the class that contains the text
-     * @param textToReplace   the text / word that needs to be replaced
-     * @param paragraphNumber the paragraph number (optional)
-     * @param newText         the text / word to replace it with.
-     */
-    public void executeReplaceCommand(TextData text, String textToReplace, int paragraphNumber, String newText) {
-        if (paragraphNumber == 0) {
-            text.replaceInLastParagraph(textToReplace, newText);
-        } else {
-            text.replaceInVariableParagraph(textToReplace, paragraphNumber, newText);
-        }
-    }
-
-    /**
-     * Prints the whole text.
-     *
-     * @param textData the class that contains the text for the replacement
-     * @author fupat002
-     */
-    public void print(TextData textData) {
-        if (!textData.getParagraphs().isEmpty()) {
-            for (String paragraph : textData.getParagraphs()) {
-                System.out.println(paragraph);
-            }
-            System.out.println("--------- This line marks the end. It doesn't belong to the Text! ---------");
-        } else {
-            System.err.println("There is no text. Add some with the commands below.");
-            showCommands();
-        }
     }
 
     /**
@@ -101,7 +69,7 @@ public class CommandHandler {
                 } else {
                     DummyCommand.executeDummyCommand(textData);
                 }
-                print(textData);
+                PrintCommand.print(textData);
                 break;
             case EXIT:
                 exitEditor();
@@ -109,17 +77,15 @@ public class CommandHandler {
             case INDEX:
                 break;
             case PRINT:
-                print(textData);
+                PrintCommand.print(textData);
                 break;
             case REPLACE:
                 System.out.println("Write the word / text you want to replace.");
                 String textToReplace = inputReader.readNextTextString();
-                System.out.println("Enter the paragraph number in which your word / text appears. If it's on the last paragraph, type in 0");
-                int paragraphNumber = inputReader.readNextInt();
                 System.out.println("Write the word / text you want to replace it with.");
                 String newText = inputReader.readNextTextString();
-                executeReplaceCommand(textData, textToReplace, paragraphNumber, newText);
-                print(textData);
+                ReplaceCommand.replaceCommand(textData, textToReplace,  newText, command);
+                System.out.println();
                 break;
             case FORMAT_FIX:
                 break;

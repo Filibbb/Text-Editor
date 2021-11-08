@@ -35,40 +35,20 @@ public class TextData {
         }
     }
 
-    private int convertParagraphToIndex(int paragraph) {
-        return paragraph - 1;
-    }
-
-    private boolean isValidParagraph(Integer paragraphNumber) {
-        return paragraphNumber != null && (paragraphNumber > 0 || paragraphNumber < paragraphs.size());
-    }
-
     /**
-     *Replaces a word in the last paragraph
-     * @param textToReplace the text that has to be replaced
-     * @param newText the text that replaces the old text
-     * @author fupat002
+     * replaces text with another in a specific paragraph
+     * if paragraphNumber is null then it replaces the word in the last paragraph
+     * @param textToReplace     the text / word that needs to be replaced
+     * @param paragraphNumber   the paragraph that contains the text / word that needs to be replaced
+     * @param newText           the text / word to replace it with
      */
-    public void replaceInLastParagraph(String textToReplace, String newText){
-        int numberOfLastParagraph = convertParagraphToIndex(paragraphs.size());
-        String oldParagraphText = paragraphs.get(numberOfLastParagraph);
-        if(containsWordAtParagraph(textToReplace, numberOfLastParagraph)){
-            String newParagraphText = oldParagraphText.replace(textToReplace, newText);
-            paragraphs.set(numberOfLastParagraph, newParagraphText);
+    public void replaceText(String textToReplace, Integer paragraphNumber , String newText){
+        int paragraph;
+        if(paragraphNumber != null){
+            paragraph = convertParagraphToIndex(paragraphNumber);
         }else{
-            System.err.println("Your replacement word is not in this line. Check it out and try again.");
+            paragraph = convertParagraphToIndex(paragraphs.size());
         }
-    }
-
-    /**
-     *Replaces a word in the chosen paragraph
-     * @param textToReplace the text that has to be replaced
-     * @param paragraphNumber the paragraph that contains the word that has to be replaced
-     * @param newText the text that replaces the old text
-     * @author fupat002
-     */
-    public void replaceInVariableParagraph(String textToReplace, int paragraphNumber ,String newText){
-        int paragraph = convertParagraphToIndex(paragraphNumber);
         String oldParagraphText = paragraphs.get(paragraph);
         if(containsWordAtParagraph(textToReplace, paragraph)){
             String newParagraphText = oldParagraphText.replace(textToReplace, newText);
@@ -78,12 +58,31 @@ public class TextData {
         }
     }
 
-    private boolean containsWordAtParagraph(String word, int paragraph){
+    /**
+     * checks whether the paragraph contains a word
+     * @param word      the word you are looking for
+     * @param paragraph the number of the paragraph
+     * @return          true if the paragraph contains the word
+     * @author          fupat002
+     */
+    public boolean containsWordAtParagraph(String word, int paragraph){
         String paragraphText = paragraphs.get(paragraph);
         return paragraphText.contains(word);
     }
 
+    /**
+     * checks if the parameter is a valid paragraph.
+     * @param paragraphNumber   the paragraph number to check
+     * @return                  true or false if it's a valid paragraph
+     */
+    public boolean isValidParagraph(Integer paragraphNumber) {
+        return paragraphNumber != null && paragraphNumber > 0 && paragraphNumber <= paragraphs.size();
+    }
     public List<String> getParagraphs() {
         return paragraphs;
+    }
+
+    private int convertParagraphToIndex(int paragraph) {
+        return paragraph - 1;
     }
 }
