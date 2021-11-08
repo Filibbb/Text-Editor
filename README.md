@@ -24,10 +24,10 @@ Die Befehle können in der Eingabeaufforderung eingegeben werden und führen dan
 
 ### Gruppen Mitglieder und Verantwortungsbereich
 
-* Adrian Büchi - ...
-* Philippe Weber - ...
-* Patric Fuchs - ...
-* Pascal Küng - ...
+* Adrian Büchi - Tech-Lead, Reviewer, Pair-Programming, (Dummy und Refactorings sowie Applikations Struktur)
+* Philippe Weber - ADD,DEL,EXIT
+* Patric Fuchs - ConsoleInputReader, Print, Replace
+* Pascal Küng - Index, Unit-Test
 
 
 ### Teamrules
