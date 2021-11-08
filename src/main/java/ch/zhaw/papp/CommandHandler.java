@@ -104,7 +104,7 @@ public class CommandHandler {
                 exitEditor();
                 break;
             case INDEX:
-                IndexCommand.executeDummyCommand(textData);
+                IndexCommand.executeIndexCommand(textData);
                 break;
             case PRINT:
                 print(textData);
