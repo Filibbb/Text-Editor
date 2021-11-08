@@ -20,10 +20,9 @@ public class ReplaceCommand {
      * @param newText         the text / word to replace it with
      */
     public static void replaceCommand(TextData text, String textToReplace, String newText, Command command) {
-        int paragraph = 0;
         if(!text.getParagraphs().isEmpty()){
             if(command.hasParams()){
-                paragraph = command.getNumericParams();
+                int paragraph = command.getNumericParams();
                 if(text.isValidParagraph(paragraph)){
                     text.replaceText(textToReplace, paragraph, newText);
                 }else{
