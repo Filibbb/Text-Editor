@@ -27,7 +27,7 @@ public class CommandHandler {
     }
 
     /**
-     * Exits the texteditor program.
+     * Exits the TextEditor program.
      *
      * @author weberph5
      */
@@ -55,6 +55,16 @@ public class CommandHandler {
     private void execute(Command command, TextData textData) {
         switch (command.getCommand()) {
             case ADD:
+                if (command.hasParams()){
+                    System.out.println("Enter the text you want to add");
+                    String textToAdd = inputReader.readNextLine();
+                    AddTextCommand.executeAddTextCommand(textData, textToAdd, command.getNumericParams());
+                } else {
+                    System.out.println("Enter the text you want to add");
+                    String textToAdd = inputReader.readNextLine();
+                    AddTextCommand.executeAddTextCommand(textData, textToAdd);
+                }
+                PrintCommand.print(textData);
                 break;
             case DEL:
                 break;
