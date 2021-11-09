@@ -25,4 +25,13 @@ public class ConsoleInputReader {
             return readNextLine();
         }
     }
+
+    /**
+     * closes the scanner.
+     *
+     * @author fupat002
+     */
+    public void closeScanner() {
+        inputReader.close();
+    }
 }

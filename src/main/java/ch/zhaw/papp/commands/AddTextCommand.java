@@ -31,6 +31,7 @@ public class AddTextCommand {
         } else {
             System.err.println("Command is missing the command information.");
         }
+        this.inputReader.closeScanner();
     }
 
     /**
