@@ -47,19 +47,21 @@ public class TextData {
      * @author weberph5
      */
     public boolean deleteTextAt(Integer paragraphNumber) {
-        if ((paragraphNumber == null) && !paragraphs.isEmpty()) {
-            paragraphs.remove(paragraphs.size() - 1);
+        if (!paragraphs.isEmpty()) {
+            deleteText(paragraphNumber);
             return true;
-        } else {
-            if (isValidParagraph(paragraphNumber) && !paragraphs.isEmpty()) {
-                Integer paragraphIndex = convertParagraphToIndex(paragraphNumber);
-                paragraphs.remove(paragraphIndex.intValue());
-                return true;
-            }
         }
         return false;
     }
 
+    private void deleteText(Integer paragraphNumber) {
+        Integer paragraphIndex = convertParagraphToIndex(paragraphNumber);
+        if (isValidParagraph(paragraphNumber)) {
+            paragraphs.remove(paragraphIndex.intValue());
+        } else {
+            paragraphs.remove(paragraphs.size() - 1);
+        }
+    }
 
     /**
      * replaces text with another in a specific paragraph
@@ -120,7 +122,7 @@ public class TextData {
         return paragraphs;
     }
 
-    private Integer convertParagraphToIndex(int paragraph) {
+    private Integer convertParagraphToIndex(Integer paragraph) {
         if (paragraph == 0) {
             return 0;
         } else if (paragraph > 0) {
