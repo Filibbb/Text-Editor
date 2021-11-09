@@ -67,6 +67,10 @@ public class CommandHandler {
                 PrintCommand.print(textData);
                 break;
             case DEL:
+                if (command.hasParams()){
+                    DeleteCommand.deleteCommand(textData, command.getNumericParams());
+                } else
+                    DeleteCommand.deleteCommand(textData);
                 break;
             case DUMMY:
                 if (command.hasParams()) {

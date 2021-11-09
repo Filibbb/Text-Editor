@@ -2,7 +2,7 @@ package ch.zhaw.papp.commands;
 
 public enum Commands {
     DUMMY("DUMMY", "DUMMY (n) : Add a pre-programmed dummy text to paragraph n. n is optional. Text will be added to the end if n is not set."),
-    DEL("DEL", "DEL (n) : Delete Paragraph n"),
+    DEL("DEL", "DEL (n) : Delete Paragraph n. n is optional. Last paragraph will be deleted if n is not set"),
     ADD("ADD", "ADD (n) : Add Text to paragraph n. n is optional. Text will be added to the end if n is not set."),
     EXIT("EXIT", "EXIT : Exit ch.zhaw.papp.TextEditor!"),
     FORMAT_RAW("FORMAT RAW", "FORMAT RAW : Set format to raw with no fix column length with paragraph numbers."),
