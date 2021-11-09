@@ -7,16 +7,11 @@ import java.util.List;
  * A wrapper object that contains all operations on a text.
  *
  * @author abuechi
+ * @version 1.0.0
  */
 public class TextData {
-    private final List<String> paragraphs;
-
-    /**
-     * Creates a new ch.zhaw.papp.TextData Object with an empty paragraph list.
-     */
-    public TextData() {
-        this.paragraphs = new ArrayList<>();
-    }
+    private static final String ALLOWED_TEXT_ELEMENTS = "[a-zA-Z0-9. ,:;!?’()\"%@+*\\-\\[\\]{}/&#$]*";
+    private final List<String> paragraphs = new ArrayList<>();
 
     /**
      * @param paragraphNumber null or a specified index of the paragraph
@@ -24,17 +19,22 @@ public class TextData {
      * @return a boolean value representing the success of the operation
      */
     public boolean insertTextAt(Integer paragraphNumber, String text) {
-        if (paragraphNumber == null) {
-            paragraphs.add(text);
-            return true;
-        } else {
-            if (isValidParagraph(paragraphNumber)) {
-                final Integer paragraphIndex = convertParagraphToIndex(paragraphNumber);
-                if (paragraphIndex != null) {
-                    paragraphs.add(paragraphIndex, text);
-                    return true;
+        if (isValidText(text)) {
+            if (paragraphNumber == null) {
+                paragraphs.add(text);
+                return true;
+            } else {
+                if (isValidParagraph(paragraphNumber)) {
+                    final Integer paragraphIndex = convertParagraphToIndex(paragraphNumber);
+                    if (paragraphIndex != null) {
+                        paragraphs.add(paragraphIndex, text);
+                        return true;
+                    }
                 }
+                return false;
             }
+        } else {
+            System.err.println("Your text doesn't just contain letters, numbers, spaces or punctuation marks such as .,:;-!?’()\"%@+*[]{}/&#$");
             return false;
         }
     }
@@ -72,19 +72,23 @@ public class TextData {
      * @param newText         the text / word to replace it with
      */
     public void replaceText(String textToReplace, Integer paragraphNumber, String newText) {
-        Integer paragraph;
-        if (paragraphNumber != null) {
-            paragraph = convertParagraphToIndex(paragraphNumber);
-        } else {
-            paragraph = convertParagraphToIndex(paragraphs.size());
-        }
+        if (isValidText(textToReplace)) {
+            Integer paragraph;
+            if (paragraphNumber != null) {
+                paragraph = convertParagraphToIndex(paragraphNumber);
+            } else {
+                paragraph = convertParagraphToIndex(paragraphs.size());
+            }
 
-        if (paragraph != null && containsWordAtParagraph(textToReplace, paragraph)) {
-            String oldParagraphText = paragraphs.get(paragraph);
-            String newParagraphText = oldParagraphText.replace(textToReplace, newText);
-            paragraphs.set(paragraph, newParagraphText);
+            if (paragraph != null && containsWordAtParagraph(textToReplace, paragraph)) {
+                String oldParagraphText = paragraphs.get(paragraph);
+                String newParagraphText = oldParagraphText.replace(textToReplace, newText);
+                paragraphs.set(paragraph, newParagraphText);
+            } else {
+                System.err.println("Your replacement word \"" + textToReplace + "\" is not in this line or your paragraph was invalid. Check it out and try again.");
+            }
         } else {
-            System.err.println("Your replacement word \"" + textToReplace + "\" is not in this line or your paragraph was invalid. Check it out and try again.");
+            System.err.println("Your text doesn't just contain letters, numbers, spaces or punctuation marks such as .,:;-!?’()\"%@+*[]{}/&#$");
         }
     }
 
@@ -130,5 +134,9 @@ public class TextData {
         } else {
             return null;
         }
+    }
+
+    private boolean isValidText(String userTextInput) {
+        return userTextInput.matches(ALLOWED_TEXT_ELEMENTS);
     }
 }

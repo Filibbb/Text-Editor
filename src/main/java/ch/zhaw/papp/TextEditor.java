@@ -1,5 +1,7 @@
 package ch.zhaw.papp;
 
+import static ch.zhaw.papp.commands.ShowCommand.showCommands;
+
 /**
  * Contains the Text Editor life cycle
  *
@@ -19,9 +21,9 @@ public class TextEditor {
      */
     public void startEdit() {
         System.out.println("***********************************");
-        System.out.println("* Welcome to the best ch.zhaw.papp.TextEditor! *");
+        System.out.println("* Welcome to the best TextEditor! *");
         System.out.println("***********************************");
-        commandHandler.showCommands();
+        showCommands();
         while (true) { //exits when using the exit command. Otherwise application won't stop.
             System.out.println("Please enter a command:");
             String command = inputReader.readNextLine();

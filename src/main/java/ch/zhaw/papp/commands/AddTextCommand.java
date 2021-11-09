@@ -8,7 +8,6 @@ import ch.zhaw.papp.TextData;
  * @author weberph5
  * @version 1.0.0
  */
-
 public class AddTextCommand {
 
     private AddTextCommand() {

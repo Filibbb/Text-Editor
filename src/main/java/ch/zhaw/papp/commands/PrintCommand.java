@@ -8,6 +8,7 @@ import static ch.zhaw.papp.commands.ShowCommand.showCommands;
  * contains the method to print the text.
  *
  * @author fupat002
+ * @version 1.0.0
  */
 public class PrintCommand {
 

@@ -8,6 +8,7 @@ import static ch.zhaw.papp.commands.ShowCommand.showCommands;
  * replaces a word depending on the user's request, in the last line or in the desired line.
  *
  * @author fupat002
+ * @version 1.0.0
  */
 public class ReplaceCommand {
 
@@ -22,6 +23,7 @@ public class ReplaceCommand {
      * @param textToReplace the text / word that needs to be replaced
      * @param command       the entered command
      * @param newText       the text / word to replace it with
+     * @author abuechi
      */
     public static void replaceCommand(TextData text, String textToReplace, String newText, Command command) {
         if (!text.getParagraphs().isEmpty()) {
