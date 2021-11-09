@@ -42,17 +42,17 @@ public class CommandHandler {
      *
      * @author abuechi
      */
-    public void executeCommand(String enteredCommand, TextData textData) {
+    public void executeCommand(String enteredCommand, TextData textData, FormatCommand formatCommand) {
         final Command command = CommandConverterUtil.convertToCommand(enteredCommand);
         if (command.isValidCommand()) {
-            execute(command, textData);
+            execute(command, textData, formatCommand);
         } else {
             System.err.println("This command is not available. Please choose one below.");
             showCommands();
         }
     }
 
-    private void execute(Command command, TextData textData) {
+    private void execute(Command command, TextData textData, FormatCommand formatCommand) {
         switch (command.getCommand()) {
             case ADD:
                 if (command.hasParams()){
@@ -64,7 +64,7 @@ public class CommandHandler {
                     String textToAdd = inputReader.readNextLine();
                     AddTextCommand.executeAddTextCommand(textData, textToAdd);
                 }
-                PrintCommand.print(textData);
+                PrintCommand.print(textData, formatCommand);
                 break;
             case DEL:
                 if (command.hasParams()){
@@ -78,7 +78,7 @@ public class CommandHandler {
                 } else {
                     DummyCommand.executeDummyCommand(textData);
                 }
-                PrintCommand.print(textData);
+                PrintCommand.print(textData, formatCommand);
                 break;
             case EXIT:
                 exitEditor();
@@ -86,7 +86,7 @@ public class CommandHandler {
             case INDEX:
                 break;
             case PRINT:
-                PrintCommand.print(textData);
+                PrintCommand.print(textData, formatCommand);
                 break;
             case REPLACE:
                 System.out.println("Write the word / text you want to replace.");
@@ -97,8 +97,10 @@ public class CommandHandler {
                 System.out.println();
                 break;
             case FORMAT_FIX:
+                formatCommand.formatFix(textData, command.getNumericParams());
                 break;
             case FORMAT_RAW:
+                formatCommand.formatRaw();
                 break;
             case SHOW_COMMANDS:
                 showCommands();

@@ -1,5 +1,7 @@
 package ch.zhaw.papp;
 
+import ch.zhaw.papp.commands.FormatCommand;
+
 /**
  * Contains the Text Editor life cycle
  *
@@ -11,6 +13,7 @@ public class TextEditor {
     private final ConsoleInputReader inputReader = new ConsoleInputReader();
     private final CommandHandler commandHandler = new CommandHandler();
     private final TextData textData = new TextData();
+    private FormatCommand formatCommand = new FormatCommand();
 
     /**
      * Starts the Text Editor and keeps it running
@@ -25,7 +28,7 @@ public class TextEditor {
         while (true) { //exits when using the exit command. Otherwise application won't stop.
             System.out.println("Please enter a command:");
             String command = inputReader.readNextLine();
-            commandHandler.executeCommand(command, textData);
+            commandHandler.executeCommand(command, textData, formatCommand);
         }
     }
 }

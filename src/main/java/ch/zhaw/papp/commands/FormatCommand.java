@@ -22,7 +22,7 @@ public class FormatCommand {
                 if (spaceLeftInParagraphOfFormattedText) {
                     while (spaceLeftInParagraphOfFormattedText) {
                         String mergedNewParagraph = formattedParagraphs.get(paragraphIndexOfNewText) + " " + oldParagraphWords[WordOfOriginalText];
-                        formattedParagraphs.add(paragraphIndexOfNewText, mergedNewParagraph);
+                        formattedParagraphs.set(paragraphIndexOfNewText, mergedNewParagraph);
                         spaceLeftInParagraphOfFormattedText = checkIfSpaceLeftInParagraph(oldParagraphWords[WordOfOriginalText].length() , userParagraphWishLength, formattedParagraphs.get(paragraphIndexOfNewText).length());
                     }
                 } else {
@@ -31,15 +31,20 @@ public class FormatCommand {
                 }
             }
         }
+        /*
         //Nur für test, vor dem print implement.
         for (String paragraph : formattedParagraphs) {
             System.out.println(paragraph);
-        }
+        }*/
     }
 
     public void formatRaw() {
         formattedParagraphs = new ArrayList<>();
 
+    }
+
+    public List<String> getFormattedParagraphs() {
+        return formattedParagraphs;
     }
 
     private boolean checkIfSpaceLeftInParagraph(int lengthOfTextToAdd, int maxLength, int alreadyOccupied){
