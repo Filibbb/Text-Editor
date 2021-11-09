@@ -23,6 +23,7 @@ public class Command {
     /**
      * Sets the command out of the available commands
      *
+     * @param command the commmand enum representing the command that was executed
      * @author abuechi
      */
     public void setCommand(Commands command) {
@@ -42,6 +43,7 @@ public class Command {
     /**
      * Sets the optional params of the command
      *
+     * @param numericParams number params
      * @author abuechi
      */
     public void setNumericParams(Integer numericParams) {
