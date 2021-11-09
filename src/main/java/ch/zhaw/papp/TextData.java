@@ -56,7 +56,7 @@ public class TextData {
 
     private void deleteText(Integer paragraphNumber) {
         Integer paragraphIndex = convertParagraphToIndex(paragraphNumber);
-        if (isValidParagraph(paragraphNumber)) {
+        if (paragraphIndex != null && isValidParagraph(paragraphNumber)) {
             paragraphs.remove(paragraphIndex.intValue());
         } else {
             paragraphs.remove(paragraphs.size() - 1);
@@ -127,12 +127,12 @@ public class TextData {
     }
 
     private Integer convertParagraphToIndex(Integer paragraph) {
-        if (paragraph == 0) {
-            return 0;
-        } else if (paragraph > 0) {
-            return paragraph - 1;
-        } else {
+        if (paragraph == null || paragraph < 0) {
             return null;
+        } else if (paragraph == 0) {
+            return 0;
+        } else {
+            return paragraph - 1;
         }
     }
 

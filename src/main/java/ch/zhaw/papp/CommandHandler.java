@@ -1,11 +1,11 @@
 package ch.zhaw.papp;
 
+import ch.zhaw.papp.commands.AddTextCommand;
 import ch.zhaw.papp.commands.Command;
+import ch.zhaw.papp.commands.DeleteCommand;
+import ch.zhaw.papp.commands.DummyCommand;
 
-import static ch.zhaw.papp.commands.AddTextCommand.executeAddTextCommand;
 import static ch.zhaw.papp.commands.CommandConverterUtil.convertToCommand;
-import static ch.zhaw.papp.commands.DeleteCommand.deleteCommand;
-import static ch.zhaw.papp.commands.DummyCommand.executeDummyCommand;
 import static ch.zhaw.papp.commands.ExitCommand.exitEditor;
 import static ch.zhaw.papp.commands.PrintCommand.print;
 import static ch.zhaw.papp.commands.ReplaceCommand.replaceCommand;
@@ -18,7 +18,6 @@ import static ch.zhaw.papp.commands.ShowCommand.showCommands;
  * @version 1.0.0
  */
 public class CommandHandler {
-
     private final ConsoleInputReader inputReader = new ConsoleInputReader();
 
     /**
@@ -41,30 +40,17 @@ public class CommandHandler {
     private void execute(Command command, TextData textData) {
         switch (command.getCommand()) {
             case ADD:
-                if (command.hasParams()) {
-                    System.out.println("Enter the text you want to add");
-                    String textToAdd = inputReader.readNextLine();
-                    executeAddTextCommand(textData, textToAdd, command.getNumericParams());
-                } else {
-                    System.out.println("Enter the text you want to add");
-                    String textToAdd = inputReader.readNextLine();
-                    executeAddTextCommand(textData, textToAdd);
-                }
+                final AddTextCommand addTextCommand = new AddTextCommand(command);
+                addTextCommand.execute(textData);
                 print(textData);
                 break;
             case DELETE:
-                if (command.hasParams()) {
-                    deleteCommand(textData, command.getNumericParams());
-                } else {
-                    deleteCommand(textData);
-                }
+                final DeleteCommand deleteCommand = new DeleteCommand(command);
+                deleteCommand.execute(textData);
                 break;
             case DUMMY:
-                if (command.hasParams()) {
-                    executeDummyCommand(textData, command.getNumericParams());
-                } else {
-                    executeDummyCommand(textData);
-                }
+                final DummyCommand dummyCommand = new DummyCommand(command);
+                dummyCommand.execute(textData);
                 print(textData);
                 break;
             case EXIT:
