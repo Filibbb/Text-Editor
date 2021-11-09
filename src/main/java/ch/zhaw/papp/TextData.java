@@ -20,23 +20,17 @@ public class TextData {
      */
     public boolean insertTextAt(Integer paragraphNumber, String text) {
         if (isValidText(text)) {
-            if (paragraphNumber == null) {
-                paragraphs.add(text);
-                return true;
+            final Integer paragraphIndex = convertParagraphToIndex(paragraphNumber);
+            if (isValidParagraph(paragraphNumber)) {
+                paragraphs.add(paragraphIndex, text);
             } else {
-                if (isValidParagraph(paragraphNumber)) {
-                    final Integer paragraphIndex = convertParagraphToIndex(paragraphNumber);
-                    if (paragraphIndex != null) {
-                        paragraphs.add(paragraphIndex, text);
-                        return true;
-                    }
-                }
-                return false;
+                paragraphs.add(text);
             }
+            return true;
         } else {
             System.err.println("Your text doesn't just contain letters, numbers, spaces or punctuation marks such as .,:;-!?’()\"%@+*[]{}/&#$");
-            return false;
         }
+        return false;
     }
 
     /**
@@ -48,19 +42,11 @@ public class TextData {
      */
     public boolean deleteTextAt(Integer paragraphNumber) {
         if (!paragraphs.isEmpty()) {
-            deleteText(paragraphNumber);
+            Integer paragraphIndex = paragraphOrLastIndex(paragraphNumber);
+            paragraphs.remove(paragraphIndex.intValue());
             return true;
         }
         return false;
-    }
-
-    private void deleteText(Integer paragraphNumber) {
-        Integer paragraphIndex = convertParagraphToIndex(paragraphNumber);
-        if (paragraphIndex != null && isValidParagraph(paragraphNumber)) {
-            paragraphs.remove(paragraphIndex.intValue());
-        } else {
-            paragraphs.remove(paragraphs.size() - 1);
-        }
     }
 
     /**
@@ -70,20 +56,15 @@ public class TextData {
      * @param textToReplace   the text / word that needs to be replaced
      * @param paragraphNumber the paragraph that contains the text / word that needs to be replaced
      * @param newText         the text / word to replace it with
+     * @author fupat002
      */
     public void replaceText(String textToReplace, Integer paragraphNumber, String newText) {
         if (isValidText(textToReplace)) {
-            Integer paragraph;
-            if (paragraphNumber != null) {
-                paragraph = convertParagraphToIndex(paragraphNumber);
-            } else {
-                paragraph = convertParagraphToIndex(paragraphs.size());
-            }
-
-            if (paragraph != null && containsWordAtParagraph(textToReplace, paragraph)) {
-                String oldParagraphText = paragraphs.get(paragraph);
+            final Integer paragraphOrLast = paragraphOrLastIndex(paragraphNumber);
+            if (containsWordAtParagraph(textToReplace, paragraphOrLast)) {
+                String oldParagraphText = paragraphs.get(paragraphOrLast);
                 String newParagraphText = oldParagraphText.replace(textToReplace, newText);
-                paragraphs.set(paragraph, newParagraphText);
+                paragraphs.set(paragraphOrLast, newParagraphText);
             } else {
                 System.err.println("Your replacement word \"" + textToReplace + "\" is not in this line or your paragraph was invalid. Check it out and try again.");
             }
@@ -100,20 +81,14 @@ public class TextData {
      * @return true if the paragraph contains the word
      * @author fupat002
      */
-    public boolean containsWordAtParagraph(String word, int paragraph) {
+    public boolean containsWordAtParagraph(String word, Integer paragraph) {
         String paragraphText = paragraphs.get(paragraph);
         return paragraphText.contains(word);
+
     }
 
-    /**
-     * checks if the parameter is a valid paragraph.
-     *
-     * @param paragraphNumber the paragraph number to check
-     * @return true or false if it's a valid paragraph
-     * @author abuechi
-     */
-    public boolean isValidParagraph(Integer paragraphNumber) {
-        return paragraphNumber != null && paragraphNumber >= 0 && (paragraphNumber <= paragraphs.size() || paragraphNumber == 1);
+    private boolean isValidParagraph(Integer paragraphNumber) {
+        return paragraphNumber != null && paragraphNumber >= 0 && (paragraphNumber < paragraphs.size() || paragraphNumber == 1);
     }
 
     /**
@@ -126,13 +101,24 @@ public class TextData {
         return paragraphs;
     }
 
+    private Integer paragraphOrLastIndex(Integer paragraph) {
+        final Integer paragraphToIndex = convertParagraphToIndex(paragraph);
+        if (isValidParagraph(paragraphToIndex)) {
+            return paragraphToIndex;
+        } else {
+            return paragraphs.size() - 1;
+        }
+    }
+
     private Integer convertParagraphToIndex(Integer paragraph) {
-        if (paragraph == null || paragraph < 0) {
-            return null;
+        if (paragraph == null) {
+            return this.paragraphs.size();
         } else if (paragraph == 0) {
             return 0;
-        } else {
+        } else if (paragraph > 0) {
             return paragraph - 1;
+        } else {
+            return null;
         }
     }
 

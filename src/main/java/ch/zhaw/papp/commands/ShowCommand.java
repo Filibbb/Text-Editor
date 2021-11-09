@@ -8,15 +8,12 @@ package ch.zhaw.papp.commands;
  */
 public class ShowCommand {
 
-    private ShowCommand() {
-    }
-
     /**
      * Shows a list and description of all available commands.
      *
      * @author weberph5
      */
-    public static void showCommands() {
+    public void execute() {
         System.out.println("Available Commands (Case sensitive!):");
         System.out.println("");
         for (Commands commands : Commands.values()) {

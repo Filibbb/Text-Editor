@@ -9,7 +9,10 @@ import java.util.Scanner;
  * @version 1.0.0
  */
 public class ConsoleInputReader {
-    private final Scanner inputReader = new Scanner(System.in);
+    private static final Scanner inputReader = new Scanner(System.in);
+
+    private ConsoleInputReader() {
+    }
 
     /**
      * Read the next line if one exists otherwise "waits" till one is entered.
@@ -17,7 +20,7 @@ public class ConsoleInputReader {
      * @return the next inputted line if possible
      * @author abuechi
      */
-    public String readNextLine() {
+    public static String readNextLine() {
         if (inputReader.hasNext()) {
             String userTextInput = inputReader.nextLine();
             return userTextInput.trim();
@@ -31,7 +34,7 @@ public class ConsoleInputReader {
      *
      * @author fupat002
      */
-    public void closeScanner() {
+    public static void closeScanner() {
         inputReader.close();
     }
 }

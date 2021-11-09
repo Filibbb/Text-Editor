@@ -1,7 +1,8 @@
 package ch.zhaw.papp.commands;
 
-import ch.zhaw.papp.ConsoleInputReader;
 import ch.zhaw.papp.TextData;
+
+import static ch.zhaw.papp.ConsoleInputReader.readNextLine;
 
 /**
  * Command class to add new text to the TextData in last or selected paragraph.
@@ -11,7 +12,6 @@ import ch.zhaw.papp.TextData;
  */
 public class AddTextCommand {
     private final Command command;
-    private final ConsoleInputReader inputReader = new ConsoleInputReader();
 
     /**
      * Creates an instance of the delete command with its related command information.
@@ -26,12 +26,11 @@ public class AddTextCommand {
     public void execute(TextData textData) {
         if (command != null) {
             System.out.println("Enter the text you want to add");
-            String textToAdd = inputReader.readNextLine();
+            String textToAdd = readNextLine();
             addTextCommand(textData, textToAdd, command.getNumericParams());
         } else {
             System.err.println("Command is missing the command information.");
         }
-        this.inputReader.closeScanner();
     }
 
     /**

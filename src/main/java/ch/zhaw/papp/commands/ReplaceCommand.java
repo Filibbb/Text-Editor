@@ -2,8 +2,6 @@ package ch.zhaw.papp.commands;
 
 import ch.zhaw.papp.TextData;
 
-import static ch.zhaw.papp.commands.ShowCommand.showCommands;
-
 /**
  * replaces a word depending on the user's request, in the last line or in the desired line.
  *
@@ -29,19 +27,12 @@ public class ReplaceCommand {
         if (!text.getParagraphs().isEmpty()) {
             if (command.hasParams()) {
                 int paragraph = command.getNumericParams();
-                if (text.isValidParagraph(paragraph)) {
-                    text.replaceText(textToReplace, paragraph, newText);
-                } else {
-                    System.out.println("Your text doesn't contain that much paragraphs.");
-                    System.out.println("Select a paragraph in your text range.");
-                    System.out.println("Number of lines: " + text.getParagraphs().size());
-                }
+                text.replaceText(textToReplace, paragraph, newText);
             } else {
                 text.replaceText(textToReplace, null, newText);
             }
         } else {
             System.err.println("There is no text. Add some with the commands below.");
-            showCommands();
         }
     }
 }

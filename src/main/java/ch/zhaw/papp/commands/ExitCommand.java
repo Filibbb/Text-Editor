@@ -1,5 +1,7 @@
 package ch.zhaw.papp.commands;
 
+import static ch.zhaw.papp.ConsoleInputReader.closeScanner;
+
 /**
  * The Class for the exit command
  *
@@ -8,16 +10,14 @@ package ch.zhaw.papp.commands;
  */
 public class ExitCommand {
 
-    private ExitCommand() {
-    }
-
     /**
      * Exits the TextEditor program.
      *
      * @author weberph5
      */
-    public static void exitEditor() {
+    public void execute() {
         System.out.println("Closing the TextEditor. Bye.");
+        closeScanner();
         System.exit(1);
     }
 }

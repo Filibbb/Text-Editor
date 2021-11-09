@@ -37,7 +37,7 @@ public class DummyCommand {
     }
 
     private void dummyCommand(TextData text, Integer offset) {
-        final boolean successFull = text.insertTextAt(offset, " " + dummyText);
+        final boolean successFull = text.insertTextAt(offset, dummyText);
         if (!successFull) {
             System.err.println("Dummy command was not successful");
         }
