@@ -14,28 +14,20 @@ public class FormatCommand {
         for (int paragraphIndexOfOriginalText = 0; paragraphIndexOfOriginalText < text.size(); paragraphIndexOfOriginalText++) {
             String[] oldParagraphWords = text.get(paragraphIndexOfOriginalText).split(" ");
             formattedParagraphs.add(oldParagraphWords[0]);
-
-            //for(int paragraphIndexOfNewText = 0; paragraphIndexOfNewText < formattedParagraphs.size(); paragraphIndexOfNewText++){
-
-            for (int WordOfOriginalText = 1; WordOfOriginalText < oldParagraphWords.length; WordOfOriginalText++) {
-                boolean spaceLeftInParagraphOfFormattedText = checkIfSpaceLeftInParagraph(oldParagraphWords[WordOfOriginalText].length() , userParagraphWishLength, formattedParagraphs.get(paragraphIndexOfNewText).length());
+            int wordOfOriginalText = 1;
+            boolean spaceLeftInParagraphOfFormattedText = false;
+            while(wordOfOriginalText < oldParagraphWords.length){
+                spaceLeftInParagraphOfFormattedText = checkIfSpaceLeftInParagraph(oldParagraphWords[wordOfOriginalText].length(), userParagraphWishLength, formattedParagraphs.get(paragraphIndexOfNewText).length());
                 if (spaceLeftInParagraphOfFormattedText) {
-                    while (spaceLeftInParagraphOfFormattedText) {
-                        String mergedNewParagraph = formattedParagraphs.get(paragraphIndexOfNewText) + " " + oldParagraphWords[WordOfOriginalText];
+                        String mergedNewParagraph = formattedParagraphs.get(paragraphIndexOfNewText) + " " + oldParagraphWords[wordOfOriginalText];
                         formattedParagraphs.set(paragraphIndexOfNewText, mergedNewParagraph);
-                        spaceLeftInParagraphOfFormattedText = checkIfSpaceLeftInParagraph(oldParagraphWords[WordOfOriginalText].length() , userParagraphWishLength, formattedParagraphs.get(paragraphIndexOfNewText).length());
-                    }
                 } else {
-                    formattedParagraphs.add(oldParagraphWords[WordOfOriginalText]);
+                    formattedParagraphs.add(oldParagraphWords[wordOfOriginalText]);
                     paragraphIndexOfNewText++;
                 }
+                wordOfOriginalText++;
             }
         }
-        /*
-        //Nur für test, vor dem print implement.
-        for (String paragraph : formattedParagraphs) {
-            System.out.println(paragraph);
-        }*/
     }
 
     public void formatRaw() {
