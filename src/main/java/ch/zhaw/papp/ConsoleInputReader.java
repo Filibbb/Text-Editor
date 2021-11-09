@@ -26,12 +26,6 @@ public class ConsoleInputReader {
             return userTextInput.trim();
         }
     }
-    //TODO @fupat
-    //Als "Absatz" definieren wir eine über die unten beschriebene Scanner.nextline()-
-    //Methode eingelesenen String. Validieren Sie den erhaltenen Input und filtern Sie alle
-    //Sonderzeichen (d.h. der in die Anwendung übernommene Text darf nur Buchstaben, Zahlen,
-    //Leerzeichen und Satzzeichen enthalten).
-
 
     /**
      * Read the next line if one exists otherwise "waits" till one is entered.
