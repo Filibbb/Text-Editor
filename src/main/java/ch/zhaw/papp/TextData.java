@@ -40,6 +40,28 @@ public class TextData {
     }
 
     /**
+     * Translates the given paragraph number to index and deletes the values in that index
+     *
+     * @param paragraphNumber the paragraph number provided by the Delete Command (can also be null)
+     * @return boolean value about success of deletion
+     * @author weberph5
+     */
+    public boolean deleteTextAt(Integer paragraphNumber) {
+        if ((paragraphNumber == null) && !paragraphs.isEmpty()) {
+            paragraphs.remove(paragraphs.size() - 1);
+            return true;
+        } else {
+            if (isValidParagraph(paragraphNumber) && !paragraphs.isEmpty()) {
+                Integer paragraphIndex = convertParagraphToIndex(paragraphNumber);
+                paragraphs.remove(paragraphIndex.intValue());
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    /**
      * replaces text with another in a specific paragraph
      * if paragraphNumber is null then it replaces the word in the last paragraph
      *
