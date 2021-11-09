@@ -19,14 +19,15 @@ Die Befehle können in der Eingabeaufforderung eingegeben werden und führen dan
 | INDEX         | Gibt einen Index (Wortverzeichnis) aller Begriffe aus, die über alle Absätze <br> gesehen öfter als dreimal vorkommen.|
 | PRINT         | Ausgabe des Textes gemäss dem aktuell eingestellten Ausgabeformat.|
 | REPLACE [n]   | Ruft zuerst zur Eingabe eines zu suchenden Wortes oder Textteils im Absatz n auf und <br> anschliessend zur Eingabe des Textes, mit dem das Gesuchte ersetzt werden soll. <br> Wird keine Absatznummer n angegeben, wird der letzte Absatz geändert.|
+| SHOW COMMANDS | Shows all available commands.|
 
 
 ### Gruppen Mitglieder und Verantwortungsbereich
 
-* Adrian Büchi - ...
-* Philippe Weber - ...
-* Patric Fuchs - ...
-* Pascal Küng - ...
+* Adrian Büchi - Tech-Lead, Reviewer, Pair-Programming, (Dummy und Refactorings sowie Applikations Struktur)
+* Philippe Weber - ADD,DEL,EXIT
+* Patric Fuchs - ConsoleInputReader, Print, Replace
+* Pascal Küng - Index, Unit-Test
 
 
 ### Teamrules

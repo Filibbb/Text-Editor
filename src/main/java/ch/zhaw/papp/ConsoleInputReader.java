@@ -4,20 +4,12 @@ import java.util.Scanner;
 
 /**
  * Reads the user input and checks whether it is a valid entry.
- * This class contains the methods stringInputReader and intInputReader.
  *
  * @author fupat002
  */
 public class ConsoleInputReader {
     private static final String ALLOWED_TEXT_ELEMENTS = "[a-zA-Z0-9. ,:;!?’()\"%@+*\\-\\[\\]{}/&#$]*";
-    private final Scanner inputReader;
-
-    /**
-     * Creates a new Scanner.
-     */
-    public ConsoleInputReader() {
-        inputReader = new Scanner(System.in);
-    }
+    private final Scanner inputReader = new Scanner(System.in);
 
     /**
      * Reads the user input and checks if there are no other symbols in it than defined in the RegEx code.
