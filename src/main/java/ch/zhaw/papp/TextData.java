@@ -44,6 +44,7 @@ public class TextData {
      *
      * @param paragraphNumber the paragraph number provided by the Delete Command (can also be null)
      * @return boolean value about success of deletion
+     * @author weberph5
      */
     public boolean deleteTextAt(Integer paragraphNumber) {
         if (paragraphNumber == null) {
@@ -51,8 +52,8 @@ public class TextData {
             return true;
         } else {
             if (isValidParagraph(paragraphNumber)) {
-                int paragraphIndex = convertParagraphToIndex(paragraphNumber);
-                paragraphs.remove(paragraphIndex);
+                Integer paragraphIndex = convertParagraphToIndex(paragraphNumber);
+                paragraphs.remove(paragraphIndex.intValue());
                 return true;
             }
         }
