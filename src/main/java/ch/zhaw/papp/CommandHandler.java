@@ -1,11 +1,6 @@
 package ch.zhaw.papp;
 
-import ch.zhaw.papp.commands.Command;
-import ch.zhaw.papp.commands.CommandConverterUtil;
-import ch.zhaw.papp.commands.Commands;
-import ch.zhaw.papp.commands.DummyCommand;
-import ch.zhaw.papp.commands.PrintCommand;
-import ch.zhaw.papp.commands.ReplaceCommand;
+import ch.zhaw.papp.commands.*;
 
 /**
  * A class that handles all commands and makes sure the correct commands are executed.
@@ -23,7 +18,7 @@ public class CommandHandler {
      * @author weberph5
      */
     public void showCommands() {
-        System.out.println("Available ch.zhaw.papp.commands.Commands (Case sensitive!):");
+        System.out.println("Available Commands (Case sensitive!):");
         System.out.println("");
         for (Commands commands : Commands.values()) {
             System.out.println(commands.getCommandInfo());
@@ -84,7 +79,7 @@ public class CommandHandler {
                 String textToReplace = inputReader.readNextTextString();
                 System.out.println("Write the word / text you want to replace it with.");
                 String newText = inputReader.readNextTextString();
-                ReplaceCommand.replaceCommand(textData, textToReplace,  newText, command);
+                ReplaceCommand.replaceCommand(textData, textToReplace, newText, command);
                 System.out.println();
                 break;
             case FORMAT_FIX:
