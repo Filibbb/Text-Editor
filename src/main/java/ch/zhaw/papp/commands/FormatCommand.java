@@ -8,7 +8,7 @@ import java.util.List;
 public class FormatCommand {
     private List<String> formattedParagraphs = new ArrayList<>();
 
-    private void formatFix(TextData textData, int userParagraphWishLength) {
+    public void formatFix(TextData textData, int userParagraphWishLength) {
         List<String> text = textData.getParagraphs();
         int paragraphIndexOfNewText = 0;
         for (int paragraphIndexOfOriginalText = 0; paragraphIndexOfOriginalText < text.size(); paragraphIndexOfOriginalText++) {
@@ -18,25 +18,33 @@ public class FormatCommand {
             //for(int paragraphIndexOfNewText = 0; paragraphIndexOfNewText < formattedParagraphs.size(); paragraphIndexOfNewText++){
 
             for (int WordOfOriginalText = 1; WordOfOriginalText < oldParagraphWords.length; WordOfOriginalText++) {
-                int spaceNeeded = oldParagraphWords[WordOfOriginalText].length() + 1; //+1 because of space between words.
-                int freeSpaceInFormattedParagraph = userParagraphWishLength - formattedParagraphs.get(paragraphIndexOfNewText).length();
-                boolean spaceLeftInParagraphOfFormattedText = true;
-                while (spaceLeftInParagraphOfFormattedText) {
-                    if (spaceNeeded <= freeSpaceInFormattedParagraph) {
+                boolean spaceLeftInParagraphOfFormattedText = checkIfSpaceLeftInParagraph(oldParagraphWords[WordOfOriginalText].length() , userParagraphWishLength, formattedParagraphs.get(paragraphIndexOfNewText).length());
+                if (spaceLeftInParagraphOfFormattedText) {
+                    while (spaceLeftInParagraphOfFormattedText) {
                         String mergedNewParagraph = formattedParagraphs.get(paragraphIndexOfNewText) + " " + oldParagraphWords[WordOfOriginalText];
                         formattedParagraphs.add(paragraphIndexOfNewText, mergedNewParagraph);
-                    } else {
-                        formattedParagraphs.add(oldParagraphWords[WordOfOriginalText]);
+                        spaceLeftInParagraphOfFormattedText = checkIfSpaceLeftInParagraph(oldParagraphWords[WordOfOriginalText].length() , userParagraphWishLength, formattedParagraphs.get(paragraphIndexOfNewText).length());
                     }
-                    spaceLeftInParagraphOfFormattedText = spaceNeeded <= freeSpaceInFormattedParagraph;
+                } else {
+                    formattedParagraphs.add(oldParagraphWords[WordOfOriginalText]);
                     paragraphIndexOfNewText++;
                 }
             }
         }
+        //Nur für test, vor dem print implement.
+        for (String paragraph : formattedParagraphs) {
+            System.out.println(paragraph);
+        }
     }
 
-    private void formatRaw() {
+    public void formatRaw() {
         formattedParagraphs = new ArrayList<>();
 
+    }
+
+    private boolean checkIfSpaceLeftInParagraph(int lengthOfTextToAdd, int maxLength, int alreadyOccupied){
+        int spaceNeeded = lengthOfTextToAdd + 1;
+        int freeSpace = maxLength - alreadyOccupied;
+        return spaceNeeded <= freeSpace;
     }
 }
