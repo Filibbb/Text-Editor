@@ -1,6 +1,6 @@
 package ch.zhaw.papp.commands;
 
-import ch.zhaw.papp.*;
+import ch.zhaw.papp.TextData;
 
 /**
  * Command class to add new text to the TextData in last or selected paragraph.
@@ -10,6 +10,9 @@ import ch.zhaw.papp.*;
  */
 
 public class AddTextCommand {
+
+    private AddTextCommand() {
+    }
 
     /**
      * Adds text to the last paragraph.
