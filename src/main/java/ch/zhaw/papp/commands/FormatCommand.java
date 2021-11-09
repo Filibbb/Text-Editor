@@ -9,6 +9,7 @@ public class FormatCommand {
     private List<String> formattedParagraphs = new ArrayList<>();
 
     public void formatFix(TextData textData, int userParagraphWishLength) {
+        formattedParagraphs = new ArrayList<>();
         List<String> text = textData.getParagraphs();
         int paragraphIndexOfNewText = 0;
         for (int paragraphIndexOfOriginalText = 0; paragraphIndexOfOriginalText < text.size(); paragraphIndexOfOriginalText++) {
