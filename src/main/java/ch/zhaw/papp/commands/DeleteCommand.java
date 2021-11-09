@@ -9,26 +9,35 @@ import ch.zhaw.papp.TextData;
  * @version 1.0.0
  */
 public class DeleteCommand {
+
+    private DeleteCommand() {
+    }
+
     /**
      * Deletes text in the given paragraph
      *
-     * @param text            the current text object
+     * @param textData        the current text object
      * @param paragraphNumber the paragraph to be deleted
+     * @author weberph5
      */
-    public static void deleteCommand(TextData text, int paragraphNumber) {
-        final boolean successFull = text.deleteTextAt(paragraphNumber);
-        if (successFull) System.out.println("Deleted Paragraph " + paragraphNumber);
-        else System.err.println("Deletion not successful. Paragraph is invalid");
+    public static void deleteCommand(TextData textData, int paragraphNumber) {
+        final boolean successFul = textData.deleteTextAt(paragraphNumber);
+        if (successFul) {
+            System.out.println("Deleted Paragraph " + paragraphNumber);
+        } else {
+            System.err.println("Deletion not successful. Paragraph is invalid");
+        }
     }
 
     /**
      * Deletes text in the last paragraph
      *
-     * @param text the current text object
+     * @param textData the current text object
+     * @author weberph5
      */
-    public static void deleteCommand(TextData text) {
-        final boolean successFull = text.deleteTextAt(null);
-        if (successFull) {
+    public static void deleteCommand(TextData textData) {
+        final boolean successFul = textData.deleteTextAt(null);
+        if (successFul) {
             System.out.println("Deleted last Paragraph");
         } else {
             System.err.println("No text available to delete! Deletion obviously not successful!");
