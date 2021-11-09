@@ -47,11 +47,11 @@ public class TextData {
      * @author weberph5
      */
     public boolean deleteTextAt(Integer paragraphNumber) {
-        if (paragraphNumber == null) {
+        if ((paragraphNumber == null) && !paragraphs.isEmpty()) {
             paragraphs.remove(paragraphs.size() - 1);
             return true;
         } else {
-            if (isValidParagraph(paragraphNumber)) {
+            if (isValidParagraph(paragraphNumber) && !paragraphs.isEmpty()) {
                 Integer paragraphIndex = convertParagraphToIndex(paragraphNumber);
                 paragraphs.remove(paragraphIndex.intValue());
                 return true;

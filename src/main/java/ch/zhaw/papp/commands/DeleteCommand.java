@@ -28,7 +28,10 @@ public class DeleteCommand {
      */
     public static void deleteCommand(TextData text) {
         final boolean successFull = text.deleteTextAt(null);
-        if (successFull) System.out.println("Deleted last Paragraph");
-        else System.err.println("Deletion not successful");
+        if (successFull) {
+            System.out.println("Deleted last Paragraph");
+        } else {
+            System.err.println("No text available to delete! Deletion obviously not successful!");
+        }
     }
 }
