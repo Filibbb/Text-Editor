@@ -8,11 +8,21 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-
+/**
+ * Contains the junit tests for the index method.
+ *
+ * @author kuengpas
+ * @version 1.0.0
+ */
 public class IndexTests {
 
     private final static TextData text = new TextData();
 
+    /**
+     * Divides text into paragraphs and gives them respective numbers. Method must be executed before all subsequent
+     * tests in the current test class.
+     * @author kuengpas
+     */
     @BeforeAll
     public static void setUp() {
         String paragraph1 = "Wenn man das Wetter 30 Jahre lang beobachtet, die wichtigsten Daten aufschreibt und Mittelwerte daraus macht, "
@@ -34,7 +44,10 @@ public class IndexTests {
         text.insertTextAt(4,paragraph4);
         text.insertTextAt(5,paragraph5);
     }
-
+    /**
+     * Executes a test if all words in capital letters within a given text are recognized the right way.
+     * @author kuengpas
+     */
     @Test
     public void testCorrectTextTransformation() {
         ArrayList<String> allTerms = IndexCommand.getAllTerms(text.getParagraphs());
@@ -97,6 +110,11 @@ public class IndexTests {
 
         assertEquals(expectedList, allTerms);
     }
+
+    /**
+     * Executes a test if terms with a minimal occurrence are recognized.
+     * @author kuengpas
+     */
     @Test
     void testIfAllTermsWithOccurenceMinFourAreInList() {
         List<String> termsWithOccurrenceMinFour = IndexCommand.getTermsWithMoreThanThreeOccurrences(text);
@@ -108,7 +126,10 @@ public class IndexTests {
         assertEquals(expectedList, termsWithOccurrenceMinFour);
 
     }
-
+    /**
+     * Executes a test if the resulting terms have the right indices assigned to it.
+     * @author kuengpas
+     */
     @Test
     void testIfAssignmentsAreCorrect() {
         ArrayList<String> arrayList = IndexCommand.getTermsWithMoreThanThreeOccurrences(text);
