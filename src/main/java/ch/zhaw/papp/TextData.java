@@ -61,20 +61,23 @@ public class TextData {
     public void replaceText(String textToReplace, Integer paragraphNumber, String newText) {
         if (isValidText(textToReplace)) {
             int index;
-            if(paragraphNumber != null){
+            if (paragraphNumber != null) {
                 index = convertParagraphToIndex(paragraphNumber);
-            }else{
+            } else {
                 index = paragraphs.size() - 1;
             }
             String wordToReplace = textToWord(textToReplace);
             String newWord = textToWord(newText);
             if (containsWordAtParagraph(wordToReplace, index)) {
-                String oldParagraphText = " " + paragraphs.get(index);
-                String newParagraphText = oldParagraphText.replace(wordToReplace, newWord).trim();
-                paragraphs.set(index, newParagraphText);
+                while (containsWordAtParagraph(wordToReplace, index)) {
+                    String oldParagraphText = " " + paragraphs.get(index) + " ";
+                    String newParagraphText = oldParagraphText.replace(wordToReplace, newWord).trim();
+                    paragraphs.set(index, newParagraphText);
+                }
             } else {
                 System.err.println("Your replacement word \"" + wordToReplace + "\" is not in this line or your paragraph was invalid. Check it out and try again.");
             }
+
         } else {
             System.err.println("Your text doesn't just contain letters, numbers, spaces or punctuation marks such as .,:;-!?’()\"%@+*[]{}/&#$");
         }
@@ -83,19 +86,19 @@ public class TextData {
     /**
      * checks whether the paragraph contains a word
      *
-     * @param word      the word you are looking for
+     * @param word the word you are looking for
      * @return true if the paragraph contains the word
      * @author fupat002
      */
     public boolean containsWordAtParagraph(String word, int index) {
         String paragraphText = paragraphs.get(index);
-        return paragraphText.contains(word.trim());
+        return paragraphText.contains(word);
 
     }
 
     /**
-     * @param paragraphNumber   paragraph number to check if it's valid
-     * @return                  true if it's a valid paragraph
+     * @param paragraphNumber paragraph number to check if it's valid
+     * @return true if it's a valid paragraph
      */
     public boolean isValidParagraph(Integer paragraphNumber) {
         return paragraphNumber != null && paragraphNumber >= 0 && (paragraphNumber < paragraphs.size() || paragraphNumber == 1);
@@ -136,7 +139,7 @@ public class TextData {
         return userTextInput.matches(ALLOWED_TEXT_ELEMENTS);
     }
 
-    private String textToWord(String text){
-        return " " + text;
+    private String textToWord(String text) {
+        return " " + text + " ";
     }
 }
