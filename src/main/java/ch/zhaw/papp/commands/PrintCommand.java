@@ -16,17 +16,17 @@ public class PrintCommand {
     /**
      * Prints all text in the selected format.
      * @param textData          the class that contains the text for the replacement
-     * @param formatCommand     the class that formats the text.
+     * @param formatter     the class that formats the text.
      * @author fupat002
      */
-    public static void print(TextData textData, FormatCommand formatCommand) {
+    public static void print(TextData textData, Formatter formatter) {
         if (!textData.getParagraphs().isEmpty()) {
-            if(formatCommand.getUserParagraphWishLength() == null){
+            if(formatter.getUserParagraphWishLength() == null){
                 printRaw(textData);
             }else{
-                formatCommand.executeFormatFixCommand(textData);
-                for (int i = 0; i < formatCommand.getFormattedParagraphs().size(); i++) {
-                    System.out.println((i + 1) + ": " + formatCommand.getFormattedParagraphs().get(i));
+                formatter.executeFormatFixCommand(textData);
+                for (int i = 0; i < formatter.getFormattedParagraphs().size(); i++) {
+                    System.out.println((i + 1) + ": " + formatter.getFormattedParagraphs().get(i));
                 }
                 System.out.println();
                 System.out.println("------------------------");

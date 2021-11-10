@@ -10,7 +10,7 @@ import java.util.List;
  * @author fupat002
  * @version 1.0.0
  */
-public class FormatCommand {
+public class Formatter {
     private List<String> formattedParagraphs = new ArrayList<>();
     private Integer userParagraphWishLength;
 

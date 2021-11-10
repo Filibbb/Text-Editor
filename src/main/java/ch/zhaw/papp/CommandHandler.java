@@ -2,7 +2,7 @@ package ch.zhaw.papp;
 
 import ch.zhaw.papp.commands.*;
 
-import ch.zhaw.papp.commands.FormatCommand;
+import ch.zhaw.papp.commands.Formatter;
 import static ch.zhaw.papp.ConsoleInputReader.readNextLine;
 import static ch.zhaw.papp.commands.PrintCommand.*;
 import static ch.zhaw.papp.commands.ReplaceCommand.replaceCommand;
@@ -14,7 +14,6 @@ import static ch.zhaw.papp.commands.ReplaceCommand.replaceCommand;
  * @version 1.0.0
  */
 public class CommandHandler {
-    private FormatCommand formatCommand = new FormatCommand();
 
     /**
      * Executes the command that was entered.
@@ -23,7 +22,7 @@ public class CommandHandler {
      * @param textData the textdata object
      * @author abuechi
      */
-    public void executeCommand(Command command, TextData textData) {
+    public void executeCommand(Command command, TextData textData,Formatter formatter) {
         switch (command.getCommand()) {
             case ADD:
                 final AddTextCommand addTextCommand = new AddTextCommand(command);
@@ -46,7 +45,7 @@ public class CommandHandler {
             case INDEX:
                 break;
             case PRINT:
-                print(textData, formatCommand);
+                print(textData, formatter);
                 break;
             case REPLACE:
                 System.out.println("Write the word / text you want to replace.");
@@ -57,10 +56,10 @@ public class CommandHandler {
                 printRaw(textData);
                 break;
             case FORMAT_FIX:
-                formatCommand.formatFixCommand(command.getNumericParams());
+                formatter.formatFixCommand(command.getNumericParams());
                 break;
             case FORMAT_RAW:
-                formatCommand.formatRaw();
+                formatter.formatRaw();
                 break;
             case SHOW_COMMANDS:
                 final ShowCommand showCommand = new ShowCommand();

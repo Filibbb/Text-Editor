@@ -61,13 +61,13 @@ public class TextData {
     public void replaceText(String textToReplace, Integer paragraphNumber, String newText) {
         if (isValidText(textToReplace)) {
             int index;
+            String wordToReplace = textToWord(textToReplace);
+            String newWord = textToWord(newText);
             if (paragraphNumber != null) {
                 index = convertParagraphToIndex(paragraphNumber);
             } else {
                 index = paragraphs.size() - 1;
             }
-            String wordToReplace = textToWord(textToReplace);
-            String newWord = textToWord(newText);
             if (containsWordAtParagraph(wordToReplace, index)) {
                 while (containsWordAtParagraph(wordToReplace, index)) {
                     String oldParagraphText = " " + paragraphs.get(index) + " ";
