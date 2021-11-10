@@ -8,7 +8,7 @@ import static ch.zhaw.papp.ConsoleInputReader.readNextLine;
 import static ch.zhaw.papp.commands.CommandConverterUtil.convertToCommand;
 
 /**
- * Contains the Text Editor life cycle
+ * Wrapper class that contains the TextEditor life cycle
  *
  * @author weberph5
  * @version 1.0.0
@@ -17,10 +17,10 @@ import static ch.zhaw.papp.commands.CommandConverterUtil.convertToCommand;
 public class TextEditor {
     private final CommandHandler commandHandler = new CommandHandler();
     private final TextData textData = new TextData();
-    private Formatter formatter = new Formatter();
+    private final Formatter formatter = new Formatter();
 
     /**
-     * Starts the Text Editor and keeps it running
+     * Starts the Text Editor and keeps it running until the exit command is executed
      *
      * @author weberph5
      */
@@ -30,7 +30,7 @@ public class TextEditor {
         System.out.println("***********************************");
         final ShowCommand showCommand = new ShowCommand();
         showCommand.execute();
-        do { //exits when using the exit command. Otherwise application won't stop.
+        do {
             System.out.println("Please enter a command:");
             String inputtedText = readNextLine();
             if (!inputtedText.equals("")) {

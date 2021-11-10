@@ -3,6 +3,7 @@ package ch.zhaw.papp;
 import ch.zhaw.papp.commands.*;
 
 import ch.zhaw.papp.commands.Formatter;
+
 import static ch.zhaw.papp.ConsoleInputReader.readNextLine;
 import static ch.zhaw.papp.commands.PrintCommand.*;
 import static ch.zhaw.papp.commands.ReplaceCommand.replaceCommand;
@@ -19,10 +20,10 @@ public class CommandHandler {
      * Executes the command that was entered.
      *
      * @param command  command that represents arguments and command enum
-     * @param textData the textdata object
+     * @param textData the current TextData object
      * @author abuechi
      */
-    public void executeCommand(Command command, TextData textData,Formatter formatter) {
+    public void executeCommand(Command command, TextData textData, Formatter formatter) {
         switch (command.getCommand()) {
             case ADD:
                 final AddTextCommand addTextCommand = new AddTextCommand(command);

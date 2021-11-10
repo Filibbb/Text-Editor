@@ -3,7 +3,7 @@ package ch.zhaw.papp.commands;
 import ch.zhaw.papp.TextData;
 
 /**
- * replaces a word depending on the user's request, in the last line or in the desired line.
+ * Utility class for the replace command
  *
  * @author fupat002
  * @version 1.0.0
@@ -14,14 +14,13 @@ public class ReplaceCommand {
     }
 
     /**
-     * Executes the replacement commands.
-     * Depending on the user's preference, in the last line or in the desired line.
+     * Executes the replacement commands in the last or selected paragraph.
      *
-     * @param text          the class that contains the text
+     * @param text          the current TextData object
      * @param textToReplace the text / word that needs to be replaced
      * @param command       the entered command
      * @param newText       the text / word to replace it with
-     * @author abuechi
+     * @author fupat002
      */
     public static void replaceCommand(TextData text, String textToReplace, String newText, Command command) {
         if (!text.getParagraphs().isEmpty()) {

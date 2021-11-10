@@ -3,7 +3,7 @@ package ch.zhaw.papp.commands;
 import ch.zhaw.papp.TextData;
 
 /**
- * A utility class that contains the dummy command as static methods. (Limitation as we are not allowed to use interfaces its easer to make the methods static)
+ * A utility class that contains the dummy command as static methods. (Limitation as we are not allowed to use interfaces, it's easier to make the methods static)
  *
  * @author abuechi
  * @version 1.0.0
@@ -25,7 +25,7 @@ public class DummyCommand {
     /**
      * Adds a dummy text in the given paragraph or at the end
      *
-     * @param textData the text to execute the command on
+     * @param textData the current TextData object
      * @author abuechi
      */
     public void execute(TextData textData) {

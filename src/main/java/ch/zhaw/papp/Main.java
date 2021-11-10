@@ -12,7 +12,7 @@ public class Main {
     /**
      * Starts the main application.
      *
-     * @param args no use for this tool
+     * @param args not needed!
      * @author kuengpas
      */
     public static void main(String[] args) {

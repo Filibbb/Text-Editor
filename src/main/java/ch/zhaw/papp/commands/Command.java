@@ -10,46 +10,28 @@ public class Command {
     private Commands command;
     private Integer numericParams;
 
-    /**
-     * Retrieves the command
-     *
-     * @return command of command enums
-     * @author abuechi
-     */
     public Commands getCommand() {
         return command;
     }
 
-    /**
-     * Sets the command out of the available commands
-     *
-     * @param command the commmand enum representing the command that was executed
-     * @author abuechi
-     */
     public void setCommand(Commands command) {
         this.command = command;
     }
 
-    /**
-     * Retrieves the optional params of the command
-     *
-     * @return params return the additional params
-     * @author abuechi
-     */
     public Integer getNumericParams() {
         return numericParams;
     }
 
-    /**
-     * Sets the optional params of the command
-     *
-     * @param numericParams number params
-     * @author abuechi
-     */
     public void setNumericParams(Integer numericParams) {
         this.numericParams = numericParams;
     }
 
+    /**
+     * Checks if a command is valid
+     *
+     * @return true if command is not null
+     * @author abuechi
+     */
     public boolean isValidCommand() {
         return command != null;
     }
@@ -58,6 +40,7 @@ public class Command {
      * Checks if command has params
      *
      * @return true if the command has params, false otherwise.
+     * @author abuechi
      */
     public boolean hasParams() {
         return numericParams != null;

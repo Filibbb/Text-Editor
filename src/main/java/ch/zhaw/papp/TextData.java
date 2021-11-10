@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A wrapper object that contains all operations on a text.
+ * A wrapper class that contains all operations on a TextData object
  *
  * @author abuechi
  * @version 1.0.0
@@ -15,8 +15,9 @@ public class TextData {
 
     /**
      * @param paragraphNumber null or a specified index of the paragraph
-     * @param text            the text that should be inputted at the specified paragraphNumber OR the end of the file
+     * @param text            the text that should be put into the specified paragraph or the end of the file
      * @return a boolean value representing the success of the operation
+     * @author abuechi
      */
     public boolean insertTextAt(Integer paragraphNumber, String text) {
         if (isValidText(text)) {
@@ -99,17 +100,13 @@ public class TextData {
     /**
      * @param paragraphNumber paragraph number to check if it's valid
      * @return true if it's a valid paragraph
+     * @author fupat002
      */
     public boolean isValidParagraph(Integer paragraphNumber) {
         return paragraphNumber != null && paragraphNumber >= 0 && (paragraphNumber < paragraphs.size() || paragraphNumber == 1);
     }
 
-    /**
-     * Getter method to obtain all saved paragraphs
-     *
-     * @return all paragraphs
-     * @author fupat002
-     */
+
     public List<String> getParagraphs() {
         return paragraphs;
     }

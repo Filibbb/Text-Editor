@@ -1,9 +1,9 @@
 package ch.zhaw.papp.commands;
 
 /**
- * Class for the Show Commands Command
+ * Utility class for the ShowCommand command
  *
- * @author abuechi
+ * @author weberph5
  * @version 1.0.0
  */
 public class ShowCommand {
