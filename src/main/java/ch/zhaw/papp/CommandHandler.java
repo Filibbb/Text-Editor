@@ -4,8 +4,6 @@ import ch.zhaw.papp.commands.*;
 
 import ch.zhaw.papp.commands.Formatter;
 
-import java.io.FileDescriptor;
-
 import static ch.zhaw.papp.ConsoleInputReader.readNextLine;
 import static ch.zhaw.papp.commands.PrintCommand.*;
 import static ch.zhaw.papp.commands.ReplaceCommand.replaceCommand;
