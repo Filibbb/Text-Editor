@@ -1,6 +1,8 @@
 package ch.zhaw.papp.commands;
 
-import ch.zhaw.papp.*;
+import ch.zhaw.papp.TextData;
+
+import static ch.zhaw.papp.ConsoleInputReader.readNextLine;
 
 /**
  * Command class to add new text to the TextData in last or selected paragraph.
@@ -8,18 +10,27 @@ import ch.zhaw.papp.*;
  * @author weberph5
  * @version 1.0.0
  */
-
 public class AddTextCommand {
+    private final Command command;
 
     /**
-     * Adds text to the last paragraph.
+     * Creates an instance of the delete command with its related command information.
      *
-     * @param textData  the current textData object
-     * @param textToAdd new text that is added
-     * @author weberph5
+     * @param command the information on how the command should be executed
+     * @author abuechi
      */
-    public static void executeAddTextCommand(TextData textData, String textToAdd) {
-        addTextCommand(textData, textToAdd, null);
+    public AddTextCommand(Command command) {
+        this.command = command;
+    }
+
+    public void execute(TextData textData) {
+        if (command != null) {
+            System.out.println("Enter the text you want to add");
+            String textToAdd = readNextLine();
+            addTextCommand(textData, textToAdd, command.getNumericParams());
+        } else {
+            System.err.println("Command is missing the command information.");
+        }
     }
 
     /**
@@ -30,12 +41,8 @@ public class AddTextCommand {
      * @param offset    paragraph number that was put in with the ADD command
      * @author weberph5
      */
-    public static void executeAddTextCommand(TextData textData, String textToAdd, int offset) {
-        addTextCommand(textData, textToAdd, offset);
-    }
-
-    private static void addTextCommand(TextData text, String textToAdd, Integer offset) {
-        final boolean successFull = text.insertTextAt(offset, textToAdd);
+    private void addTextCommand(TextData textData, String textToAdd, Integer offset) {
+        final boolean successFull = textData.insertTextAt(offset, textToAdd);
         if (!successFull) {
             System.err.println("Adding text was not successful. Paragraph number is invalid");
         }
