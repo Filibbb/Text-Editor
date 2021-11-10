@@ -4,11 +4,23 @@ import ch.zhaw.papp.TextData;
 
 import java.util.*;
 
+/**
+ * Contains the method to give out the index
+ *
+ * @author kuengpas
+ * @version 1.0.0
+ */
 public class IndexCommand {
 
     private IndexCommand() {
     }
 
+    /**
+     * Executes the index command by counting all terms with capital letters, and assigning indices to those terms
+     * with mention of more than three.
+     * @param textData the class that contains the text for the index command.
+     * @author kuengpas
+     */
     public static void executeIndexCommand(TextData textData) {
         ArrayList<String> termsWithMoreThanThreeOccurrences = getTermsWithMoreThanThreeOccurrences(textData);
         HashMap<String, ArrayList<Integer>> termsWithIndices = allocateIndices(textData, termsWithMoreThanThreeOccurrences);
