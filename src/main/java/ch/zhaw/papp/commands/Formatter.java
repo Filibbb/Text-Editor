@@ -46,10 +46,22 @@ public class Formatter {
         userParagraphWishLength = null;
     }
 
+    /**
+     * Get formatted paragraphs
+     *
+     * @return formatted paragraphs
+     * @author fupat002
+     */
     public List<String> getFormattedParagraphs() {
         return formattedParagraphs;
     }
 
+    /**
+     * Get the desired paragraph length
+     *
+     * @return desired paragraph length
+     * @author fupat002
+     */
     public Integer getUserParagraphWishLength() {
         return userParagraphWishLength;
     }

@@ -106,7 +106,12 @@ public class TextData {
         return paragraphNumber != null && paragraphNumber >= 0 && (paragraphNumber < paragraphs.size() || paragraphNumber == 1);
     }
 
-
+    /**
+     * Getter method to obtain all saved paragraphs
+     *
+     * @return all paragraphs
+     * @author fupat002
+     */
     public List<String> getParagraphs() {
         return paragraphs;
     }
