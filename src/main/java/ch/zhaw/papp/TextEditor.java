@@ -36,7 +36,7 @@ public class TextEditor {
             if (!inputtedText.equals("")) {
                 final Command command = convertToCommand(inputtedText);
                 if (command.isValidCommand()) {
-                    commandHandler.executeCommand(command, textData, formatCommand);
+                    commandHandler.executeCommand(command, textData);
                 } else {
                     System.err.println("This command is not available. Please choose one. Use 'SHOW COMMANDS' for available commands.");
                 }

@@ -14,6 +14,7 @@ import static ch.zhaw.papp.commands.ReplaceCommand.replaceCommand;
  * @version 1.0.0
  */
 public class CommandHandler {
+    private FormatCommand formatCommand = new FormatCommand();
 
     /**
      * Executes the command that was entered.
@@ -22,7 +23,7 @@ public class CommandHandler {
      * @param textData the textdata object
      * @author abuechi
      */
-    public void executeCommand(Command command, TextData textData, FormatCommand formatCommand) {
+    public void executeCommand(Command command, TextData textData) {
         switch (command.getCommand()) {
             case ADD:
                 final AddTextCommand addTextCommand = new AddTextCommand(command);
