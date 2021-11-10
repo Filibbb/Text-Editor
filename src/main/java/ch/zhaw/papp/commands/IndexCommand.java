@@ -16,11 +16,11 @@ public class IndexCommand {
     }
 
     /**
-     * Executes the index command by counting all terms with capital letters, and assigning indices to those terms
+     * Executes the index command by counting all terms with capital letters, and assigning paragraphs to those terms
      * with mention of more than three.
      * @param textData the class that contains the text for the index command.
      * @author kuengpas
-     * @return
+     * @return word mentioned four or more times with respective paragraph
      */
     public static String executeIndexCommand(TextData textData) {
         ArrayList<String> termsWithMoreThanThreeOccurrences = getTermsWithMoreThanThreeOccurrences(textData);
