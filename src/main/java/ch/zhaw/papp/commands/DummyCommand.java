@@ -10,29 +10,34 @@ import ch.zhaw.papp.TextData;
  */
 public class DummyCommand {
     private static final String dummyText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sed quam sit amet ex dapibus egestas vel congue metus. Donec id eleifend nisi, vitae eleifend tortor. Quisque euismod vitae nisi fringilla dignissim. In aliquam finibus nisl vel euismod. Ut ac sodales elit. Proin rhoncus libero turpis, eget tempor nisl consequat sed. Proin tempus erat magna, vitae sodales arcu fringilla sit amet. Nunc elementum, velit placerat iaculis feugiat, lectus dolor dapibus velit, in maximus sapien felis at arcu. Nulla mollis suscipit egestas. Phasellus a volutpat libero, nec tincidunt tortor. Aenean mattis ligula eu efficitur ultricies. Vestibulum ac nibh sodales, venenatis sapien vel, maximus nisi. Curabitur feugiat dictum tortor, a hendrerit urna tincidunt vitae.";
+    private final Command command;
 
-    private DummyCommand() {
+    /**
+     * Creates an instance of the dummy command with its related command information.
+     *
+     * @param command the information on how the command should be executed
+     * @author abuechi
+     */
+    public DummyCommand(Command command) {
+        this.command = command;
     }
 
     /**
-     * @param text the text to which the dummy text will be added. Text will be added at last position.
+     * Adds a dummy text in the given paragraph or at the end
+     *
+     * @param textData the text to execute the command on
      * @author abuechi
      */
-    public static void executeDummyCommand(TextData text) {
-        dummyCommand(text, null);
+    public void execute(TextData textData) {
+        if (command != null) {
+            dummyCommand(textData, command.getNumericParams());
+        } else {
+            System.err.println("Command is missing the command information.");
+        }
     }
 
-    /**
-     * @param text   the text to which the dummy text will be added.
-     * @param offset defines on which line the text should be added.
-     * @author abuechi
-     */
-    public static void executeDummyCommand(TextData text, int offset) {
-        dummyCommand(text, offset);
-    }
-
-    private static void dummyCommand(TextData text, Integer offset) {
-        final boolean successFull = text.insertTextAt(offset, " " + dummyText);
+    private void dummyCommand(TextData text, Integer offset) {
+        final boolean successFull = text.insertTextAt(offset, dummyText);
         if (!successFull) {
             System.err.println("Dummy command was not successful");
         }
