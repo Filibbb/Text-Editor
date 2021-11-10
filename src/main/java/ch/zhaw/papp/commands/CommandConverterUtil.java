@@ -48,11 +48,11 @@ public class CommandConverterUtil {
     }
 
     private static Integer getNumericArgument(String userInput) {
-        try {
-            final String[] userInputWords = userInput.split("\\s+");
-            final String argument = userInputWords[userInputWords.length - 1];
+        final String[] userInputWords = userInput.split("\\s+");
+        final String argument = userInputWords[userInputWords.length - 1];
+        if (argument != null && argument.matches("\\d+")) {
             return Integer.parseInt(argument);
-        } catch (NumberFormatException e) {
+        } else {
             System.err.println("Argument could not be converted to number.");
             return null;
         }
