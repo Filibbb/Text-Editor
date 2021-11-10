@@ -3,9 +3,9 @@ package ch.zhaw.papp.commands;
 import ch.zhaw.papp.TextData;
 
 /**
- * Utility class to handle deletion of paragraphs
+ * Command class to handle deletion of paragraphs
  *
- * @author weberph5
+ * @author abuechi
  * @version 1.0.0
  */
 public class DeleteCommand {
@@ -31,7 +31,7 @@ public class DeleteCommand {
         if (command != null) {
             deleteCommand(textData, command.getNumericParams());
         } else {
-            System.err.println("Command is invalid. Please try again");
+            System.err.println("Command is missing the command information.");
         }
     }
 

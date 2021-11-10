@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Utility class to handle the formatting
+ * Class to handle the formatting
  *
  * @author fupat002
  * @version 1.0.0

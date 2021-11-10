@@ -1,7 +1,7 @@
 package ch.zhaw.papp.commands;
 
 /**
- * Utility Class to convert a user input into a command class.
+ * Class to convert a user input into a command class.
  *
  * @author abuechi
  * @version 1.0.0

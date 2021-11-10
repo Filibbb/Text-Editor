@@ -48,6 +48,10 @@ public enum Commands {
         return null;
     }
 
+    /**
+     * Get command information
+     * @return command information
+     */
     public String getCommandInfo() {
         return commandInfo;
     }

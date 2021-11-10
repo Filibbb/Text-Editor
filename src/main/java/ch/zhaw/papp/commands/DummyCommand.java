@@ -3,7 +3,7 @@ package ch.zhaw.papp.commands;
 import ch.zhaw.papp.TextData;
 
 /**
- * A utility class that contains the dummy command as static methods. (Limitation as we are not allowed to use interfaces, it's easier to make the methods static)
+ * Command class that contains the dummy command as static methods. (Limitation as we are not allowed to use interfaces, it's easier to make the methods static)
  *
  * @author abuechi
  * @version 1.0.0

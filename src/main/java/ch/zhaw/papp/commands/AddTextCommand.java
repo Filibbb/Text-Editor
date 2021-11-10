@@ -5,7 +5,7 @@ import ch.zhaw.papp.TextData;
 import static ch.zhaw.papp.ConsoleInputReader.readNextLine;
 
 /**
- * Utility class to add new text to the TextData in last or selected paragraph.
+ * Command class to add new text to the TextData in last or selected paragraph.
  *
  * @author weberph5
  * @version 1.0.0
@@ -35,7 +35,7 @@ public class AddTextCommand {
             String textToAdd = readNextLine();
             addTextCommand(textData, textToAdd, command.getNumericParams());
         } else {
-            System.err.println("Command was invalid.");
+            System.err.println("Command is missing the command information.");
         }
     }
 

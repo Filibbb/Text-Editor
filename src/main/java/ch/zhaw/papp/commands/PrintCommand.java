@@ -3,7 +3,7 @@ package ch.zhaw.papp.commands;
 import ch.zhaw.papp.TextData;
 
 /**
- * Utility class for the print command
+ * Command class for the print command
  *
  * @author fupat002
  * @version 1.0.0
