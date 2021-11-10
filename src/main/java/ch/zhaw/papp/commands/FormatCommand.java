@@ -39,6 +39,9 @@ public class FormatCommand {
             String[] oldParagraphWords = text.get(paragraphIndexOfOriginalText).split(" ");
             formattedParagraphs.add(oldParagraphWords[0]);
             int wordOfOriginalText = 1;
+            if(paragraphIndexOfOriginalText != 0){
+                paragraphIndexOfNewText++;
+            }
             boolean spaceLeftInParagraphOfFormattedText = false;
             while(wordOfOriginalText < oldParagraphWords.length){
                 spaceLeftInParagraphOfFormattedText = checkIfSpaceLeftInParagraph(oldParagraphWords[wordOfOriginalText].length(), userParagraphWishLength, formattedParagraphs.get(paragraphIndexOfNewText).length());
