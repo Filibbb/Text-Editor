@@ -15,7 +15,7 @@ public class FormatCommand {
     private Integer userParagraphWishLength;
 
     /**
-     * sets the field that is crucial for formatting.
+     * defines the column width of the print text
      * @param paragraphLength   the maximum length that the paragraph may have after formatting
      * @author fupat002
      */

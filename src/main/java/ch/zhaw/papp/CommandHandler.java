@@ -4,7 +4,7 @@ import ch.zhaw.papp.commands.*;
 
 import ch.zhaw.papp.commands.FormatCommand;
 import static ch.zhaw.papp.ConsoleInputReader.readNextLine;
-import static ch.zhaw.papp.commands.PrintCommand.print;
+import static ch.zhaw.papp.commands.PrintCommand.*;
 import static ch.zhaw.papp.commands.ReplaceCommand.replaceCommand;
 
 /**
@@ -27,7 +27,7 @@ public class CommandHandler {
             case ADD:
                 final AddTextCommand addTextCommand = new AddTextCommand(command);
                 addTextCommand.execute(textData);
-                print(textData, formatCommand);
+                printRaw(textData);
                 break;
             case DELETE:
                 final DeleteCommand deleteCommand = new DeleteCommand(command);
@@ -36,7 +36,7 @@ public class CommandHandler {
             case DUMMY:
                 final DummyCommand dummyCommand = new DummyCommand(command);
                 dummyCommand.execute(textData);
-                print(textData, formatCommand);
+                printRaw(textData);
                 break;
             case EXIT:
                 final ExitCommand exitCommand = new ExitCommand();
@@ -53,7 +53,7 @@ public class CommandHandler {
                 System.out.println("Write the word / text you want to replace it with.");
                 String newText = readNextLine();
                 replaceCommand(textData, textToReplace, newText, command);
-                print(textData, formatCommand);
+                printRaw(textData);
                 break;
             case FORMAT_FIX:
                 formatCommand.formatFixCommand(command.getNumericParams());
