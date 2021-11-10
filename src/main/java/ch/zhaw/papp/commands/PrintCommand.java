@@ -21,19 +21,18 @@ public class PrintCommand {
      */
     public static void print(TextData textData, FormatCommand formatCommand) {
         if (!textData.getParagraphs().isEmpty()) {
-            if(formatCommand.getFormattedParagraphs().isEmpty()){
+            if(formatCommand.getUserParagraphWishLength() == null){
                 for (int i = 0; i < textData.getParagraphs().size(); i++) {
                     System.out.println((i+1) + ": " + textData.getParagraphs().get(i));
                 }
-                System.out.println();
-                System.out.println("------------------------");
             }else{
+                formatCommand.executeFormatFixCommand(textData);
                 for (int i = 0; i < formatCommand.getFormattedParagraphs().size(); i++) {
                     System.out.println((i+1) + ": " + formatCommand.getFormattedParagraphs().get(i));
                 }
-                System.out.println();
-                System.out.println("------------------------");
             }
+            System.out.println();
+            System.out.println("------------------------");
         } else {
             System.err.println("There is no text. Add some with the commands below.");
             commandHandler.showCommands();

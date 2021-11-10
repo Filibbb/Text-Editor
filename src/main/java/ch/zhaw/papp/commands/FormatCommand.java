@@ -7,9 +7,32 @@ import java.util.List;
 
 public class FormatCommand {
     private List<String> formattedParagraphs = new ArrayList<>();
+    private Integer userParagraphWishLength;
 
-    public void formatFix(TextData textData, int userParagraphWishLength) {
-        formattedParagraphs = new ArrayList<>();
+    public void formatFixCommand(int userParagraphWishLength){
+        this.userParagraphWishLength = userParagraphWishLength;
+    }
+
+    public void executeFormatFixCommand(TextData textData){
+        if(userParagraphWishLength != null){
+            formatFix(textData);
+        }
+    }
+
+    public void formatRaw() {
+        userParagraphWishLength = null;
+    }
+
+    public List<String> getFormattedParagraphs() {
+        return formattedParagraphs;
+    }
+
+    public Integer getUserParagraphWishLength() {
+        return userParagraphWishLength;
+    }
+
+    private void formatFix(TextData textData) {
+        checkIsAlreadyFormatted();
         List<String> text = textData.getParagraphs();
         int paragraphIndexOfNewText = 0;
         for (int paragraphIndexOfOriginalText = 0; paragraphIndexOfOriginalText < text.size(); paragraphIndexOfOriginalText++) {
@@ -31,18 +54,15 @@ public class FormatCommand {
         }
     }
 
-    public void formatRaw() {
-        formattedParagraphs = new ArrayList<>();
-
-    }
-
-    public List<String> getFormattedParagraphs() {
-        return formattedParagraphs;
-    }
-
     private boolean checkIfSpaceLeftInParagraph(int lengthOfTextToAdd, int maxLength, int alreadyOccupied){
         int spaceNeeded = lengthOfTextToAdd + 1;
         int freeSpace = maxLength - alreadyOccupied;
         return spaceNeeded <= freeSpace;
+    }
+
+    private void checkIsAlreadyFormatted(){
+        if(!formattedParagraphs.isEmpty()) {
+            formattedParagraphs = new ArrayList<>();
+        }
     }
 }

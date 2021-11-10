@@ -97,7 +97,7 @@ public class CommandHandler {
                 System.out.println();
                 break;
             case FORMAT_FIX:
-                formatCommand.formatFix(textData, command.getNumericParams());
+                formatCommand.formatFixCommand(command.getNumericParams());
                 break;
             case FORMAT_RAW:
                 formatCommand.formatRaw();
