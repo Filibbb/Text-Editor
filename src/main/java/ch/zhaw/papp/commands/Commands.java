@@ -1,8 +1,14 @@
 package ch.zhaw.papp.commands;
 
+/**
+ * Command Enum to contain available commands, their description and their representation.
+ *
+ * @author abuechi
+ * @version 1.0.0
+ */
 public enum Commands {
     DUMMY("DUMMY", "DUMMY (n) : Add a pre-programmed dummy text to paragraph n. n is optional. Text will be added to the end if n is not set."),
-    DEL("DEL", "DEL (n) : Delete Paragraph n. n is optional. Last paragraph will be deleted if n is not set"),
+    DELETE("DEL", "DEL (n) : Delete Paragraph n. n is optional. Last paragraph will be deleted if n is not set"),
     ADD("ADD", "ADD (n) : Add Text to paragraph n. n is optional. Text will be added to the end if n is not set."),
     EXIT("EXIT", "EXIT : Exit ch.zhaw.papp.TextEditor!"),
     FORMAT_RAW("FORMAT RAW", "FORMAT RAW : Set format to raw with no fix column length with paragraph numbers."),
@@ -15,25 +21,15 @@ public enum Commands {
     private final String representation;
     private final String commandInfo;
 
+    /**
+     * The enum constructor in order to save the related values to the enums.
+     *
+     * @param representation the command representation
+     * @param commandInfo    the description on what the command does
+     */
     Commands(String representation, String commandInfo) {
         this.representation = representation;
         this.commandInfo = commandInfo;
-    }
-
-    /**
-     * @return command representation of enum
-     * @author abuechi
-     */
-    public String getRepresentation() {
-        return representation;
-    }
-
-    /**
-     * @return command information / description
-     * @author abuechi
-     */
-    public String getCommandInfo() {
-        return commandInfo;
     }
 
     /**
@@ -48,5 +44,13 @@ public enum Commands {
             }
         }
         return null;
+    }
+
+    /**
+     * @return command information / description
+     * @author abuechi
+     */
+    public String getCommandInfo() {
+        return commandInfo;
     }
 }

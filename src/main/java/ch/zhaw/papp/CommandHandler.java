@@ -2,6 +2,11 @@ package ch.zhaw.papp;
 
 import ch.zhaw.papp.commands.*;
 
+import ch.zhaw.papp.commands.FormatCommand;
+import static ch.zhaw.papp.ConsoleInputReader.readNextLine;
+import static ch.zhaw.papp.commands.PrintCommand.print;
+import static ch.zhaw.papp.commands.ReplaceCommand.replaceCommand;
+
 /**
  * A class that handles all commands and makes sure the correct commands are executed.
  *
@@ -10,91 +15,45 @@ import ch.zhaw.papp.commands.*;
  */
 public class CommandHandler {
 
-    private final ConsoleInputReader inputReader = new ConsoleInputReader();
-
-    /**
-     * Shows a list and description of all available commands.
-     *
-     * @author weberph5
-     */
-    public void showCommands() {
-        System.out.println("Available Commands (Case sensitive!):");
-        System.out.println("");
-        for (Commands commands : Commands.values()) {
-            System.out.println(commands.getCommandInfo());
-        }
-        System.out.println("");
-    }
-
-    /**
-     * Exits the TextEditor program.
-     *
-     * @author weberph5
-     */
-    public void exitEditor() {
-        System.out.println("Closing the ch.zhaw.papp.TextEditor. Bye.");
-        inputReader.closeScanner();
-        System.exit(1);
-    }
-
     /**
      * Executes the command that was entered.
      *
+     * @param command  command that represents arguments and command enum
+     * @param textData the textdata object
      * @author abuechi
      */
-    public void executeCommand(String enteredCommand, TextData textData, FormatCommand formatCommand) {
-        final Command command = CommandConverterUtil.convertToCommand(enteredCommand);
-        if (command.isValidCommand()) {
-            execute(command, textData, formatCommand);
-        } else {
-            System.err.println("This command is not available. Please choose one below.");
-            showCommands();
-        }
-    }
-
-    private void execute(Command command, TextData textData, FormatCommand formatCommand) {
+    public void executeCommand(Command command, TextData textData, FormatCommand formatCommand) {
         switch (command.getCommand()) {
             case ADD:
-                if (command.hasParams()){
-                    System.out.println("Enter the text you want to add");
-                    String textToAdd = inputReader.readNextLine();
-                    AddTextCommand.executeAddTextCommand(textData, textToAdd, command.getNumericParams());
-                } else {
-                    System.out.println("Enter the text you want to add");
-                    String textToAdd = inputReader.readNextLine();
-                    AddTextCommand.executeAddTextCommand(textData, textToAdd);
-                }
-                PrintCommand.print(textData, formatCommand);
+                final AddTextCommand addTextCommand = new AddTextCommand(command);
+                addTextCommand.execute(textData);
+                print(textData, formatCommand);
                 break;
-            case DEL:
-                if (command.hasParams()){
-                    DeleteCommand.deleteCommand(textData, command.getNumericParams());
-                } else
-                    DeleteCommand.deleteCommand(textData);
+            case DELETE:
+                final DeleteCommand deleteCommand = new DeleteCommand(command);
+                deleteCommand.execute(textData);
                 break;
             case DUMMY:
-                if (command.hasParams()) {
-                    DummyCommand.executeDummyCommand(textData, command.getNumericParams());
-                } else {
-                    DummyCommand.executeDummyCommand(textData);
-                }
-                PrintCommand.print(textData, formatCommand);
+                final DummyCommand dummyCommand = new DummyCommand(command);
+                dummyCommand.execute(textData);
+                print(textData, formatCommand);
                 break;
             case EXIT:
-                exitEditor();
+                final ExitCommand exitCommand = new ExitCommand();
+                exitCommand.execute();
                 break;
             case INDEX:
                 break;
             case PRINT:
-                PrintCommand.print(textData, formatCommand);
+                print(textData, formatCommand);
                 break;
             case REPLACE:
                 System.out.println("Write the word / text you want to replace.");
-                String textToReplace = inputReader.readNextTextString();
+                String textToReplace = readNextLine();
                 System.out.println("Write the word / text you want to replace it with.");
-                String newText = inputReader.readNextTextString();
-                ReplaceCommand.replaceCommand(textData, textToReplace, newText, command);
-                System.out.println();
+                String newText = readNextLine();
+                replaceCommand(textData, textToReplace, newText, command);
+                print(textData, formatCommand);
                 break;
             case FORMAT_FIX:
                 formatCommand.formatFixCommand(command.getNumericParams());
@@ -103,11 +62,11 @@ public class CommandHandler {
                 formatCommand.formatRaw();
                 break;
             case SHOW_COMMANDS:
-                showCommands();
+                final ShowCommand showCommand = new ShowCommand();
+                showCommand.execute();
                 break;
             default:
-                System.err.println("This command is not available. Please choose one below.");
-                showCommands();
+                System.err.println("This command is not available. Use 'SHOW COMMANDS' for available commands.");
                 break;
         }
     }
