@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * Contains the junit tests for the index method.
+ * Contains the junit tests for the IndexCommand method.
  *
  * @author kuengpas
  * @version 1.0.0
@@ -19,7 +19,7 @@ public class IndexCommandTest {
      * @author kuengpas
      */
     @Test
-    void testIfAssignmentsAreCorrect() {
+    public void testIfAssignmentsAreCorrect() {
         TextData text = new TextData();
         String paragraph1 = "Wenn man das Wetter 30 Jahre lang beobachtet, die wichtigsten Daten aufschreibt und Mittelwerte daraus macht, "
                 + "dann hat man ziemlich gut das Klima einer Region oder eben der Erde beschrieben. Das ist etwas anderes als das aktuelle "
@@ -48,16 +48,21 @@ public class IndexCommandTest {
         );
     }
 
+    /**
+     * Executes a test if the numbers and Punctuation is removed from the text (one edge case)
+     *
+     * @author kuengpas
+     */
     @Test
-    public void testIfNumbersAreRemovedFromText() {
+    public void testIfNumbersAndPunctuationIsRemovedFromText() {
         TextData text = new TextData();
-        String paragraph1 = "Hello  4 4 4 4 4 World Hello Hello Hello";
+        String paragraph1 = "Error Error Error Error. No keyboard. Press F1 to continue";
         text.insertTextAt(1, paragraph1);
 
         String actualOutput = IndexCommand.executeIndexCommand(text);
 
         assertEquals(
-                "Hello     \t\t[1]\n", actualOutput
+                "Error     \t\t[1]\n", actualOutput
         );
     }
 }
