@@ -21,6 +21,9 @@ Die Befehle können in der Eingabeaufforderung eingegeben werden und führen dan
 | REPLACE [n]   | Ruft zuerst zur Eingabe eines zu suchenden Wortes oder Textteils im Absatz n auf und <br> anschliessend zur Eingabe des Textes, mit dem das Gesuchte ersetzt werden soll. <br> Wird keine Absatznummer n angegeben, wird der letzte Absatz geändert.|
 | SHOW COMMANDS | Shows all available commands.|
 
+## Starten des Editors
+
+Gestartet wird die Applikation mit der Klasse `Main.java#main`. Dazu kann man das Projekt kompilieren (javac) und anschliessend ausführen oder via einer Entwicklerumgebung ausführen lassen. 
 
 ### Gruppen Mitglieder und Verantwortungsbereich
 
