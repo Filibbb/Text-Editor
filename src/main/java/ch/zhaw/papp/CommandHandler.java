@@ -3,6 +3,7 @@ package ch.zhaw.papp;
 import ch.zhaw.papp.commands.*;
 
 import ch.zhaw.papp.commands.Formatter;
+
 import static ch.zhaw.papp.ConsoleInputReader.readNextLine;
 import static ch.zhaw.papp.commands.PrintCommand.*;
 import static ch.zhaw.papp.commands.ReplaceCommand.replaceCommand;
@@ -43,6 +44,8 @@ public class CommandHandler {
                 exitCommand.execute();
                 break;
             case INDEX:
+                String output = IndexCommand.executeIndexCommand(textData);
+                System.out.println(output);
                 break;
             case PRINT:
                 print(textData, formatter);
