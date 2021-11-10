@@ -60,24 +60,14 @@ public class TextData {
      */
     public void replaceText(String textToReplace, Integer paragraphNumber, String newText) {
         if (isValidText(textToReplace)) {
-            int index;
-            String wordToReplace = textToWord(textToReplace);
-            String newWord = textToWord(newText);
-            if (paragraphNumber != null) {
-                index = convertParagraphToIndex(paragraphNumber);
+            final Integer paragraphOrLast = paragraphOrLastIndex(paragraphNumber);
+            if (containsWordAtParagraph(textToReplace, paragraphOrLast)) {
+                String oldParagraphText = paragraphs.get(paragraphOrLast);
+                String newParagraphText = oldParagraphText.replaceAll("\\b" + textToReplace + "\\b", newText);
+                paragraphs.set(paragraphOrLast, newParagraphText);
             } else {
-                index = paragraphs.size() - 1;
+                System.err.println("Your replacement word \"" + textToReplace + "\" is not in this line or your paragraph was invalid. Check it out and try again.");
             }
-            if (containsWordAtParagraph(wordToReplace, index)) {
-                while (containsWordAtParagraph(wordToReplace, index)) {
-                    String oldParagraphText = " " + paragraphs.get(index) + " ";
-                    String newParagraphText = oldParagraphText.replace(wordToReplace, newWord).trim();
-                    paragraphs.set(index, newParagraphText);
-                }
-            } else {
-                System.err.println("Your replacement word \"" + wordToReplace + "\" is not in this line or your paragraph was invalid. Check it out and try again.");
-            }
-
         } else {
             System.err.println("Your text doesn't just contain letters, numbers, spaces or punctuation marks such as .,:;-!?’()\"%@+*[]{}/&#$");
         }
@@ -125,7 +115,7 @@ public class TextData {
 
     private Integer convertParagraphToIndex(Integer paragraph) {
         if (paragraph == null) {
-            return this.paragraphs.size();
+            return this.paragraphs.size() - 1;
         } else if (paragraph == 0) {
             return 0;
         } else if (paragraph > 0) {
@@ -137,9 +127,5 @@ public class TextData {
 
     private boolean isValidText(String userTextInput) {
         return userTextInput.matches(ALLOWED_TEXT_ELEMENTS);
-    }
-
-    private String textToWord(String text) {
-        return " " + text + " ";
     }
 }
