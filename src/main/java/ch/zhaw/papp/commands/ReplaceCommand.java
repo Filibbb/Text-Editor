@@ -6,6 +6,7 @@ import ch.zhaw.papp.CommandHandler;
 /**
  * replaces a word depending on the user's request, in the last line or in the desired line.
  * @author fupat002
+ * @version 1.0.0
  */
 public class ReplaceCommand {
     private static final CommandHandler commandHandler = new CommandHandler();

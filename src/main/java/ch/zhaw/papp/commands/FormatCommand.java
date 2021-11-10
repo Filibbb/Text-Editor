@@ -5,6 +5,11 @@ import ch.zhaw.papp.TextData;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Command Class to handle the formatting
+ * @author fupat002
+ * @version 1.0.0
+ */
 public class FormatCommand {
     private List<String> formattedParagraphs = new ArrayList<>();
     private Integer userParagraphWishLength;

@@ -6,6 +6,7 @@ import ch.zhaw.papp.TextData;
 /**
  * contains the method to print the text.
  * @author fupat002
+ * @version 1.0.0
  */
 public class PrintCommand {
     private static final CommandHandler commandHandler = new CommandHandler();
