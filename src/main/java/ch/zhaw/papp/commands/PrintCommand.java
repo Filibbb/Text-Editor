@@ -15,8 +15,8 @@ public class PrintCommand {
 
     /**
      * Prints all text in the selected format.
-     *
-     * @param textData the class that contains the text for the replacement
+     * @param textData          the class that contains the text for the replacement
+     * @param formatCommand     the class that formats the text.
      * @author fupat002
      */
     public static void print(TextData textData, FormatCommand formatCommand) {

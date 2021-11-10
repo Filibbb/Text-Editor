@@ -9,16 +9,30 @@ public class FormatCommand {
     private List<String> formattedParagraphs = new ArrayList<>();
     private Integer userParagraphWishLength;
 
-    public void formatFixCommand(int userParagraphWishLength){
-        this.userParagraphWishLength = userParagraphWishLength;
+    /**
+     * sets the field that is crucial for formatting.
+     * @param paragraphLength   the maximum length that the paragraph may have after formatting
+     * @author fupat002
+     */
+    public void formatFixCommand(int paragraphLength){
+        this.userParagraphWishLength = paragraphLength;
     }
 
+    /**
+     * executes the format fix command with the desired line width.
+     * @param textData  the class that contains the text to be formatted
+     * @author fupat002.
+     */
     public void executeFormatFixCommand(TextData textData){
         if(userParagraphWishLength != null){
             formatFix(textData);
         }
     }
 
+    /**
+     * Resets the format back to the format as it was received.
+     * @author fupat002
+     */
     public void formatRaw() {
         userParagraphWishLength = null;
     }
