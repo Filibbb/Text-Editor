@@ -1,6 +1,7 @@
 package ch.zhaw.papp;
 
 import ch.zhaw.papp.commands.Command;
+import ch.zhaw.papp.commands.Formatter;
 import ch.zhaw.papp.commands.ShowCommand;
 
 import static ch.zhaw.papp.ConsoleInputReader.readNextLine;
@@ -16,6 +17,7 @@ import static ch.zhaw.papp.commands.CommandConverterUtil.convertToCommand;
 public class TextEditor {
     private final CommandHandler commandHandler = new CommandHandler();
     private final TextData textData = new TextData();
+    private Formatter formatter = new Formatter();
 
     /**
      * Starts the Text Editor and keeps it running
@@ -34,7 +36,7 @@ public class TextEditor {
             if (!inputtedText.equals("")) {
                 final Command command = convertToCommand(inputtedText);
                 if (command.isValidCommand()) {
-                    commandHandler.executeCommand(command, textData);
+                    commandHandler.executeCommand(command, textData, formatter);
                 } else {
                     System.err.println("This command is not available. Please choose one. Use 'SHOW COMMANDS' for available commands.");
                 }

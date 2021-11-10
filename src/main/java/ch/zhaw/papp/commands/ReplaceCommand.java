@@ -26,13 +26,15 @@ public class ReplaceCommand {
     public static void replaceCommand(TextData text, String textToReplace, String newText, Command command) {
         if (!text.getParagraphs().isEmpty()) {
             if (command.hasParams()) {
-                int paragraph = command.getNumericParams();
-                text.replaceText(textToReplace, paragraph, newText);
+                if (text.isValidParagraph(command.getNumericParams())) {
+                    int paragraph = command.getNumericParams();
+                    text.replaceText(textToReplace, paragraph, newText);
+                } else {
+                    System.err.println("The text is not that long. Text size: " + text.getParagraphs().size());
+                }
             } else {
                 text.replaceText(textToReplace, null, newText);
             }
-        } else {
-            System.err.println("There is no text. Add some with the commands below.");
         }
     }
 }

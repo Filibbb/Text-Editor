@@ -2,8 +2,9 @@ package ch.zhaw.papp;
 
 import ch.zhaw.papp.commands.*;
 
+import ch.zhaw.papp.commands.Formatter;
 import static ch.zhaw.papp.ConsoleInputReader.readNextLine;
-import static ch.zhaw.papp.commands.PrintCommand.print;
+import static ch.zhaw.papp.commands.PrintCommand.*;
 import static ch.zhaw.papp.commands.ReplaceCommand.replaceCommand;
 
 /**
@@ -21,12 +22,12 @@ public class CommandHandler {
      * @param textData the textdata object
      * @author abuechi
      */
-    public void executeCommand(Command command, TextData textData) {
+    public void executeCommand(Command command, TextData textData,Formatter formatter) {
         switch (command.getCommand()) {
             case ADD:
                 final AddTextCommand addTextCommand = new AddTextCommand(command);
                 addTextCommand.execute(textData);
-                print(textData);
+                printRaw(textData);
                 break;
             case DELETE:
                 final DeleteCommand deleteCommand = new DeleteCommand(command);
@@ -35,7 +36,7 @@ public class CommandHandler {
             case DUMMY:
                 final DummyCommand dummyCommand = new DummyCommand(command);
                 dummyCommand.execute(textData);
-                print(textData);
+                printRaw(textData);
                 break;
             case EXIT:
                 final ExitCommand exitCommand = new ExitCommand();
@@ -44,7 +45,7 @@ public class CommandHandler {
             case INDEX:
                 break;
             case PRINT:
-                print(textData);
+                print(textData, formatter);
                 break;
             case REPLACE:
                 System.out.println("Write the word / text you want to replace.");
@@ -52,11 +53,13 @@ public class CommandHandler {
                 System.out.println("Write the word / text you want to replace it with.");
                 String newText = readNextLine();
                 replaceCommand(textData, textToReplace, newText, command);
-                print(textData);
+                printRaw(textData);
                 break;
             case FORMAT_FIX:
+                formatter.formatFixCommand(command.getNumericParams());
                 break;
             case FORMAT_RAW:
+                formatter.formatRaw();
                 break;
             case SHOW_COMMANDS:
                 final ShowCommand showCommand = new ShowCommand();
