@@ -6,7 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Command Class to handle the formatting
+ * Class to handle the formatting
+ *
  * @author fupat002
  * @version 1.0.0
  */
@@ -15,37 +16,52 @@ public class Formatter {
     private Integer userParagraphWishLength;
 
     /**
-     * defines the column width of the print text
-     * @param paragraphLength   the maximum length that the paragraph may have after formatting
+     * Defines the column width of the print text
+     *
+     * @param paragraphLength the maximum length that the paragraph may have after formatting
      * @author fupat002
      */
-    public void formatFixCommand(int paragraphLength){
+    public void formatFixCommand(int paragraphLength) {
         this.userParagraphWishLength = paragraphLength;
     }
 
     /**
-     * executes the format fix command with the desired line width.
-     * @param textData  the class that contains the text to be formatted
+     * Executes the format fix command with the desired maximal paragraph length.
+     *
+     * @param textData the current TextData object
      * @author fupat002.
      */
-    public void executeFormatFixCommand(TextData textData){
-        if(userParagraphWishLength != null){
+    public void executeFormatFixCommand(TextData textData) {
+        if (userParagraphWishLength != null) {
             formatFix(textData);
         }
     }
 
     /**
-     * Resets the format back to the format as it was received.
+     * Resets the format back to the original format.
+     *
      * @author fupat002
      */
     public void formatRaw() {
         userParagraphWishLength = null;
     }
 
+    /**
+     * Get formatted paragraphs
+     *
+     * @return formatted paragraphs
+     * @author fupat002
+     */
     public List<String> getFormattedParagraphs() {
         return formattedParagraphs;
     }
 
+    /**
+     * Get the desired paragraph length
+     *
+     * @return desired paragraph length
+     * @author fupat002
+     */
     public Integer getUserParagraphWishLength() {
         return userParagraphWishLength;
     }
@@ -58,15 +74,15 @@ public class Formatter {
             String[] oldParagraphWords = text.get(paragraphIndexOfOriginalText).split(" ");
             formattedParagraphs.add(oldParagraphWords[0]);
             int wordOfOriginalText = 1;
-            if(paragraphIndexOfOriginalText != 0){
+            if (paragraphIndexOfOriginalText != 0) {
                 paragraphIndexOfNewText++;
             }
             boolean spaceLeftInParagraphOfFormattedText = false;
-            while(wordOfOriginalText < oldParagraphWords.length){
+            while (wordOfOriginalText < oldParagraphWords.length) {
                 spaceLeftInParagraphOfFormattedText = checkIfSpaceLeftInParagraph(oldParagraphWords[wordOfOriginalText].length(), userParagraphWishLength, formattedParagraphs.get(paragraphIndexOfNewText).length());
                 if (spaceLeftInParagraphOfFormattedText) {
-                        String mergedNewParagraph = formattedParagraphs.get(paragraphIndexOfNewText) + " " + oldParagraphWords[wordOfOriginalText];
-                        formattedParagraphs.set(paragraphIndexOfNewText, mergedNewParagraph);
+                    String mergedNewParagraph = formattedParagraphs.get(paragraphIndexOfNewText) + " " + oldParagraphWords[wordOfOriginalText];
+                    formattedParagraphs.set(paragraphIndexOfNewText, mergedNewParagraph);
                 } else {
                     formattedParagraphs.add(oldParagraphWords[wordOfOriginalText]);
                     paragraphIndexOfNewText++;
@@ -76,14 +92,14 @@ public class Formatter {
         }
     }
 
-    private boolean checkIfSpaceLeftInParagraph(int lengthOfTextToAdd, int maxLength, int alreadyOccupied){
+    private boolean checkIfSpaceLeftInParagraph(int lengthOfTextToAdd, int maxLength, int alreadyOccupied) {
         int spaceNeeded = lengthOfTextToAdd + 1;
         int freeSpace = maxLength - alreadyOccupied;
         return spaceNeeded <= freeSpace;
     }
 
-    private void checkIsAlreadyFormatted(){
-        if(!formattedParagraphs.isEmpty()) {
+    private void checkIsAlreadyFormatted() {
+        if (!formattedParagraphs.isEmpty()) {
             formattedParagraphs = new ArrayList<>();
         }
     }

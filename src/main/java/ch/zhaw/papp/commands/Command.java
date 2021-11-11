@@ -50,6 +50,12 @@ public class Command {
         this.numericParams = numericParams;
     }
 
+    /**
+     * Checks if a command is valid
+     *
+     * @return true if command is not null
+     * @author abuechi
+     */
     public boolean isValidCommand() {
         return command != null;
     }
@@ -58,6 +64,7 @@ public class Command {
      * Checks if command has params
      *
      * @return true if the command has params, false otherwise.
+     * @author abuechi
      */
     public boolean hasParams() {
         return numericParams != null;

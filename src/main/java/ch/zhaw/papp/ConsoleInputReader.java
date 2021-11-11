@@ -15,9 +15,9 @@ public class ConsoleInputReader {
     }
 
     /**
-     * Read the next line if one exists otherwise "waits" till one is entered.
+     * Read the next line or wait until next line is entered
      *
-     * @return the next inputted line if possible
+     * @return the next line that is put in or return into wanting state
      * @author abuechi
      */
     public static String readNextLine() {
@@ -30,7 +30,7 @@ public class ConsoleInputReader {
     }
 
     /**
-     * closes the scanner.
+     * Closes the scanner.
      *
      * @author fupat002
      */

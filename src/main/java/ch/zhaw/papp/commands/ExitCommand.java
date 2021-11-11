@@ -3,7 +3,7 @@ package ch.zhaw.papp.commands;
 import static ch.zhaw.papp.ConsoleInputReader.closeScanner;
 
 /**
- * The Class for the exit command
+ * Command class for the exit command
  *
  * @author abuechi
  * @version 1.0.0

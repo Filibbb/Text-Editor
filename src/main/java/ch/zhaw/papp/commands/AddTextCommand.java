@@ -14,7 +14,7 @@ public class AddTextCommand {
     private final Command command;
 
     /**
-     * Creates an instance of the delete command with its related command information.
+     * Creates an instance of AddTextCommand with its related command information.
      *
      * @param command the information on how the command should be executed
      * @author abuechi
@@ -23,6 +23,12 @@ public class AddTextCommand {
         this.command = command;
     }
 
+    /**
+     * Executes the ADD command
+     *
+     * @param textData the current TextData object
+     * @author weberph5
+     */
     public void execute(TextData textData) {
         if (command != null) {
             System.out.println("Enter the text you want to add");
@@ -33,14 +39,7 @@ public class AddTextCommand {
         }
     }
 
-    /**
-     * Adds text to the paragraph that was put in with the ADD command
-     *
-     * @param textData  the current textData object
-     * @param textToAdd new text that is added
-     * @param offset    paragraph number that was put in with the ADD command
-     * @author weberph5
-     */
+
     private void addTextCommand(TextData textData, String textToAdd, Integer offset) {
         final boolean successFull = textData.insertTextAt(offset, textToAdd);
         if (!successFull) {
