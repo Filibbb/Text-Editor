@@ -12,41 +12,46 @@ import java.util.*;
  */
 public class IndexCommand {
 
-    private IndexCommand() {
-    }
-
     /**
      * Executes the index command by counting all terms with capital letters, and assigning paragraphs to those terms
      * with mention of more than three.
+     *
      * @param textData the class that contains the text for the index command.
-     * @author kuengpas
      * @return word mentioned four or more times with respective paragraph
+     * @author kuengpas
      */
-    public static String executeIndexCommand(TextData textData) {
-        ArrayList<String> termsWithMoreThanThreeOccurrences = getTermsWithMoreThanThreeOccurrences(textData);
-        HashMap<String, ArrayList<Integer>> termsWithIndices = allocateIndices(textData, termsWithMoreThanThreeOccurrences);
+    public String execute(TextData textData) {
+        final ArrayList<String> allTerms = getAllTerms(textData.getParagraphs());
+        final ArrayList<String> termsWithMoreThanThreeOccurrences = getTermsWithMoreThanThreeOccurrences(allTerms);
+        final HashMap<String, ArrayList<Integer>> termsWithIndices = allocateIndices(textData, termsWithMoreThanThreeOccurrences);
 
         return getFormattedIndices(termsWithIndices);
     }
 
-    private static ArrayList<String> getAllTerms(List<String> paragraphs) {
-        ArrayList<String> allTerms = new ArrayList<>();
+    private ArrayList<String> getAllTerms(List<String> paragraphs) {
+        final ArrayList<String> allTerms = new ArrayList<>();
         for (String paragraph : paragraphs) {
-            String textWithoutPunctuationAndNumbers = paragraph.replaceAll("[^\\p{L} ]", "");
-            String[] allWords = textWithoutPunctuationAndNumbers.split(" ");
-            for (String allWord : allWords) {
-                if (allWord.length() > 0 && Character.isUpperCase(allWord.charAt(0))) {
-                    allTerms.add(allWord);
-                }
+            String textWithoutPunctuationAndNumbers = paragraph.replaceAll("[^a-zA-Z ]", "");
+            final ArrayList<String> wordsFromParagraph = getWordsWithUpperCaseFromParagraph(textWithoutPunctuationAndNumbers);
+            allTerms.addAll(wordsFromParagraph);
+        }
+        return allTerms;
+    }
+
+    private ArrayList<String> getWordsWithUpperCaseFromParagraph(String textWithoutPunctuationAndNumbers) {
+        final ArrayList<String> allTerms = new ArrayList<>();
+        String[] allWords = textWithoutPunctuationAndNumbers.split(" ");
+        for (String allWord : allWords) {
+            if (allWord.length() > 0 && Character.isUpperCase(allWord.charAt(0))) {
+                allTerms.add(allWord);
             }
         }
         return allTerms;
     }
 
-    private static ArrayList<String> getTermsWithMoreThanThreeOccurrences(TextData textData) {
-        ArrayList<String> allTerms = getAllTerms(textData.getParagraphs());
+    private ArrayList<String> getTermsWithMoreThanThreeOccurrences(final ArrayList<String> allTerms) {
         Collections.sort(allTerms);
-        ArrayList<String> termsWithMoreThanThreeOccurrences = new ArrayList<>();
+        final ArrayList<String> termsWithMoreThanThreeOccurrences = new ArrayList<>();
         int counter = 1;
         for (int i = 0; i < allTerms.size() - 1; i++) {
             if (allTerms.get(i).equals(allTerms.get(i + 1))) {
@@ -62,7 +67,7 @@ public class IndexCommand {
         return termsWithMoreThanThreeOccurrences;
     }
 
-    private static HashMap<String, ArrayList<Integer>> allocateIndices(TextData textData, ArrayList<String> termsWithMoreThanThreeOccurrences) {
+    private HashMap<String, ArrayList<Integer>> allocateIndices(TextData textData, final ArrayList<String> termsWithMoreThanThreeOccurrences) {
         HashMap<String, ArrayList<Integer>> termsWithIndices = new HashMap<>();
         for (String term : termsWithMoreThanThreeOccurrences) {
             termsWithIndices.put(term, getTermIndices(textData, term));
@@ -70,8 +75,8 @@ public class IndexCommand {
         return termsWithIndices;
     }
 
-    private static ArrayList<Integer> getTermIndices(TextData textData, String term) {
-        ArrayList<Integer> indices = new ArrayList<>();
+    private ArrayList<Integer> getTermIndices(TextData textData, String term) {
+        final ArrayList<Integer> indices = new ArrayList<>();
         final List<String> paragraphs = textData.getParagraphs();
         for (int i = 0; i < paragraphs.size(); i++) {
             if (paragraphs.get(i).contains(term)) {
@@ -81,9 +86,9 @@ public class IndexCommand {
         return indices;
     }
 
-    private static String getFormattedIndices(HashMap<String, ArrayList<Integer>> map) {
+    private String getFormattedIndices(HashMap<String, ArrayList<Integer>> indicesMap) {
         String result = "";
-        for (Map.Entry<String, ArrayList<Integer>> entry : map.entrySet()) {
+        for (Map.Entry<String, ArrayList<Integer>> entry : indicesMap.entrySet()) {
             result += entry.getKey() + "     \t\t";
             result += entry.getValue() + "\n";
         }
