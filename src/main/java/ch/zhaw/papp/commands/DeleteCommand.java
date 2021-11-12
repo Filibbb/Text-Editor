@@ -29,7 +29,13 @@ public class DeleteCommand {
      */
     public void execute(TextData textData) {
         if (command != null) {
-            deleteCommand(textData, command.getNumericParams());
+            if (command.hasParams() && (command.getNumericParams() <= textData.getParagraphs().size())) {
+                deleteCommand(textData, command.getNumericParams());
+            } else if (!command.hasParams()) {
+                deleteCommand(textData, textData.getParagraphs().size());
+            } else {
+                System.err.println("Paragraph number is not valid!");
+            }
         } else {
             System.err.println("Command is missing the command information.");
         }
