@@ -30,7 +30,13 @@ public class DummyCommand {
      */
     public void execute(TextData textData) {
         if (command != null) {
-            dummyCommand(textData, command.getNumericParams());
+            if (command.hasParams() && (command.getNumericParams() <= textData.getParagraphs().size()+1)) {
+                dummyCommand(textData, command.getNumericParams());
+            } else if (!command.hasParams()) {
+                dummyCommand(textData,textData.getParagraphs().size()+1 );
+            } else {
+                System.err.println("Paragraph number is not valid");
+            }
         } else {
             System.err.println("Command is missing the command information.");
         }

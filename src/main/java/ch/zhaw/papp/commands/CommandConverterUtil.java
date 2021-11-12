@@ -50,10 +50,10 @@ public class CommandConverterUtil {
     private static Integer getNumericArgument(String userInput) {
         final String[] userInputWords = userInput.split("\\s+");
         final String argument = userInputWords[userInputWords.length - 1];
-        if (argument != null && argument.matches("\\d+")) {
+        if (argument != null && argument.matches("[1-9][0-9]*$")) {
             return Integer.parseInt(argument);
         } else {
-            System.err.println("Argument could not be converted to number.");
+            System.err.println("Argument is not a valid number!");
             return null;
         }
     }
