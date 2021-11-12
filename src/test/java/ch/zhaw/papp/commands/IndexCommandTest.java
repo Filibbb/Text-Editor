@@ -13,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 public class IndexCommandTest {
 
+    final IndexCommand indexCommand = new IndexCommand();
     /**
      * Executes a test if the resulting terms have the right indices assigned to it.
      *
@@ -40,7 +41,7 @@ public class IndexCommandTest {
         text.insertTextAt(4, paragraph4);
         text.insertTextAt(5, paragraph5);
 
-        String actualOutput = IndexCommand.executeIndexCommand(text);
+        String actualOutput = indexCommand.execute(text);
 
         assertEquals(
                 "Celsius     \t\t[4, 5]\n" +
@@ -59,7 +60,7 @@ public class IndexCommandTest {
         String paragraph1 = "Error Error Error Error. No keyboard. Press F1 to continue";
         text.insertTextAt(1, paragraph1);
 
-        String actualOutput = IndexCommand.executeIndexCommand(text);
+        String actualOutput = indexCommand.execute(text);
 
         assertEquals(
                 "Error     \t\t[1]\n", actualOutput
@@ -70,7 +71,7 @@ public class IndexCommandTest {
     public void testIfEmptyStringsCanBeHandled() {
         TextData text = new TextData();
 
-        String actualOutput = IndexCommand.executeIndexCommand(text);
+        String actualOutput = indexCommand.execute(text);
 
         assertEquals(
                 "", actualOutput

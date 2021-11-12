@@ -44,7 +44,8 @@ public class CommandHandler {
                 exitCommand.execute();
                 break;
             case INDEX:
-                String output = IndexCommand.executeIndexCommand(textData);
+                final IndexCommand indexCommand = new IndexCommand();
+                String output = indexCommand.execute(textData);
                 System.out.println(output);
                 break;
             case PRINT:

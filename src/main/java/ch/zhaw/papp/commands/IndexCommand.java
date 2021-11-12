@@ -12,9 +12,6 @@ import java.util.*;
  */
 public class IndexCommand {
 
-    private IndexCommand() {
-    }
-
     /**
      * Executes the index command by counting all terms with capital letters, and assigning paragraphs to those terms
      * with mention of more than three.
@@ -22,17 +19,17 @@ public class IndexCommand {
      * @author kuengpas
      * @return word mentioned four or more times with respective paragraph
      */
-    public static String executeIndexCommand(TextData textData) {
+    public String execute(TextData textData) {
         ArrayList<String> termsWithMoreThanThreeOccurrences = getTermsWithMoreThanThreeOccurrences(textData);
         HashMap<String, ArrayList<Integer>> termsWithIndices = allocateIndices(textData, termsWithMoreThanThreeOccurrences);
 
         return getFormattedIndices(termsWithIndices);
     }
 
-    private static ArrayList<String> getAllTerms(List<String> paragraphs) {
+    private ArrayList<String> getAllTerms(List<String> paragraphs) {
         ArrayList<String> allTerms = new ArrayList<>();
         for (String paragraph : paragraphs) {
-            String textWithoutPunctuationAndNumbers = paragraph.replaceAll("[^\\p{L} ]", "");
+            String textWithoutPunctuationAndNumbers = paragraph.replaceAll("[^a-zA-Z ]", "");
             String[] allWords = textWithoutPunctuationAndNumbers.split(" ");
             for (String allWord : allWords) {
                 if (allWord.length() > 0 && Character.isUpperCase(allWord.charAt(0))) {
@@ -43,7 +40,7 @@ public class IndexCommand {
         return allTerms;
     }
 
-    private static ArrayList<String> getTermsWithMoreThanThreeOccurrences(TextData textData) {
+    private ArrayList<String> getTermsWithMoreThanThreeOccurrences(TextData textData) {
         ArrayList<String> allTerms = getAllTerms(textData.getParagraphs());
         Collections.sort(allTerms);
         ArrayList<String> termsWithMoreThanThreeOccurrences = new ArrayList<>();
@@ -62,7 +59,7 @@ public class IndexCommand {
         return termsWithMoreThanThreeOccurrences;
     }
 
-    private static HashMap<String, ArrayList<Integer>> allocateIndices(TextData textData, ArrayList<String> termsWithMoreThanThreeOccurrences) {
+    private HashMap<String, ArrayList<Integer>> allocateIndices(TextData textData, ArrayList<String> termsWithMoreThanThreeOccurrences) {
         HashMap<String, ArrayList<Integer>> termsWithIndices = new HashMap<>();
         for (String term : termsWithMoreThanThreeOccurrences) {
             termsWithIndices.put(term, getTermIndices(textData, term));
@@ -70,7 +67,7 @@ public class IndexCommand {
         return termsWithIndices;
     }
 
-    private static ArrayList<Integer> getTermIndices(TextData textData, String term) {
+    private ArrayList<Integer> getTermIndices(TextData textData, String term) {
         ArrayList<Integer> indices = new ArrayList<>();
         final List<String> paragraphs = textData.getParagraphs();
         for (int i = 0; i < paragraphs.size(); i++) {
@@ -81,7 +78,7 @@ public class IndexCommand {
         return indices;
     }
 
-    private static String getFormattedIndices(HashMap<String, ArrayList<Integer>> map) {
+    private String getFormattedIndices(HashMap<String, ArrayList<Integer>> map) {
         String result = "";
         for (Map.Entry<String, ArrayList<Integer>> entry : map.entrySet()) {
             result += entry.getKey() + "     \t\t";
