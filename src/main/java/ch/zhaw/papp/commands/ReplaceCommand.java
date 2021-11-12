@@ -2,6 +2,8 @@ package ch.zhaw.papp.commands;
 
 import ch.zhaw.papp.TextData;
 
+import static ch.zhaw.papp.ConsoleInputReader.readNextLine;
+
 /**
  * Command class for the replace command
  *
@@ -10,19 +12,22 @@ import ch.zhaw.papp.TextData;
  */
 public class ReplaceCommand {
 
-    private ReplaceCommand() {
-    }
-
     /**
-     * Executes the replacement commands in the last or selected paragraph.
+     * Executes the replacement commands.
      *
-     * @param text          the current TextData object
-     * @param textToReplace the text / word that needs to be replaced
+     * @param textData          the current TextData object
      * @param command       the entered command
-     * @param newText       the text / word to replace it with
      * @author fupat002
      */
-    public static void replaceCommand(TextData text, String textToReplace, String newText, Command command) {
+    public void execute(TextData textData, Command command){
+        System.out.println("Write the word / text you want to replace.");
+        String textToReplace = readNextLine();
+        System.out.println("Write the word / text you want to replace it with.");
+        String newText = readNextLine();
+        replaceCommand(textData, textToReplace, newText, command);
+    }
+
+    private void replaceCommand(TextData text, String textToReplace, String newText, Command command) {
         if (!text.getParagraphs().isEmpty()) {
             if (command.hasParams()) {
                 if (text.isValidParagraph(command.getNumericParams())) {

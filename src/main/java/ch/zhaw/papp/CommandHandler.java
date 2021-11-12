@@ -6,7 +6,6 @@ import ch.zhaw.papp.commands.Formatter;
 
 import static ch.zhaw.papp.ConsoleInputReader.readNextLine;
 import static ch.zhaw.papp.commands.PrintCommand.*;
-import static ch.zhaw.papp.commands.ReplaceCommand.replaceCommand;
 
 /**
  * A class that handles all commands and makes sure the correct commands are executed.
@@ -51,11 +50,8 @@ public class CommandHandler {
                 print(textData, formatter);
                 break;
             case REPLACE:
-                System.out.println("Write the word / text you want to replace.");
-                String textToReplace = readNextLine();
-                System.out.println("Write the word / text you want to replace it with.");
-                String newText = readNextLine();
-                replaceCommand(textData, textToReplace, newText, command);
+                final ReplaceCommand replaceCommand = new ReplaceCommand();
+                replaceCommand.execute(textData, command);
                 printRaw(textData);
                 break;
             case FORMAT_FIX:
