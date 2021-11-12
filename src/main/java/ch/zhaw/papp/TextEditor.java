@@ -38,7 +38,7 @@ public class TextEditor {
                 if (command.isValidCommand()) {
                     commandHandler.executeCommand(command, textData, formatter);
                 } else {
-                    System.err.println("This command is not available. Please choose one. Use 'SHOW COMMANDS' for available commands.");
+                    System.err.println("Command input is was invalid. Use 'SHOW COMMANDS' for available valid commands.");
                 }
             }
         } while (true);

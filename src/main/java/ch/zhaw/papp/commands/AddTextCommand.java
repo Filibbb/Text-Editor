@@ -31,9 +31,18 @@ public class AddTextCommand {
      */
     public void execute(TextData textData) {
         if (command != null) {
-            System.out.println("Enter the text you want to add");
-            String textToAdd = readNextLine();
-            addTextCommand(textData, textToAdd, command.getNumericParams());
+            if (command.hasParams() && (command.getNumericParams() <= textData.getParagraphs().size() + 1)) {
+                System.out.println("Enter the text you want to add");
+                String textToAdd = readNextLine();
+                addTextCommand(textData, textToAdd, command.getNumericParams());
+            } else if (!command.hasParams()) {
+                System.out.println("Enter the text you want to add");
+                String textToAdd = readNextLine();
+                addTextCommand(textData, textToAdd, textData.getParagraphs().size() + 1);
+            } else {
+                System.err.println("Paragraph number is not valid");
+            }
+
         } else {
             System.err.println("Command is missing the command information.");
         }
