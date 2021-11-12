@@ -65,4 +65,16 @@ public class IndexCommandTest {
                 "Error     \t\t[1]\n", actualOutput
         );
     }
+
+    @Test
+    public void testIfEmptyStringsCanBeHandled() {
+        TextData text = new TextData();
+
+        String actualOutput = IndexCommand.executeIndexCommand(text);
+
+        assertEquals(
+                "", actualOutput
+        );
+    }
+
 }
