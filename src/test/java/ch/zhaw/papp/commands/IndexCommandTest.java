@@ -50,7 +50,7 @@ public class IndexCommandTest {
     }
 
     /**
-     * Executes a test if the numbers and Punctuation is removed from the text (one edge case)
+     * Executes a test if the numbers and punctuation is removed from the text (one edge case)
      *
      * @author kuengpas
      */
@@ -67,6 +67,11 @@ public class IndexCommandTest {
         );
     }
 
+    /**
+     * Executes a test if empty strings can be handled (another edge case)
+     *
+     * @author kuengpas
+     */
     @Test
     public void testIfEmptyStringsCanBeHandled() {
         TextData text = new TextData();

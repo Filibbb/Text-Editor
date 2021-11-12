@@ -86,9 +86,9 @@ public class IndexCommand {
         return indices;
     }
 
-    private String getFormattedIndices(HashMap<String, ArrayList<Integer>> map) {
+    private String getFormattedIndices(HashMap<String, ArrayList<Integer>> indicesMap) {
         String result = "";
-        for (Map.Entry<String, ArrayList<Integer>> entry : map.entrySet()) {
+        for (Map.Entry<String, ArrayList<Integer>> entry : indicesMap.entrySet()) {
             result += entry.getKey() + "     \t\t";
             result += entry.getValue() + "\n";
         }
