@@ -23,7 +23,11 @@ Die Befehle können in der Eingabeaufforderung eingegeben werden und führen dan
 
 ## Starten des Editors
 
-Gestartet wird die Applikation mit der Klasse `Main.java#main`. Dazu kann man das Projekt kompilieren (javac) und anschliessend ausführen oder via einer Entwicklerumgebung ausführen lassen. 
+Gestartet wird die Applikation mit der Klasse `Main.java#main`. Dazu kann man das Projekt kompilieren (javac) und anschliessend ausführen oder via einer Entwicklerumgebung ausführen lassen.
+
+## Klassendiagram
+Die Versionen vom Klassen Diagramm sind hier zu finden: 
+https://github.zhaw.ch/PM1-IT21taWIN-kars-pero-tebe/gruppec-papp-projekt2-text-editor/wiki/Class-diagram
 
 ### Gruppen Mitglieder und Verantwortungsbereich
 
