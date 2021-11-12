@@ -73,26 +73,30 @@ public class Formatter {
         for (int paragraphIndexOfOriginalText = 0; paragraphIndexOfOriginalText < text.size(); paragraphIndexOfOriginalText++) {
             String[] oldParagraphWords = text.get(paragraphIndexOfOriginalText).split(" ");
             formattedParagraphs.add(oldParagraphWords[0]);
-            int wordOfOriginalText = 1;
             if (paragraphIndexOfOriginalText != 0) {
                 paragraphIndexOfNewText++;
             }
-            boolean spaceLeftInParagraphOfFormattedText = false;
-            while (wordOfOriginalText < oldParagraphWords.length) {
-                spaceLeftInParagraphOfFormattedText = checkIfSpaceLeftInParagraph(oldParagraphWords[wordOfOriginalText].length(), userParagraphWishLength, formattedParagraphs.get(paragraphIndexOfNewText).length());
-                if (spaceLeftInParagraphOfFormattedText) {
-                    String mergedNewParagraph = formattedParagraphs.get(paragraphIndexOfNewText) + " " + oldParagraphWords[wordOfOriginalText];
-                    formattedParagraphs.set(paragraphIndexOfNewText, mergedNewParagraph);
-                } else {
-                    formattedParagraphs.add(oldParagraphWords[wordOfOriginalText]);
-                    paragraphIndexOfNewText++;
-                }
-                wordOfOriginalText++;
-            }
+            addWordsToArrayWithParagraphLength(oldParagraphWords,paragraphIndexOfNewText );
         }
     }
 
-    private boolean checkIfSpaceLeftInParagraph(int lengthOfTextToAdd, int maxLength, int alreadyOccupied) {
+    private void addWordsToArrayWithParagraphLength(String[] wordsToAdd, int paragraphIndexOfFormattedText){
+        int wordOfOriginalText = 1;
+        while (wordOfOriginalText < wordsToAdd.length) {
+            int lengthOfWordToAdd = wordsToAdd[wordOfOriginalText].length();
+            int lengthOfAlreadyOccupiedSpace =formattedParagraphs.get(paragraphIndexOfFormattedText).length();
+            if (SpaceLeftInParagraph(lengthOfWordToAdd, userParagraphWishLength, lengthOfAlreadyOccupiedSpace)) {
+                String mergedNewParagraph = formattedParagraphs.get(paragraphIndexOfFormattedText) + " " + wordsToAdd[wordOfOriginalText];
+                formattedParagraphs.set(paragraphIndexOfFormattedText, mergedNewParagraph);
+            } else {
+                formattedParagraphs.add(wordsToAdd[wordOfOriginalText]);
+                paragraphIndexOfFormattedText++;
+            }
+            wordOfOriginalText++;
+        }
+    }
+
+    private boolean SpaceLeftInParagraph(int lengthOfTextToAdd, int maxLength, int alreadyOccupied) {
         int spaceNeeded = lengthOfTextToAdd + 1;
         int freeSpace = maxLength - alreadyOccupied;
         return spaceNeeded <= freeSpace;
