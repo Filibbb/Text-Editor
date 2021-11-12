@@ -38,7 +38,7 @@ public class AddTextCommand {
             } else if (!command.hasParams()) {
                 System.out.println("Enter the text you want to add");
                 String textToAdd = readNextLine();
-                addTextCommand(textData, textToAdd, textData.getParagraphs().size());
+                addTextCommand(textData, textToAdd, textData.getParagraphs().size()+1);
             } else{
                 System.err.println("Paragraph number is not valid");
             }
