@@ -23,7 +23,7 @@ Die Befehle können in der Eingabeaufforderung eingegeben werden und führen dan
 
 ## Starten des Editors
 
-Gestartet wird die Applikation mit der Klasse `Main.java#main`. Dazu kann man das Projekt kompilieren (javac) und anschliessend ausführen oder via einer Entwicklerumgebung ausführen lassen.
+Starten kannst du den TextEditor entweder durch starten von `Main.java#main` in einer Entwicklungsumgebung oder du lädts dir die kompilierte .jar-Datei [hier](https://phweber.ch/ZHAW/Papp_TextEditor.jar) herunter und führst sie auf deinem System (Java muss natürlich installiert sein) mit dem Befehl `java -jar Papp_TextEditor.jar` aus.
 
 ## Klassendiagram
 Die Versionen vom Klassen Diagramm sind hier zu finden: 
