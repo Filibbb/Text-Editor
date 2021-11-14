@@ -14,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class IndexCommandTest {
 
     final IndexCommand indexCommand = new IndexCommand();
+
     /**
      * Executes a test if the resulting terms have the right indices assigned to it.
      *

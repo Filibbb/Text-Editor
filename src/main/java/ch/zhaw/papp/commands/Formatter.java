@@ -73,18 +73,18 @@ public class Formatter {
         for (int paragraphIndexOfOriginalText = 0; paragraphIndexOfOriginalText < text.size(); paragraphIndexOfOriginalText++) {
             String[] oldParagraphWords = text.get(paragraphIndexOfOriginalText).split(" ");
             formattedParagraphs.add(oldParagraphWords[0]);
-            currentLineOfFormattedText = addWordsToArrayWithParagraphLength(oldParagraphWords,paragraphIndexOfOriginalText, currentLineOfFormattedText);
+            currentLineOfFormattedText = addWordsToArrayWithParagraphLength(oldParagraphWords, paragraphIndexOfOriginalText, currentLineOfFormattedText);
         }
     }
 
-    private int addWordsToArrayWithParagraphLength(String[] wordsToAdd, int paragraphIndexOfOriginalText, int paragraphIndexOfFormattedText){
+    private int addWordsToArrayWithParagraphLength(String[] wordsToAdd, int paragraphIndexOfOriginalText, int paragraphIndexOfFormattedText) {
         int wordOfOriginalText = 1;
         if (paragraphIndexOfOriginalText != 0) {
             paragraphIndexOfFormattedText++;
         }
         while (wordOfOriginalText < wordsToAdd.length) {
             int lengthOfWordToAdd = wordsToAdd[wordOfOriginalText].length();
-            int lengthOfAlreadyOccupiedSpace =formattedParagraphs.get(paragraphIndexOfFormattedText).length();
+            int lengthOfAlreadyOccupiedSpace = formattedParagraphs.get(paragraphIndexOfFormattedText).length();
             if (spaceLeftInParagraph(lengthOfWordToAdd, userParagraphWishLength, lengthOfAlreadyOccupiedSpace)) {
                 String mergedNewParagraph = formattedParagraphs.get(paragraphIndexOfFormattedText) + " " + wordsToAdd[wordOfOriginalText];
                 formattedParagraphs.set(paragraphIndexOfFormattedText, mergedNewParagraph);

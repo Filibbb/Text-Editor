@@ -15,11 +15,11 @@ public class ReplaceCommand {
     /**
      * Executes the replacement commands.
      *
-     * @param textData          the current TextData object
-     * @param command       the entered command
+     * @param textData the current TextData object
+     * @param command  the entered command
      * @author fupat002
      */
-    public void execute(TextData textData, Command command){
+    public void execute(TextData textData, Command command) {
         System.out.println("Write the word / text you want to replace.");
         String textToReplace = readNextLine();
         System.out.println("Write the word / text you want to replace it with.");

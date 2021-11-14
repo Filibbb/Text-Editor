@@ -50,6 +50,7 @@ public enum Commands {
 
     /**
      * Get command information
+     *
      * @return command information
      */
     public String getCommandInfo() {
