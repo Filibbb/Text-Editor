@@ -1,4 +1,4 @@
-TextEditor
+### TextEditor
 
 ## Beschreibung
 
@@ -23,25 +23,4 @@ Die Befehle können in der Eingabeaufforderung eingegeben werden und führen dan
 
 ## Starten des Editors
 
-Starten kannst du den TextEditor entweder durch starten von `Main.java#main` in einer Entwicklungsumgebung oder du lädts dir die kompilierte .jar-Datei [hier](https://phweber.ch/ZHAW/Papp_TextEditor.jar) oder durch die Release Section [hier](https://github.zhaw.ch/PM1-IT21taWIN-kars-pero-tebe/gruppec-papp-projekt2-text-editor/releases/tag/v1.0.0) herunter und führst sie auf deinem System (Java muss natürlich installiert sein) mit dem Befehl `java -jar Papp_TextEditor.jar` aus.
-
-## Klassendiagram
-Die Versionen vom Klassen Diagramm sind hier zu finden: 
-https://github.zhaw.ch/PM1-IT21taWIN-kars-pero-tebe/gruppec-papp-projekt2-text-editor/wiki/Class-diagram
-
-### Gruppen Mitglieder und Verantwortungsbereich
-
-* Adrian Büchi - Tech-Lead, Reviewer, Pair-Programming, (Dummy und Refactorings sowie Applikations Struktur)
-* Philippe Weber - ADD,DEL,EXIT
-* Patric Fuchs - ConsoleInputReader, Print, Replace
-* Pascal Küng - Index, Unit-Test
-
-
-### Teamrules
-
-* Wir versuchen den Code in Englisch zu schreiben d.h. zum Beispiel `ConsoleInputReader.java` oder `AddParagraph(String text, int paragraphNumber)` anstelle von deutschen Namen.
-* Wir arbeiten grundsätzlich mit Branches. Branches werden auf Englisch benammst und sollten beschreiben, was in diesem Branch gemacht wird. 
-* Wenn eine Änderung komplett ist, sollte diese im Idealfall in Review bei allen gestellt werden bevor auf den `Master Branch` gepushed wird. (4 Augen Prinzip)
-* Git Commits bitte auf Englisch und nur Zustände comitten, die mindestens kompilieren.
-
-Wenn wir feststellen, dass etwas nicht funktioniert bitte frühzeitig melden, wenn die oben genannten Teamrules nur hinderlich sind dies ansprechen, dann werden die Neu definiert.
+Starten kannst du den TextEditor entweder durch starten von `Main.java#main` in einer Entwicklungsumgebung oder du lädts dir die kompilierte .jar-Datei [hier](https://phweber.ch/ZHAW/Papp_TextEditor.jar) oder durch die Release Section [hier](https://github.com/WeberPhilippe/TextEditor/releases/tag/v1.0.0) herunter und führst sie auf deinem System (Java muss natürlich installiert sein) mit dem Befehl `java -jar Papp_TextEditor.jar` aus.
